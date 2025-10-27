@@ -42,39 +42,43 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
 
 ## RLS (Row Level Security) 정책 설정
 
-### Supabase SQL Editor에서 실행해야 할 스크립트
+### Supabase SQL Editor에서 실행할 스크립트
 
-Supabase Dashboard의 SQL Editor에서 다음 SQL을 실행하세요:
+아래 코드 블록 전체를 그대로 복사해 SQL Editor에 붙여 넣은 뒤 실행하세요. (````sql```` 과 ````` 끝나는 줄 사이의 모든 내용을 선택하면 됩니다.)
 
 ```sql
 -- 1. RLS 활성화
-ALTER TABLE contacts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.contacts ENABLE ROW LEVEL SECURITY;
 
--- 2. 익명 사용자가 contact 폼을 제출할 수 있도록 허용 (INSERT)
+-- 2. 익명/인증 사용자 모두 contact 폼을 제출할 수 있도록 허용 (INSERT)
+DROP POLICY IF EXISTS "공개 폼 제출 허용" ON public.contacts;
 CREATE POLICY "공개 폼 제출 허용"
-ON contacts
+ON public.contacts
 FOR INSERT
-TO anon
+TO public
 WITH CHECK (true);
 
 -- 3. 인증된 사용자만 모든 contact 데이터를 조회할 수 있음 (SELECT)
+DROP POLICY IF EXISTS "관리자 조회 허용" ON public.contacts;
 CREATE POLICY "관리자 조회 허용"
-ON contacts
+ON public.contacts
 FOR SELECT
 TO authenticated
 USING (true);
 
 -- 4. 인증된 사용자만 contact 상태를 업데이트할 수 있음 (UPDATE)
+DROP POLICY IF EXISTS "관리자 수정 허용" ON public.contacts;
 CREATE POLICY "관리자 수정 허용"
-ON contacts
+ON public.contacts
 FOR UPDATE
 TO authenticated
 USING (true)
 WITH CHECK (true);
 
 -- 5. 인증된 사용자만 contact를 삭제할 수 있음 (DELETE)
+DROP POLICY IF EXISTS "관리자 삭제 허용" ON public.contacts;
 CREATE POLICY "관리자 삭제 허용"
-ON contacts
+ON public.contacts
 FOR DELETE
 TO authenticated
 USING (true);
@@ -82,7 +86,7 @@ USING (true);
 
 ### 적용된 보안 정책
 
-1. **공개 폼 제출**: 익명 사용자가 contact 폼을 제출할 수 있음 (INSERT)
+1. **공개 폼 제출**: 익명/인증 사용자 모두 contact 폼을 제출할 수 있음 (INSERT)
 2. **관리자 조회**: 인증된 사용자만 모든 contact 데이터를 조회할 수 있음 (SELECT)
 3. **관리자 수정**: 인증된 사용자만 contact 상태를 업데이트할 수 있음 (UPDATE)
 4. **관리자 삭제**: 인증된 사용자만 contact를 삭제할 수 있음 (DELETE)
@@ -176,8 +180,9 @@ Supabase Security Advisors에서 다음 항목들을 권장하고 있습니다:
 
 ### RLS 오류가 발생하는 경우
 
-1. Supabase Dashboard의 Table Editor에서 RLS가 활성화되어 있는지 확인
-2. Authentication → Policies에서 정책이 제대로 설정되어 있는지 확인
+1. Supabase Dashboard의 Table Editor에서 `contacts` RLS가 활성화되어 있는지 확인
+2. Authentication → Policies에서 정책이 위 SQL과 동일하게 설정되어 있는지 확인
+3. 특히 INSERT 정책이 `TO public` 으로 설정되어 있는지 점검
 
 ## 관련 링크
 
