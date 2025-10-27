@@ -28,10 +28,10 @@ export default function Footer() {
 
 			{/* Main Footer Content */}
 			<div className="bg-brand-purple border-t border-white/10">
-				<div className="my-container mx-auto px-[120px] py-[120px]">
-					<div className="flex gap-[60px] items-start">
+				<div className="my-container mx-auto px-[120px] py-[120px] ">
+					<div className="items-start grid grid-cols-4 gap-9">
 						{/* CTA Section */}
-						<div className="flex-1 flex flex-col gap-10">
+						<div className="flex-1 flex flex-col gap-10 col-span-2	">
 							<div className="flex flex-col gap-1">
 								<div className="flex items-center">
 									<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">BNB CN</h2>
@@ -42,14 +42,13 @@ export default function Footer() {
 									</div>
 									<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">가</h2>
 								</div>
-								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">브랜드 맞춤형 플랜으로</h2>
-								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">도와드립니다.</h2>
+								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">브랜드 맞춤형 플랜으로 도와드립니다.</h2>
 							</div>
 							<button className="bg-[#222222] text-brand-neon px-10 py-5 rounded-full text-[28px] font-extrabold uppercase w-fit">문의하기</button>
 						</div>
 
 						{/* Company Info Section */}
-						<div className="w-[376px] text-white text-base font-bold leading-[2]">
+						<div className="w-[376px] text-white text-base font-bold leading-[2] col-span-1">
 							<p>© BNB CNX Inc. All Rights Reserved.</p>
 							<p>
 								사업자등록번호 <span className="font-normal">|</span> 297-87-03451
@@ -63,7 +62,7 @@ export default function Footer() {
 						</div>
 
 						{/* Family Site Dropdown */}
-						<div className="w-[374px]">
+						<div className="w-[374px] col-span-1">
 							<button className="w-full flex items-center justify-between px-6 py-4 border border-white rounded-full text-white text-base font-bold">
 								패밀리사이트
 								<ChevronDown className="w-5 h-5" />

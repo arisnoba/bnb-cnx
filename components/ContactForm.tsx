@@ -9,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { supabase, ContactFormData } from '@/lib/supabase';
+import { toast } from 'sonner';
 
 const INQUIRY_TYPES = ['중국 SNS 체험단 문의', '중국 SNS 채널 운영대행 문의', 'LIVE 커머스 진행 문의', '글로벌 PPL / 협찬 마케팅 문의', 'CNX 한국 브랜드 셀렉샵 입점 문의', '협업 / 기타 문의 사항'];
 
@@ -33,7 +34,6 @@ export default function ContactForm() {
 		referral_other: '',
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 	const [privacyAgreed, setPrivacyAgreed] = useState(false);
 
 	const handleCheckboxChange = (value: string, checked: boolean | 'indeterminate') => {
@@ -53,16 +53,111 @@ export default function ContactForm() {
 		setFormData(prev => ({ ...prev, [name]: value }));
 	};
 
+	// 이메일 유효성 검사
+	const validateEmail = (email: string): boolean => {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	};
+
+	// 전화번호 유효성 검사 (한국 전화번호 형식)
+	const validatePhone = (phone: string): boolean => {
+		// 숫자만 추출
+		const phoneNumbers = phone.replace(/[^0-9]/g, '');
+		// 010-XXXX-XXXX, 02-XXX-XXXX, 031-XXX-XXXX 등 한국 전화번호 형식
+		const phoneRegex = /^(01[016789]|02|0[3-9][0-9])[0-9]{3,4}[0-9]{4}$/;
+		return phoneRegex.test(phoneNumbers);
+	};
+
+	// 스크롤 헬퍼 함수
+	const scrollToElement = (elementId: string) => {
+		const element = document.getElementById(elementId);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			// 포커스 가능한 요소면 포커스
+			if (element instanceof HTMLElement) {
+				element.focus();
+			}
+		}
+	};
+
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
+		// 필수 항목 검증
+		if (!formData.inquiry_types || formData.inquiry_types.length === 0) {
+			toast.warning('문의 유형을 하나 이상 선택해주세요.');
+			// 첫 번째 체크박스로 스크롤
+			const firstCheckbox = document.querySelector('input[type="checkbox"]');
+			if (firstCheckbox instanceof HTMLElement) {
+				firstCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}
+			return;
+		}
+
+		if (!formData.name || !formData.name.trim()) {
+			toast.warning('성함을 입력해주세요.');
+			scrollToElement('name');
+			return;
+		}
+
+		if (!formData.phone || !formData.phone.trim()) {
+			toast.warning('연락처를 입력해주세요.');
+			scrollToElement('phone');
+			return;
+		}
+
+		if (!validatePhone(formData.phone)) {
+			toast.error('올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)');
+			scrollToElement('phone');
+			return;
+		}
+
+		if (!formData.email || !formData.email.trim()) {
+			toast.warning('이메일을 입력해주세요.');
+			scrollToElement('email');
+			return;
+		}
+
+		if (!validateEmail(formData.email)) {
+			toast.error('올바른 이메일 형식이 아닙니다.');
+			scrollToElement('email');
+			return;
+		}
+
+		if (!formData.brand_names || !formData.brand_names.trim()) {
+			toast.warning('브랜드명을 입력해주세요.');
+			scrollToElement('brand_names');
+			return;
+		}
+
+		if (!formData.referral_source || !formData.referral_source.trim()) {
+			toast.warning('유입 경로를 선택해주세요.');
+			// Select 컴포넌트의 트리거로 스크롤
+			const referralSelect = document.querySelector('[name="referral_source"]')?.closest('[role="combobox"]');
+			if (referralSelect instanceof HTMLElement) {
+				referralSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				referralSelect.focus();
+			}
+			return;
+		}
+
+		if (formData.referral_source === '기타' && (!formData.referral_other || !formData.referral_other.trim())) {
+			toast.warning('기타 유입 경로 내용을 입력해주세요.');
+			const referralOtherInput = document.querySelector('input[name="referral_other"]');
+			if (referralOtherInput instanceof HTMLElement) {
+				referralOtherInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				referralOtherInput.focus();
+			}
+			return;
+		}
+
 		if (!privacyAgreed) {
-			alert('개인정보 처리방침에 동의해주세요.');
+			toast.warning('개인정보 처리방침에 동의해주세요.');
+			scrollToElement('privacy_agreed');
 			return;
 		}
 
 		setIsSubmitting(true);
-		setSubmitStatus('idle');
 
 		try {
 			const { error } = await supabase.from('contacts').insert([
@@ -74,7 +169,7 @@ export default function ContactForm() {
 
 			if (error) throw error;
 
-			setSubmitStatus('success');
+			toast.success('문의가 성공적으로 제출되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
 			setFormData({
 				inquiry_types: [],
 				inquiry_content: '',
@@ -91,7 +186,7 @@ export default function ContactForm() {
 			setPrivacyAgreed(false);
 		} catch (error) {
 			console.error('Error submitting form:', error);
-			setSubmitStatus('error');
+			toast.error('문의 제출 중 오류가 발생했습니다. 다시 시도해주세요.');
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -127,7 +222,8 @@ export default function ContactForm() {
 						name="inquiry_content"
 						value={formData.inquiry_content}
 						onChange={handleChange}
-						placeholder="•	문의하시게 된 배경 및 상담받고 싶은 방향&#10;•	캠페인 목표, 일정 등 구체적인 정보 기입 시 더욱 정확한 안내 가능(선택 사항)"
+						placeholder={`• 문의하시게 된 배경 및 상담받고 싶은 방향
+• 캠페인 목표, 일정 등 구체적인 정보 기입 시 더욱 정확한 안내 가능(선택 사항)`}
 						className="h-[200px] text-[20px] font-medium text-[#222222] placeholder:text-[#9b9b9b] border-[rgba(0,0,0,0.1)] rounded-[4px] resize-none"
 					/>
 				</div>
@@ -288,11 +384,6 @@ export default function ContactForm() {
 						/>
 					)}
 				</div>
-
-				{/* 제출 상태 메시지 */}
-				{submitStatus === 'success' && <div className="p-4 bg-green-50 text-green-800 rounded-md text-center">문의가 성공적으로 제출되었습니다! 빠른 시일 내에 연락드리겠습니다.</div>}
-
-				{submitStatus === 'error' && <div className="p-4 bg-red-50 text-red-800 rounded-md text-center">문의 제출 중 오류가 발생했습니다. 다시 시도해주세요.</div>}
 
 				{/* 개인정보 처리방침 동의 */}
 				<div className="flex items-center gap-[8px]">

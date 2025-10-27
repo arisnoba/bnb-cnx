@@ -4,6 +4,7 @@ import './globals.css';
 import '@/styles/main.scss';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Toaster } from '@/components/ui/sonner';
 import { usePathname } from 'next/navigation';
 
 export default function RootLayout({
@@ -22,6 +23,7 @@ export default function RootLayout({
 					<main className="flex-1">{children}</main>
 					{!isAdminRoute && <Footer />}
 				</div>
+				<Toaster position="bottom-center" />
 			</body>
 		</html>
 	);
