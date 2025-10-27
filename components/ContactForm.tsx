@@ -7,15 +7,16 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { supabase, ContactFormData } from '@/lib/supabase';
 
 const INQUIRY_TYPES = ['중국 SNS 체험단 문의', '중국 SNS 채널 운영대행 문의', 'LIVE 커머스 진행 문의', '글로벌 PPL / 협찬 마케팅 문의', 'CNX 한국 브랜드 셀렉샵 입점 문의', '협업 / 기타 문의 사항'];
 
-const BRAND_LAUNCH_STATUS = ['선택해주세요', '준비중', '출시완료'];
+const BRAND_LAUNCH_STATUS = ['준비중', '출시완료'];
 
 const MONTHS = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
 
-const REFERRAL_SOURCES = ['선택해주세요', '지인 추천', '샤오홍슈', '유튜브', '인스타그램', '네이버검색', '구글 검색', '기타'];
+const REFERRAL_SOURCES = ['지인 추천', '샤오홍슈', '유튜브', '인스타그램', '네이버검색', '구글 검색', '기타'];
 
 export default function ContactForm() {
 	const [formData, setFormData] = useState<ContactFormData>({
@@ -33,6 +34,7 @@ export default function ContactForm() {
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+	const [privacyAgreed, setPrivacyAgreed] = useState(false);
 
 	const handleCheckboxChange = (value: string, checked: boolean | 'indeterminate') => {
 		if (checked === 'indeterminate') return;
@@ -53,6 +55,12 @@ export default function ContactForm() {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+
+		if (!privacyAgreed) {
+			alert('개인정보 처리방침에 동의해주세요.');
+			return;
+		}
+
 		setIsSubmitting(true);
 		setSubmitStatus('idle');
 
@@ -80,6 +88,7 @@ export default function ContactForm() {
 				referral_source: '',
 				referral_other: '',
 			});
+			setPrivacyAgreed(false);
 		} catch (error) {
 			console.error('Error submitting form:', error);
 			setSubmitStatus('error');
@@ -285,9 +294,103 @@ export default function ContactForm() {
 
 				{submitStatus === 'error' && <div className="p-4 bg-red-50 text-red-800 rounded-md text-center">문의 제출 중 오류가 발생했습니다. 다시 시도해주세요.</div>}
 
+				{/* 개인정보 처리방침 동의 */}
+				<div className="flex items-center gap-[8px]">
+					<Checkbox
+						id="privacy_agreed"
+						checked={privacyAgreed}
+						onCheckedChange={(checked: boolean | 'indeterminate') => {
+							if (checked === 'indeterminate') return;
+							setPrivacyAgreed(checked);
+						}}
+					/>
+					<label htmlFor="privacy_agreed" className="text-[20px] font-medium text-[#222222] cursor-pointer">
+						개인정보 수집 및 이용약관에 동의합니다.
+					</label>
+					<Dialog>
+						<DialogTrigger asChild>
+							<button type="button" className="text-[20px] font-medium text-[#222222] underline underline-offset-2 hover:text-[#666666]">
+								약관보기
+							</button>
+						</DialogTrigger>
+						<DialogContent className="max-w-[600px] max-h-[80vh] overflow-y-auto">
+							<DialogHeader>
+								<DialogTitle className="text-[24px] font-bold text-[#222222]">개인정보 처리방침</DialogTitle>
+							</DialogHeader>
+							<div className="text-[16px] leading-relaxed text-[#666666] space-y-4">
+								<section>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제1조 (목적)</h3>
+									<p>
+										본 개인정보 처리방침은 CNX(이하 '회사')가 제공하는 서비스 이용과 관련하여 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 개인정보의
+										파기에 관한 사항을 정보주체에게 안내하는 것을 목적으로 합니다.
+									</p>
+								</section>
+
+								<section>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제2조 (수집하는 개인정보 항목)</h3>
+									<p>회사는 문의 접수 및 상담을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
+									<ul className="list-disc list-inside mt-2 space-y-1">
+										<li>필수항목: 성함, 연락처, 이메일, 브랜드명</li>
+										<li>선택항목: 문의 내용, 브랜드 현황, 유입 경로</li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제3조 (개인정보의 수집 및 이용목적)</h3>
+									<p>회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.</p>
+									<ul className="list-disc list-inside mt-2 space-y-1">
+										<li>서비스 문의 접수 및 상담</li>
+										<li>고객 요청사항 처리 및 응대</li>
+										<li>마케팅 및 광고 활용 (동의 시)</li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제4조 (개인정보의 보유 및 이용기간)</h3>
+									<p>회사는 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령에 의해 보존할 필요가 있는 경우 일정기간 보존 후 파기합니다.</p>
+									<ul className="list-disc list-inside mt-2 space-y-1">
+										<li>보존 기간: 3년</li>
+										<li>보존 근거: 전자상거래 등에서의 소비자보호에 관한 법률</li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제5조 (정보주체의 권리)</h3>
+									<p>정보주체는 다음과 같은 권리를 행사할 수 있습니다.</p>
+									<ul className="list-disc list-inside mt-2 space-y-1">
+										<li>개인정보 열람 요구</li>
+										<li>개인정보 정정 요구</li>
+										<li>개인정보 삭제 요구</li>
+										<li>개인정보 처리 정지 요구</li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제6조 (개인정보 보호책임자)</h3>
+									<p>
+										회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고
+										있습니다.
+									</p>
+									<div className="mt-2 pl-4">
+										<p>- 문의처: contact@cnx.com</p>
+										<p>- 전화번호: 02-1234-5678</p>
+									</div>
+								</section>
+
+								<section className="text-[14px] text-[#999999]">
+									<p>본 방침은 2024년 1월 1일부터 시행됩니다.</p>
+								</section>
+							</div>
+						</DialogContent>
+					</Dialog>
+				</div>
+
 				{/* 제출 버튼 */}
 				<div className="flex items-center justify-center">
-					<Button type="submit" disabled={isSubmitting} className="bg-[#222222] text-[#baff00] text-[28px] font-extrabold px-[40px] py-[20px] rounded-[100px] h-auto uppercase hover:bg-[#333333]">
+					<Button
+						type="submit"
+						disabled={isSubmitting}
+						className="bg-[#222222] text-[#baff00] text-[28px] font-extrabold px-[40px] py-[20px] rounded-[100px] h-[72px] uppercase hover:bg-[#333333]">
 						{isSubmitting ? '제출 중...' : '제출하기'}
 					</Button>
 				</div>
