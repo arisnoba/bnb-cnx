@@ -28,7 +28,7 @@ export default function About() {
 				<div className="absolute inset-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
 				{/* Content */}
-				<div className="relative z-10 px-[80px] pt-[160px]">
+				<div className="relative z-10 pt-[160px] max-w-[1680px] mx-auto">
 					<div className="max-w-[880px]">
 						<p className="text-white text-[24px] font-semibold leading-relaxed uppercase">
 							BNB CNX는

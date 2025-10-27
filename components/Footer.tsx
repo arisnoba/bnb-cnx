@@ -28,7 +28,7 @@ export default function Footer() {
 
 			{/* Main Footer Content */}
 			<div className="bg-brand-purple border-t border-white/10">
-				<div className="my-container mx-auto px-[120px] py-[120px] ">
+				<div className="container-custom mx-auto px-[120px] py-[120px] ">
 					<div className="items-start grid grid-cols-4 gap-9">
 						{/* CTA Section */}
 						<div className="flex-1 flex flex-col gap-10 col-span-2	">

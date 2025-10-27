@@ -23,28 +23,28 @@ styles/
 
 ```scss
 .my-element {
-  background-color: $brand-purple; // #a523d0
-  color: $brand-neon; // #baff00
+	background-color: $brand-purple; // #a523d0
+	color: $brand-neon; // #baff00
 }
 ```
 
 ### 2. 믹스인 사용
 
 ```scss
-.my-container {
-  @include container; // 반응형 컨테이너
+.container-custom {
+	@include container; // 반응형 컨테이너
 }
 
 .centered-box {
-  @include flex-center; // flexbox 중앙 정렬
+	@include flex-center; // flexbox 중앙 정렬
 }
 
 .my-heading {
-  @include heading-1; // 큰 제목 스타일
+	@include heading-1; // 큰 제목 스타일
 }
 
 .cta-button {
-  @include button-primary; // 기본 버튼 스타일
+	@include button-primary; // 기본 버튼 스타일
 }
 ```
 
@@ -52,15 +52,15 @@ styles/
 
 ```scss
 .responsive-element {
-  width: 100%;
+	width: 100%;
 
-  @include md {
-    width: 50%; // 768px 이상
-  }
+	@include md {
+		width: 50%; // 768px 이상
+	}
 
-  @include lg {
-    width: 33.333%; // 1024px 이상
-  }
+	@include lg {
+		width: 33.333%; // 1024px 이상
+	}
 }
 ```
 
@@ -88,26 +88,29 @@ styles/
 ## 변수 목록
 
 ### 브랜드 컬러
-- `$brand-purple`: #a523d0
-- `$brand-neon`: #baff00
-- `$accent-orange`: #ff6200
+
+-  `$brand-purple`: #a523d0
+-  `$brand-neon`: #baff00
+-  `$accent-orange`: #ff6200
 
 ### Spacing
-- `$spacing-xs`: 4px
-- `$spacing-sm`: 8px
-- `$spacing-md`: 16px
-- `$spacing-lg`: 20px
-- `$spacing-xl`: 40px
-- `$spacing-2xl`: 60px
-- `$spacing-3xl`: 120px
+
+-  `$spacing-xs`: 4px
+-  `$spacing-sm`: 8px
+-  `$spacing-md`: 16px
+-  `$spacing-lg`: 20px
+-  `$spacing-xl`: 40px
+-  `$spacing-2xl`: 60px
+-  `$spacing-3xl`: 120px
 
 ### Font Sizes
-- `$font-xs`: 14px
-- `$font-sm`: 16px
-- `$font-md`: 20px
-- `$font-lg`: 24px
-- `$font-xl`: 28px
-- `$font-2xl`: 68px
+
+-  `$font-xs`: 14px
+-  `$font-sm`: 16px
+-  `$font-md`: 20px
+-  `$font-lg`: 24px
+-  `$font-xl`: 28px
+-  `$font-2xl`: 68px
 
 ## 컴포넌트 스타일 추가하기
 
@@ -124,6 +127,7 @@ styles/
 Next.js는 자동으로 SCSS를 컴파일합니다. 별도의 빌드 설정이 필요 없습니다.
 
 개발 서버 실행:
+
 ```bash
 npm run dev
 ```
@@ -132,15 +136,15 @@ SCSS 파일을 수정하면 자동으로 감지되어 재컴파일됩니다.
 
 ## Tailwind vs SCSS 사용 가이드
 
-- **Tailwind 사용**: 간단한 레이아웃, spacing, 색상
-- **SCSS 사용**: 복잡한 컴포넌트, 재사용 가능한 패턴, 브랜드 특화 스타일
+-  **Tailwind 사용**: 간단한 레이아웃, spacing, 색상
+-  **SCSS 사용**: 복잡한 컴포넌트, 재사용 가능한 패턴, 브랜드 특화 스타일
 
 ### 예시
 
 ```tsx
 // Tailwind + SCSS 조합
 <div className="flex gap-4 p-4">
-  <button className="btn-primary">버튼 1</button>
-  <button className="btn-secondary">버튼 2</button>
+	<button className="btn-primary">버튼 1</button>
+	<button className="btn-secondary">버튼 2</button>
 </div>
 ```

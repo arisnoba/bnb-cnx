@@ -2,10 +2,21 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 export default function Header() {
 	const pathname = usePathname();
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsScrolled(window.scrollY > 50);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
 
 	if (pathname?.startsWith('/admin')) {
 		return null;
@@ -18,9 +29,9 @@ export default function Header() {
 	];
 
 	return (
-		<header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/15 pt-10">
-			<div className="my-container mx-auto px-[60px]">
-				<div className="flex items-center justify-between border-b border-white/10 px-[20px] pt-[50px] pb-[30px]">
+		<header className={cn('fixed top-0 z-50 w-full transition-all duration-400', isScrolled ? 'bg-black/50 backdrop-blur-md' : 'bg-transparent pt-10')}>
+			<div className="max-w-[1720px] mx-auto">
+				<div className={cn('flex items-center justify-between border-b border-white/10 px-[20px] transition-all duration-300', isScrolled ? 'pt-5 pb-5' : 'pt-[50px] pb-[30px]')}>
 					{/* Logo */}
 					<Link href="/" className="flex items-center h-[32px] w-[148px]">
 						<span className="text-3xl font-black uppercase text-brand-neon leading-none">BNB CN</span>
