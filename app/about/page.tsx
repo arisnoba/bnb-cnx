@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 // 이미지 경로는 실제 이미지 파일로 대체
 const imgHero = '/images/about/hero.jpg';
 const imgLogoBnbCnx = '/images/logo-bnb-cnx.svg';
@@ -41,7 +43,7 @@ export default function About() {
 
 				{/* Logo */}
 				<div className="absolute right-0 top-[287px] hidden lg:block">
-					<img src={imgLogoBnbCnx} alt="BNB CNX Logo" className="h-[355px] w-auto object-contain" />
+					<Image src={imgLogoBnbCnx} alt="BNB CNX Logo" width={355} height={355} className="h-[355px] w-auto object-contain" />
 				</div>
 			</div>
 

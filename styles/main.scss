@@ -13,34 +13,38 @@
 
 // 4. Custom Utilities
 .container-custom {
-  @include container;
+	@include container;
 }
 
 .flex-center {
-  @include flex-center;
+	@include flex-center;
 }
 
 .flex-between {
-  @include flex-between;
+	@include flex-between;
 }
 
 .flex-column {
-  @include flex-column;
+	@include flex-column;
 }
 
 .hover-lift {
-  @include hover-lift;
+	@include hover-lift;
 }
 
 .truncate {
-  @include truncate;
+	@include truncate;
 }
 
 // Brand-specific styles
 .brand-gradient {
-  @include gradient-brand;
+	@include gradient-brand;
 }
 
 .glass {
-  @include glass;
+	@include glass;
+}
+
+body {
+	word-break: keep-all;
 }

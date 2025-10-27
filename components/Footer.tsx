@@ -1,6 +1,6 @@
 import { Marquee } from '@/components/ui/marquee';
 import Image from 'next/image';
-import { ChevronDown } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const partnerLogos = [
 	{ name: 'MCM', src: '/images/partners/logo-01.png' },
@@ -63,10 +63,28 @@ export default function Footer() {
 
 						{/* Family Site Dropdown */}
 						<div className="w-[374px] col-span-1">
-							<button className="w-full flex items-center justify-between px-6 py-4 border border-white rounded-full text-white text-base font-bold">
-								패밀리사이트
-								<ChevronDown className="w-5 h-5" />
-							</button>
+							<Select onValueChange={value => window.open(value, '_blank')}>
+								<SelectTrigger className="w-full px-6 py-4 border border-white rounded-full text-white text-base font-bold bg-transparent hover:bg-white/10 transition-colors">
+									<SelectValue placeholder="패밀리사이트" />
+								</SelectTrigger>
+								<SelectContent className="border-white/20">
+									<SelectItem value="https://blog.bnbcnx.com" className=" hover:bg-white/10">
+										회사 블로그
+									</SelectItem>
+									<SelectItem value="https://instagram.com/bnbcnx" className=" hover:bg-white/10">
+										공식 인스타그램
+									</SelectItem>
+									<SelectItem value="https://smartstore.naver.com/bnbcnx" className=" hover:bg-white/10">
+										네이버 스마트스토어
+									</SelectItem>
+									<SelectItem value="https://partner.bnbcnx.com" className=" hover:bg-white/10">
+										파트너 포털
+									</SelectItem>
+									<SelectItem value="https://support.bnbcnx.com" className=" hover:bg-white/10">
+										고객센터
+									</SelectItem>
+								</SelectContent>
+							</Select>
 						</div>
 					</div>
 				</div>
