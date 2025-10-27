@@ -4,10 +4,10 @@
 
 ## 🚀 기술 스택
 
-- **Framework**: Next.js 14 (App Router)
-- **Styling**: Tailwind CSS + shadcn/ui
-- **Database**: Supabase (PostgreSQL)
-- **Deployment**: Vercel (테스트) / Cafe24 (프로덕션)
+-  **Framework**: Next.js 14 (App Router)
+-  **Styling**: Tailwind CSS + shadcn/ui
+-  **Database**: Supabase (PostgreSQL)
+-  **Deployment**: Vercel (테스트) / Cafe24 (프로덕션)
 
 ## 📁 프로젝트 구조
 
@@ -32,46 +32,37 @@ bnb-cnx/
 ## 🛠️ 설치 및 실행
 
 ### 1. 의존성 설치
+
 ```bash
 npm install
 ```
 
 ### 2. 환경변수 설정
-`.env.local` 파일에 Supabase 정보 입력:
+
+`.env.local` 파일을 생성하고 Supabase 정보 입력:
+
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_URL=https://msbfcyrygirjdlliajhk.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-NEXT_PUBLIC_ADMIN_PASSWORD=your-admin-password
 ```
 
-### 3. Supabase 테이블 생성
-Supabase SQL Editor에서 실행:
-```sql
-create table contacts (
-  id uuid default gen_random_uuid() primary key,
-  name text not null,
-  email text not null,
-  message text not null,
-  status text default 'new',
-  created_at timestamp default now()
-);
+자세한 설정 방법은 [SUPABASE_SETUP.md](./SUPABASE_SETUP.md)를 참고하세요.
 
-alter table contacts enable row level security;
+### 3. Supabase 설정
 
-create policy "Anyone can insert"
-  on contacts for insert
-  with check (true);
+데이터베이스 테이블과 RLS 정책은 이미 설정되어 있습니다.
+관리자 계정만 생성하면 됩니다:
 
-create policy "Anyone can read"
-  on contacts for select
-  using (true);
+1. [Supabase Dashboard](https://supabase.com/dashboard/project/msbfcyrygirjdlliajhk/auth/users) 접속
+2. **Authentication** → **Users** → **Add User**
+3. 이메일과 비밀번호 입력
+4. **Auto Confirm User** 체크
+5. **Create User** 클릭
 
-create policy "Anyone can update"
-  on contacts for update
-  using (true);
-```
+자세한 내용은 [SUPABASE_SETUP.md](./SUPABASE_SETUP.md)를 참고하세요.
 
 ### 4. 개발 서버 실행
+
 ```bash
 npm run dev
 ```
@@ -81,12 +72,14 @@ npm run dev
 ## 📦 빌드 및 배포
 
 ### Vercel 배포 (테스트)
+
 1. GitHub에 코드 push
 2. Vercel에서 프로젝트 연결
 3. 환경변수 설정
 4. 자동 배포
 
 ### Cafe24 배포 (정적 빌드)
+
 ```bash
 # 정적 파일 생성
 npm run build
@@ -96,23 +89,27 @@ npm run build
 
 ## 🔐 관리자 페이지
 
-- URL: `/admin`
-- 비밀번호: `.env.local`의 `NEXT_PUBLIC_ADMIN_PASSWORD`
-- 기능: 문의 목록 조회, 상태 관리
+-  로그인: `/admin/login`
+-  대시보드: `/admin/contacts`
+-  인증 방식: Supabase Auth (이메일/비밀번호)
+-  기능: 문의 목록 조회, 상태 관리 (신규 → 읽음 → 답변완료)
+-  보안: Row Level Security (RLS)로 인증된 사용자만 접근 가능
 
 ## 📄 페이지
 
-- **Home** (`/`): 브랜드 소개
-- **About** (`/about`): 회사/브랜드 정보
-- **Contact** (`/contact`): 문의 폼
-- **Admin** (`/admin`): 문의 관리 대시보드
+-  **Home** (`/`): 브랜드 소개
+-  **About** (`/about`): 회사/브랜드 정보
+-  **Contact** (`/contact`): 문의 폼
+-  **Admin** (`/admin`): 문의 관리 대시보드
 
 ## 🎨 커스터마이징
 
 ### 스타일 변경
+
 `app/globals.css`에서 CSS 변수 수정
 
 ### 컴포넌트 추가
+
 ```bash
 # shadcn/ui 컴포넌트 추가 예시
 npx shadcn-ui@latest add [component-name]

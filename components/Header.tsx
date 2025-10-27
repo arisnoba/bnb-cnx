@@ -7,6 +7,10 @@ import { cn } from '@/lib/utils'
 export default function Header() {
   const pathname = usePathname()
 
+  if (pathname?.startsWith('/admin')) {
+    return null
+  }
+
   const links = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
@@ -18,7 +22,7 @@ export default function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold text-xl">BNB CNX</span>
+            <span className="text-xl font-bold">BNB CNX</span>
           </Link>
         </div>
         <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -27,10 +31,8 @@ export default function Header() {
               key={link.href}
               href={link.href}
               className={cn(
-                "transition-colors hover:text-foreground/80",
-                pathname === link.href
-                  ? "text-foreground"
-                  : "text-foreground/60"
+                'transition-colors hover:text-foreground/80',
+                pathname === link.href ? 'text-foreground' : 'text-foreground/60',
               )}
             >
               {link.label}
