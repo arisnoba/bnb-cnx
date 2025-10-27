@@ -1,19 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-const supabaseAnonKey =
-	process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
 if (!supabaseUrl) {
-	throw new Error(
-		'Supabase URL 환경 변수가 설정되지 않았습니다. NEXT_PUBLIC_SUPABASE_URL 또는 SUPABASE_URL을 확인하세요.'
-	);
+	throw new Error('Supabase URL 환경 변수가 설정되지 않았습니다. NEXT_PUBLIC_SUPABASE_URL 또는 SUPABASE_URL을 확인하세요.');
 }
 
 if (!supabaseAnonKey) {
-	throw new Error(
-		'Supabase Anon Key 환경 변수가 설정되지 않았습니다. NEXT_PUBLIC_SUPABASE_ANON_KEY 또는 SUPABASE_ANON_KEY을 확인하세요.'
-	);
+	throw new Error('Supabase Anon Key 환경 변수가 설정되지 않았습니다. NEXT_PUBLIC_SUPABASE_ANON_KEY 또는 SUPABASE_ANON_KEY을 확인하세요.');
 }
 
 // Supabase 생성 타입
@@ -36,6 +31,7 @@ export type Database = {
 					phone: string;
 					referral_other: string | null;
 					referral_source: string;
+					showroom_operation: boolean | null;
 					status: string;
 					updated_at: string;
 				};
@@ -52,6 +48,7 @@ export type Database = {
 					phone: string;
 					referral_other?: string | null;
 					referral_source: string;
+					showroom_operation?: boolean | null;
 					status?: string;
 					updated_at?: string;
 				};
@@ -68,6 +65,7 @@ export type Database = {
 					phone?: string;
 					referral_other?: string | null;
 					referral_source?: string;
+					showroom_operation?: boolean | null;
 					status?: string;
 					updated_at?: string;
 				};

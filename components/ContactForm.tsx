@@ -11,11 +11,11 @@ import { supabase, ContactFormData } from '@/lib/supabase';
 
 const INQUIRY_TYPES = ['중국 SNS 체험단 문의', '중국 SNS 채널 운영대행 문의', 'LIVE 커머스 진행 문의', '글로벌 PPL / 협찬 마케팅 문의', 'CNX 한국 브랜드 셀렉샵 입점 문의', '협업 / 기타 문의 사항'];
 
-const BRAND_LAUNCH_STATUS = ['준비 중', '출시 완료', '운영 중'];
+const BRAND_LAUNCH_STATUS = ['선택해주세요', '준비중', '출시완료'];
 
 const MONTHS = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
 
-const REFERRAL_SOURCES = ['지인 추천', '검색', 'SNS', '광고', '기타'];
+const REFERRAL_SOURCES = ['선택해주세요', '지인 추천', '샤오홍슈', '유튜브', '인스타그램', '네이버검색', '구글 검색', '기타'];
 
 export default function ContactForm() {
 	const [formData, setFormData] = useState<ContactFormData>({
@@ -27,6 +27,7 @@ export default function ContactForm() {
 		brand_names: '',
 		brand_launch_status: '',
 		brand_launch_month: '',
+		showroom_operation: null,
 		referral_source: '',
 		referral_other: '',
 	});
@@ -75,6 +76,7 @@ export default function ContactForm() {
 				brand_names: '',
 				brand_launch_status: '',
 				brand_launch_month: '',
+				showroom_operation: null,
 				referral_source: '',
 				referral_other: '',
 			});
@@ -193,40 +195,61 @@ export default function ContactForm() {
 				{/* 브랜드 현황 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
 					<Label className="text-[24px] font-extrabold text-[#222222]">브랜드 현황</Label>
-					<div className="grid grid-cols-2 gap-[20px]">
+					<div className="flex flex-col gap-[4px]">
+						<Label htmlFor="brand_launch_status" className="text-[16px] font-extrabold text-[#666666]">
+							브랜드 출시 여부
+						</Label>
+						<Select value={formData.brand_launch_status ?? ''} onValueChange={(value: string) => handleSelectChange('brand_launch_status', value)}>
+							<SelectTrigger className="h-[54px] text-[20px] border-[rgba(0,0,0,0.1)] rounded-[4px]">
+								<SelectValue placeholder="선택해주세요" />
+							</SelectTrigger>
+							<SelectContent>
+								{BRAND_LAUNCH_STATUS.map(status => (
+									<SelectItem key={status} value={status} className="text-[20px] py-3">
+										{status}
+									</SelectItem>
+								))}
+							</SelectContent>
+						</Select>
+					</div>
+
+					{/* 준비중 선택 시 출시 예정월 */}
+					{formData.brand_launch_status === '준비중' && (
 						<div className="flex flex-col gap-[4px]">
-							<Label htmlFor="brand_launch_status" className="text-[16px] font-extrabold text-[#666666]">
-								브랜드 출시 여부
+							<Label htmlFor="brand_launch_month" className="text-[16px] font-extrabold text-[#666666]">
+								출시 예정월
 							</Label>
-							<Select value={formData.brand_launch_status ?? ''} onValueChange={(value: string) => handleSelectChange('brand_launch_status', value)}>
-								<SelectTrigger>
-									<SelectValue placeholder="준비 중" />
-								</SelectTrigger>
-								<SelectContent>
-									{BRAND_LAUNCH_STATUS.map(status => (
-										<SelectItem key={status} value={status}>
-											{status}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-						</div>
-						<div className="flex flex-col gap-[4px]">
-							<div className="h-[24px]" />
 							<Select value={formData.brand_launch_month ?? ''} onValueChange={(value: string) => handleSelectChange('brand_launch_month', value)}>
-								<SelectTrigger>
+								<SelectTrigger className="h-[54px] text-[20px] border-[rgba(0,0,0,0.1)] rounded-[4px]">
 									<SelectValue placeholder="월을 선택해주세요" />
 								</SelectTrigger>
 								<SelectContent>
 									{MONTHS.map(month => (
-										<SelectItem key={month} value={month}>
-											{month}
+										<SelectItem key={month} value={month} className="text-[20px] py-3">
+											{month} 출시 예정
 										</SelectItem>
 									))}
 								</SelectContent>
 							</Select>
 						</div>
-					</div>
+					)}
+
+					{/* 출시완료 선택 시 쇼룸 및 매장 운영 여부 */}
+					{formData.brand_launch_status === '출시완료' && (
+						<div className="flex items-center gap-[8px]">
+							<Checkbox
+								id="showroom_operation"
+								checked={formData.showroom_operation ?? false}
+								onCheckedChange={(checked: boolean | 'indeterminate') => {
+									if (checked === 'indeterminate') return;
+									setFormData(prev => ({ ...prev, showroom_operation: checked }));
+								}}
+							/>
+							<label htmlFor="showroom_operation" className="text-[20px] font-medium text-[#666666] cursor-pointer">
+								쇼룸 및 매장 운영 중
+							</label>
+						</div>
+					)}
 				</div>
 
 				{/* 유입 경로 */}
@@ -235,12 +258,12 @@ export default function ContactForm() {
 						유입 경로 <span className="text-[#ff6200]">*</span>
 					</Label>
 					<Select value={formData.referral_source ?? ''} onValueChange={(value: string) => handleSelectChange('referral_source', value)} required>
-						<SelectTrigger>
-							<SelectValue placeholder="지인 추천" />
+						<SelectTrigger className="h-[54px] text-[20px] border-[rgba(0,0,0,0.1)] rounded-[4px]">
+							<SelectValue placeholder="선택해주세요" />
 						</SelectTrigger>
 						<SelectContent>
 							{REFERRAL_SOURCES.map(source => (
-								<SelectItem key={source} value={source}>
+								<SelectItem key={source} value={source} className="text-[20px] py-3">
 									{source}
 								</SelectItem>
 							))}
@@ -251,7 +274,7 @@ export default function ContactForm() {
 							name="referral_other"
 							value={formData.referral_other ?? ''}
 							onChange={handleChange}
-							placeholder="기타내용을 입력해주세요"
+							placeholder="기타 내용을 입력해주세요"
 							className="h-[54px] text-[20px] font-medium placeholder:text-[#9b9b9b] border-[rgba(0,0,0,0.1)] rounded-[4px]"
 						/>
 					)}

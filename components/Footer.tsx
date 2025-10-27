@@ -17,7 +17,7 @@ export default function Footer() {
 		<footer className="flex flex-col">
 			{/* Logo Marquee Section */}
 			<div className="bg-white border-t border-black/10">
-				<Marquee className="py-10" pauseOnHover>
+				<Marquee className="py-10">
 					{partnerLogos.map((logo, index) => (
 						<div key={index} className="flex items-center justify-center w-[247px] h-[150px] mx-5">
 							<Image src={logo.src} alt={logo.name} width={247} height={150} className="object-contain" />
