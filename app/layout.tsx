@@ -1,28 +1,28 @@
-import type { Metadata } from "next"
-import "./globals.css"
-import "@/styles/main.scss"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+'use client';
 
-export const metadata: Metadata = {
-  title: "BNB CNX - Brand Website",
-  description: "A modern brand website with contact and admin management",
-}
+import './globals.css';
+import '@/styles/main.scss';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { usePathname } from 'next/navigation';
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="ko">
-      <body className="font-paperozi">
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-      </body>
-    </html>
-  )
+	const pathname = usePathname();
+	const isAdminRoute = pathname?.startsWith('/admin');
+
+	return (
+		<html lang="ko">
+			<body className="font-paperozi">
+				<div className="relative flex min-h-screen flex-col">
+					{!isAdminRoute && <Header />}
+					<main className="flex-1">{children}</main>
+					{!isAdminRoute && <Footer />}
+				</div>
+			</body>
+		</html>
+	);
 }

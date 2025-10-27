@@ -1,18 +1,15 @@
-import type { Metadata } from "next"
+import type { Metadata } from 'next';
+import '@/styles/main.scss';
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard - BNB CNX",
-  description: "Admin dashboard for managing contact inquiries",
-}
+	title: 'Admin Dashboard - BNB CNX',
+	description: 'Admin dashboard for managing contact inquiries',
+};
 
 export default function AdminLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode
+	children: React.ReactNode;
 }>) {
-  return (
-    <div className="min-h-screen bg-background">
-      {children}
-    </div>
-  )
+	return <div className="min-h-screen">{children}</div>;
 }
