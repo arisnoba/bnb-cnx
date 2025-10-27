@@ -1,103 +1,141 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+'use client';
+
+// 이미지 경로는 실제 이미지 파일로 대체
+const imgHero = '/images/about/hero.jpg';
+const imgLogoBnbCnx = '/images/logo-bnb-cnx.svg';
 
 export default function About() {
-  return (
-    <div className="container py-12">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight mb-4">About BNB CNX</h1>
-          <p className="text-xl text-muted-foreground">
-            Learn more about our mission, vision, and values
-          </p>
-        </div>
+	const historyItems = [
+		{ year: '2014', text: 'Nanor Partner 설립 (중국 전역 커머스 플랫폼 진입)' },
+		{ year: '2015', text: '타오바오 · 더우인 · 샤오홍슈 채널 확장 진입' },
+		{ year: '2016', text: '중국 MCN 사업 시작, 왕홍 전속 계약 및 매니지먼트' },
+		{ year: '2017', text: '한국 브랜드 전용 라이브 · 스토어 본격 운영' },
+		{ year: '2018', text: '한국 브랜드 중국 총판 담당, 커머스 매출 본격화' },
+		{ year: '2020', text: '누적 거래액 5,700억 원 돌파, 커머스 스튜디오 허브 구축, ChangSha' },
+		{ year: '2021', text: '누적 거래액 1조 9,000억 원 / 채널 누적 팔로워 200만 명 돌파' },
+		{ year: '2025', text: '연매출 3,000억 원 달성, 한국 법인 BNB CNX 설립 및 공식 플래그십몰 운영' },
+	];
 
-        {/* Company Story */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Our Story</CardTitle>
-            <CardDescription>How we got started and where we're going</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-muted-foreground">
-              Founded with a vision to deliver exceptional service and innovative solutions,
-              BNB CNX has been at the forefront of industry excellence. Our journey began
-              with a simple belief: that quality and customer satisfaction should never be compromised.
-            </p>
-            <p className="text-muted-foreground">
-              Today, we continue to uphold these values while embracing new technologies and
-              methodologies that allow us to serve our clients better. Our team of dedicated
-              professionals works tirelessly to ensure that every project we undertake meets
-              the highest standards of quality and excellence.
-            </p>
-          </CardContent>
-        </Card>
+	return (
+		<div className="min-h-screen bg-white">
+			{/* Hero Section with Background */}
+			<div className="relative bg-[#a523d0] h-[724px] rounded-[60px] overflow-hidden mx-[40px] mt-[40px] mb-[10px]">
+				{/* Background Overlay */}
+				<div className="absolute inset-0 bg-black/60" />
+				<div className="absolute inset-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Our Mission</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                To provide innovative solutions and exceptional service that empower our
-                clients to achieve their goals and exceed their expectations.
-              </p>
-            </CardContent>
-          </Card>
+				{/* Content */}
+				<div className="relative z-10 px-[80px] pt-[160px]">
+					<div className="max-w-[880px]">
+						<p className="text-white text-[24px] font-semibold leading-relaxed uppercase">
+							BNB CNX는
+							<br />
+							Commerce / Network / eXperience를
+							<br />
+							핵심 키워드로 하는, 중국 연매출 3,000억원 규모의
+							<br />
+							Nanor Partner의 브랜딩 & 커머스 한국 법인입니다.
+						</p>
+					</div>
+				</div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Our Vision</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                To be the leading provider in our industry, recognized for our commitment
-                to quality, innovation, and customer satisfaction.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+				{/* Logo */}
+				<div className="absolute right-0 top-[287px] hidden lg:block">
+					<img src={imgLogoBnbCnx} alt="BNB CNX Logo" className="h-[355px] w-auto object-contain" />
+				</div>
+			</div>
 
-        {/* Values */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Our Values</CardTitle>
-            <CardDescription>The principles that guide everything we do</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <h3 className="font-semibold mb-2">Integrity</h3>
-              <p className="text-sm text-muted-foreground">
-                We conduct our business with honesty and transparency, building trust
-                with our clients and partners.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-2">Excellence</h3>
-              <p className="text-sm text-muted-foreground">
-                We strive for excellence in everything we do, continuously improving
-                our processes and services.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-2">Innovation</h3>
-              <p className="text-sm text-muted-foreground">
-                We embrace new technologies and creative solutions to stay ahead of
-                industry trends and deliver cutting-edge services.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-2">Customer Focus</h3>
-              <p className="text-sm text-muted-foreground">
-                Our clients are at the heart of everything we do. We listen to their
-                needs and tailor our solutions accordingly.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
-  )
+			<div className="px-[40px] pb-[40px] space-y-[40px]">
+				{/* BNB CNX의 차별성 */}
+				<div className="bg-[#333333] rounded-[60px] p-[120px] space-y-[120px]">
+					<h2 className="text-center">
+						<span className="bg-[#a523d0] text-[#baff00] text-[52px] font-extrabold uppercase px-[12px] py-[6px]">BNB CNX의 차별성</span>
+					</h2>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+						<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+							<div className="space-y-2">
+								<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+									자체 커머스 채널
+									<br />
+									CNX 플랙그십
+									<br />
+									스토어 보유
+								</p>
+							</div>
+							<div className="text-right">
+								<p className="text-[#baff00] text-[72px]">warehouse-full</p>
+							</div>
+						</div>
+
+						<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+							<div className="space-y-2">
+								<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+									전속 왕홍 / 셀럽 /
+									<br />
+									LIVE / 물류 / 마케팅
+									<br />
+									직접 수행
+								</p>
+							</div>
+							<div className="text-right">
+								<p className="text-[#baff00] text-[72px]">bullseye-arrow</p>
+							</div>
+						</div>
+
+						<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+							<div className="space-y-2">
+								<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+									브랜딩부터 콘텐츠 제작,
+									<br />
+									유통, 판매 전환까지
+									<br />
+									직접 운영
+								</p>
+							</div>
+							<div className="text-right">
+								<p className="text-[#baff00] text-[72px]">clapperboard-play</p>
+							</div>
+						</div>
+
+						<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+							<div className="space-y-2">
+								<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+									이 모든 구조를 통해
+									<br />
+									성과로 증명하는
+									<br />
+									실행 파트너
+								</p>
+							</div>
+							<div className="text-right">
+								<p className="text-[#baff00] text-[72px]">handshake</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{/* BNB CNX 연혁 */}
+				<div className="bg-[#333333] rounded-[60px] p-[120px] space-y-[120px]">
+					<h2 className="text-center">
+						<span className="bg-[#a523d0] text-[#baff00] text-[52px] font-extrabold uppercase px-[12px] py-[6px]">BNB CNX 연혁</span>
+					</h2>
+
+					<div className="max-w-[1000px] mx-auto space-y-[48px]">
+						{historyItems.map((item, index) => (
+							<div key={index} className="flex items-center gap-[10px]">
+								<div className="bg-[#222222] rounded-[100px] px-[16px] py-[10px] w-[100px] flex-shrink-0">
+									<p className="text-[#baff00] text-[24px] font-extrabold text-center uppercase">{item.year}</p>
+								</div>
+								<div className="flex-1 h-0 relative border-b border-dashed border-[rgba(255,255,255,0.1)]">
+									{/* <img src={item.line} alt="" className="absolute top-[-2px] left-0 right-0 w-full h-[2px]" /> */}
+								</div>
+								<p className="text-white text-[24px] font-semibold uppercase flex-shrink-0">{item.text}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
