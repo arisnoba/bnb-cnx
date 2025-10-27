@@ -1,0 +1,227 @@
+// Flexbox Mixins
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin flex-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@mixin flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+// Responsive Breakpoints
+@mixin sm {
+	@media (min-width: $breakpoint-sm) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media (min-width: $breakpoint-md) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media (min-width: $breakpoint-lg) {
+		@content;
+	}
+}
+
+@mixin xl {
+	@media (min-width: $breakpoint-xl) {
+		@content;
+	}
+}
+
+@mixin xxl {
+	@media (min-width: $breakpoint-2xl) {
+		@content;
+	}
+}
+
+// Typography Mixins
+@mixin heading-1 {
+	font-size: $font-2xl;
+	font-weight: $font-black;
+	line-height: 1.2;
+}
+
+@mixin heading-2 {
+	font-size: $font-xl;
+	font-weight: $font-extrabold;
+	line-height: 1.3;
+}
+
+@mixin heading-3 {
+	font-size: $font-lg;
+	font-weight: $font-bold;
+	line-height: 1.4;
+}
+
+@mixin body-text {
+	font-size: $font-md;
+	font-weight: $font-medium;
+	line-height: 1.6;
+}
+
+@mixin small-text {
+	font-size: $font-sm;
+	font-weight: $font-regular;
+	line-height: 1.5;
+}
+
+// Button Mixins
+@mixin button-base {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: $spacing-lg $spacing-xl;
+	border-radius: $radius-full;
+	font-weight: $font-extrabold;
+	text-transform: uppercase;
+	transition: all $transition-base;
+	cursor: pointer;
+	border: none;
+	outline: none;
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+@mixin button-primary {
+	@include button-base;
+	background-color: $black;
+	color: $brand-neon;
+
+	&:hover:not(:disabled) {
+		background-color: lighten($black, 10%);
+	}
+}
+
+@mixin button-secondary {
+	@include button-base;
+	background-color: transparent;
+	color: $brand-purple;
+	border: 2px solid $brand-purple;
+
+	&:hover:not(:disabled) {
+		background-color: $brand-purple;
+		color: $white;
+	}
+}
+
+// Container Mixin
+@mixin container {
+	width: 100%;
+	max-width: 1680px;
+	margin: 0 auto;
+	padding: 0 $spacing-xl;
+
+	@include lg {
+		padding: 0 $spacing-3xl;
+	}
+}
+
+// Hover Effect
+@mixin hover-lift {
+	transition: transform $transition-base;
+
+	&:hover {
+		transform: translateY(-4px);
+	}
+}
+
+// Truncate Text
+@mixin truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2) {
+	display: -webkit-box;
+	-webkit-line-clamp: $lines;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+// Aspect Ratio
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		padding-top: calc(#{$height} / #{$width} * 100%);
+	}
+
+	> * {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+// Glassmorphism
+@mixin glass {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Gradient Background
+@mixin gradient-brand {
+	background: linear-gradient(135deg, $brand-purple 0%, darken($brand-purple, 10%) 100%);
+}
+
+// Reset List
+@mixin reset-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+// Visually Hidden (Accessible)
+@mixin visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+// Clamp Size
+// --------------------------------------------------------------------------
+/// 범용 clamp mixin — padding, margin, gap 등 모두 가능
+/// @param $property  CSS 속성명
+/// @param $min-px    최소값(px)
+/// @param $max-px    최대값(px)
+/// @param $important !important 플래그, 기본 false
+/// @param $min-vw    최소 뷰포트(px), 기본 600
+/// @param $max-vw    최대 뷰포트(px), 기본 1920
+@mixin clamp-unit($property, $min-px, $max-px, $important: false, $min-vw: 600, $max-vw: 1920) {
+	$slope: math.div($max-px - $min-px, $max-vw - $min-vw) * 100;
+	$intercept: $min-px - ($slope * math.div($min-vw, 100));
+
+	@if $important {
+		#{$property}: clamp(#{$min-px}px, #{$intercept}px + #{$slope}vw, #{$max-px}px) !important;
+	} @else {
+		#{$property}: clamp(#{$min-px}px, #{$intercept}px + #{$slope}vw, #{$max-px}px);
+	}
+}

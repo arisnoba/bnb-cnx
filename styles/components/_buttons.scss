@@ -1,0 +1,21 @@
+// Button Styles
+
+.btn-primary {
+  @include button-primary;
+  font-size: $font-xl;
+}
+
+.btn-secondary {
+  @include button-secondary;
+  font-size: $font-xl;
+}
+
+.btn-sm {
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-md;
+}
+
+.btn-lg {
+  padding: $spacing-xl $spacing-2xl;
+  font-size: $font-xl;
+}

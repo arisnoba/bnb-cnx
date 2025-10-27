@@ -1,0 +1,54 @@
+// Typography Styles
+
+.heading-1 {
+  @include heading-1;
+  color: $brand-neon;
+}
+
+.heading-2 {
+  @include heading-2;
+  color: $black;
+}
+
+.heading-3 {
+  @include heading-3;
+  color: $black;
+}
+
+.body-text {
+  @include body-text;
+  color: $black;
+}
+
+.small-text {
+  @include small-text;
+  color: $dark-gray;
+}
+
+.text-brand-purple {
+  color: $brand-purple;
+}
+
+.text-brand-neon {
+  color: $brand-neon;
+}
+
+.text-accent {
+  color: $accent-orange;
+}
+
+.font-bold {
+  font-weight: $font-bold;
+}
+
+.font-extrabold {
+  font-weight: $font-extrabold;
+}
+
+.font-black {
+  font-weight: $font-black;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

@@ -1,47 +1,31 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { supabase, Contact } from '@/lib/supabase'
 
-export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [password, setPassword] = useState('')
+export default function AdminDashboard() {
+  const router = useRouter()
   const [contacts, setContacts] = useState<Contact[]>([])
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
 
   useEffect(() => {
-    // Check if already authenticated
+    // Check authentication
     const auth = localStorage.getItem('admin-auth')
-    if (auth === 'true') {
-      setIsAuthenticated(true)
-      fetchContacts()
+    if (auth !== 'true') {
+      router.push('/admin')
+      return
     }
-  }, [])
-
-  const handleLogin = () => {
-    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123'
-    if (password === adminPassword) {
-      localStorage.setItem('admin-auth', 'true')
-      setIsAuthenticated(true)
-      fetchContacts()
-      setError('')
-    } else {
-      setError('Incorrect password')
-    }
-  }
+    fetchContacts()
+  }, [router])
 
   const handleLogout = () => {
     localStorage.removeItem('admin-auth')
-    setIsAuthenticated(false)
-    setPassword('')
-    setContacts([])
+    router.push('/admin')
   }
 
   const fetchContacts = async () => {
@@ -101,42 +85,6 @@ export default function AdminPage() {
     }
   }
 
-  if (!isAuthenticated) {
-    return (
-      <div className="container flex items-center justify-center min-h-screen">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Admin Login</CardTitle>
-            <CardDescription>Enter your password to access the admin dashboard</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
-                  placeholder="Enter admin password"
-                />
-              </div>
-              {error && (
-                <div className="p-3 bg-red-50 text-red-800 rounded-md text-sm">
-                  {error}
-                </div>
-              )}
-              <Button onClick={handleLogin} className="w-full">
-                Login
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
-
   return (
     <div className="container py-12">
       <div className="flex justify-between items-center mb-8">
@@ -171,7 +119,7 @@ export default function AdminPage() {
               No messages yet
             </div>
           ) : (
-<div className="overflow-x-auto">
+            <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>

@@ -37,14 +37,6 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <div className="ml-auto">
-          <Link
-            href="/admin"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Admin
-          </Link>
-        </div>
       </div>
     </header>
   )
