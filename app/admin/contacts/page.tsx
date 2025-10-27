@@ -2,6 +2,19 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { 
+	BarChart3, 
+	Bell, 
+	Eye, 
+	CheckCircle2, 
+	Search, 
+	Inbox, 
+	Mail, 
+	Phone, 
+	X,
+	RefreshCw,
+	LogOut
+} from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -177,9 +190,11 @@ export default function AdminContactsPage() {
 					</div>
 					<div className="flex gap-2">
 						<Button variant="outline" onClick={fetchContacts} disabled={isLoading} className="shadow-sm">
+							<RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
 							{isLoading ? '새로고침 중…' : '새로고침'}
 						</Button>
 						<Button variant="outline" onClick={handleLogout} className="shadow-sm">
+							<LogOut className="h-4 w-4 mr-2" />
 							로그아웃
 						</Button>
 					</div>
@@ -195,7 +210,7 @@ export default function AdminContactsPage() {
 									<p className="text-3xl font-bold text-slate-900 mt-2">{stats.total}</p>
 								</div>
 								<div className="h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center">
-									<span className="text-2xl">📊</span>
+									<BarChart3 className="h-6 w-6 text-slate-600" />
 								</div>
 							</div>
 						</CardContent>
@@ -209,7 +224,7 @@ export default function AdminContactsPage() {
 									<p className="text-3xl font-bold text-red-600 mt-2">{stats.new}</p>
 								</div>
 								<div className="h-12 w-12 rounded-full bg-red-50 flex items-center justify-center">
-									<span className="text-2xl">🔔</span>
+									<Bell className="h-6 w-6 text-red-600" />
 								</div>
 							</div>
 						</CardContent>
@@ -223,7 +238,7 @@ export default function AdminContactsPage() {
 									<p className="text-3xl font-bold text-yellow-600 mt-2">{stats.read}</p>
 								</div>
 								<div className="h-12 w-12 rounded-full bg-yellow-50 flex items-center justify-center">
-									<span className="text-2xl">👀</span>
+									<Eye className="h-6 w-6 text-yellow-600" />
 								</div>
 							</div>
 						</CardContent>
@@ -237,7 +252,7 @@ export default function AdminContactsPage() {
 									<p className="text-3xl font-bold text-green-600 mt-2">{stats.replied}</p>
 								</div>
 								<div className="h-12 w-12 rounded-full bg-green-50 flex items-center justify-center">
-									<span className="text-2xl">✅</span>
+									<CheckCircle2 className="h-6 w-6 text-green-600" />
 								</div>
 							</div>
 						</CardContent>
@@ -270,13 +285,16 @@ export default function AdminContactsPage() {
 									<Label htmlFor="contact-search" className="text-sm font-medium mb-2 block">
 										검색
 									</Label>
-									<Input
-										id="contact-search"
-										value={searchTerm}
-										onChange={event => setSearchTerm(event.target.value)}
-										placeholder="🔍 이름, 이메일, 브랜드, 내용 등으로 검색"
-										className="w-full"
-									/>
+									<div className="relative">
+										<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+										<Input
+											id="contact-search"
+											value={searchTerm}
+											onChange={event => setSearchTerm(event.target.value)}
+											placeholder="이름, 이메일, 브랜드, 내용 등으로 검색"
+											className="w-full pl-10"
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -296,7 +314,11 @@ export default function AdminContactsPage() {
 				) : contacts.length === 0 ? (
 					<Card className="shadow-sm">
 						<CardContent className="py-16 text-center">
-							<div className="text-6xl mb-4">📭</div>
+							<div className="flex justify-center mb-4">
+								<div className="h-16 w-16 rounded-full bg-slate-100 flex items-center justify-center">
+									<Inbox className="h-8 w-8 text-slate-400" />
+								</div>
+							</div>
 							<h3 className="text-xl font-semibold text-slate-900 mb-2">등록된 문의가 없습니다</h3>
 							<p className="text-slate-600">새로운 문의가 접수되면 여기에 표시됩니다.</p>
 						</CardContent>
@@ -304,7 +326,11 @@ export default function AdminContactsPage() {
 				) : filteredContacts.length === 0 ? (
 					<Card className="shadow-sm">
 						<CardContent className="py-16 text-center">
-							<div className="text-6xl mb-4">🔍</div>
+							<div className="flex justify-center mb-4">
+								<div className="h-16 w-16 rounded-full bg-slate-100 flex items-center justify-center">
+									<Search className="h-8 w-8 text-slate-400" />
+								</div>
+							</div>
 							<h3 className="text-xl font-semibold text-slate-900 mb-2">검색 결과가 없습니다</h3>
 							<p className="text-slate-600">다른 키워드로 검색하거나 필터를 변경해보세요.</p>
 						</CardContent>
@@ -331,8 +357,14 @@ export default function AdminContactsPage() {
 														</Badge>
 													</div>
 													<div className="flex flex-wrap gap-2 text-sm text-slate-600">
-														<span className="flex items-center gap-1">📧 {contact.email}</span>
-														<span className="flex items-center gap-1">📱 {contact.phone}</span>
+														<span className="flex items-center gap-1">
+															<Mail className="h-4 w-4" />
+															{contact.email}
+														</span>
+														<span className="flex items-center gap-1">
+															<Phone className="h-4 w-4" />
+															{contact.phone}
+														</span>
 													</div>
 												</div>
 											</div>
@@ -421,7 +453,7 @@ export default function AdminContactsPage() {
 										<CardDescription className="mt-1">{selectedContact.created_at ? new Date(selectedContact.created_at).toLocaleString('ko-KR') : '-'}</CardDescription>
 									</div>
 									<Button variant="ghost" size="sm" onClick={() => setSelectedContact(null)} className="text-slate-500 hover:text-slate-900">
-										✕
+										<X className="h-5 w-5" />
 									</Button>
 								</div>
 							</CardHeader>
