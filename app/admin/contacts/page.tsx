@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Contact, supabase } from '@/lib/supabase';
 
 const getStatusVariant = (status: string): 'default' | 'secondary' | 'destructive' | 'outline' => {
@@ -54,6 +55,8 @@ export default function AdminContactsPage() {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [updatingId, setUpdatingId] = useState<string | null>(null);
 	const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 10;
 
 	const fetchContacts = useCallback(async () => {
 		setIsLoading(true);
@@ -149,6 +152,19 @@ export default function AdminContactsPage() {
 			return matchesStatus && haystack.includes(normalizedQuery);
 		});
 	}, [contacts, searchTerm, statusFilter]);
+
+	// 페이지네이션 계산
+	const totalPages = Math.ceil(filteredContacts.length / itemsPerPage);
+	const paginatedContacts = useMemo(() => {
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		const endIndex = startIndex + itemsPerPage;
+		return filteredContacts.slice(startIndex, endIndex);
+	}, [filteredContacts, currentPage, itemsPerPage]);
+
+	// 필터나 검색어 변경 시 첫 페이지로 이동
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [statusFilter, searchTerm]);
 
 	const stats = useMemo(() => {
 		return {
@@ -289,9 +305,16 @@ export default function AdminContactsPage() {
 				</Card>
 
 				{/* 문의 목록 - 카드 기반 */}
-				<div className="text-slate-600 font-medium mb-2">
-					{filteredContacts.length !== contacts.length && <span className="text-blue-600">{filteredContacts.length}건 표시 / </span>}
-					<span>총 {contacts.length}건</span>
+				<div className="flex items-center justify-between mb-4">
+					<div className="text-slate-600 font-medium">
+						{filteredContacts.length !== contacts.length && <span className="text-blue-600">{filteredContacts.length}건 표시 / </span>}
+						<span>총 {contacts.length}건</span>
+						{filteredContacts.length > itemsPerPage && (
+							<span className="text-slate-500 ml-2">
+								(페이지 {currentPage} / {totalPages})
+							</span>
+						)}
+					</div>
 				</div>
 				{isLoading ? (
 					<div className="py-16 text-center">
@@ -324,7 +347,7 @@ export default function AdminContactsPage() {
 					</Card>
 				) : (
 					<div className="grid grid-cols-1 gap-4">
-						{filteredContacts.map(contact => (
+						{paginatedContacts.map(contact => (
 							<Card
 								key={contact.id}
 								className="shadow-sm hover:shadow-md transition-shadow border-l-4"
@@ -427,6 +450,77 @@ export default function AdminContactsPage() {
 								</CardContent>
 							</Card>
 						))}
+					</div>
+				)}
+
+				{/* 페이지네이션 */}
+				{filteredContacts.length > itemsPerPage && (
+					<div className="mt-8">
+						<Pagination>
+							<PaginationContent>
+								<PaginationItem>
+									<PaginationPrevious onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'} />
+								</PaginationItem>
+
+								{/* 첫 페이지 */}
+								{currentPage > 3 && (
+									<>
+										<PaginationItem>
+											<PaginationLink onClick={() => setCurrentPage(1)} className="cursor-pointer">
+												1
+											</PaginationLink>
+										</PaginationItem>
+										{currentPage > 4 && (
+											<PaginationItem>
+												<PaginationEllipsis />
+											</PaginationItem>
+										)}
+									</>
+								)}
+
+								{/* 현재 페이지 주변 */}
+								{Array.from({ length: totalPages }, (_, i) => i + 1)
+									.filter(page => {
+										return (
+											page === currentPage ||
+											page === currentPage - 1 ||
+											page === currentPage + 1 ||
+											(currentPage <= 2 && page <= 3) ||
+											(currentPage >= totalPages - 1 && page >= totalPages - 2)
+										);
+									})
+									.map(page => (
+										<PaginationItem key={page}>
+											<PaginationLink onClick={() => setCurrentPage(page)} isActive={currentPage === page} className="cursor-pointer">
+												{page}
+											</PaginationLink>
+										</PaginationItem>
+									))}
+
+								{/* 마지막 페이지 */}
+								{currentPage < totalPages - 2 && (
+									<>
+										{currentPage < totalPages - 3 && (
+											<PaginationItem>
+												<PaginationEllipsis />
+											</PaginationItem>
+										)}
+										<PaginationItem>
+											<PaginationLink onClick={() => setCurrentPage(totalPages)} className="cursor-pointer">
+												{totalPages}
+											</PaginationLink>
+										</PaginationItem>
+									</>
+								)}
+
+								<PaginationItem>
+									<PaginationNext
+										onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+										className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+									/>
+								</PaginationItem>
+							</PaginationContent>
+						</Pagination>
 					</div>
 				)}
 
