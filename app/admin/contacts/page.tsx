@@ -174,7 +174,6 @@ export default function AdminContactsPage() {
 				<div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 					<div>
 						<h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">문의 관리</h1>
-						<p className="text-slate-600 mt-1">접수된 문의를 효율적으로 관리하세요</p>
 					</div>
 					<div className="flex gap-2">
 						<Button variant="outline" onClick={fetchContacts} disabled={isLoading} className="shadow-sm">
@@ -328,7 +327,7 @@ export default function AdminContactsPage() {
 						{filteredContacts.map(contact => (
 							<Card
 								key={contact.id}
-								className="shadow-sm hover:shadow-md transition-shadow cursor-pointer border-l-4"
+								className="shadow-sm hover:shadow-md transition-shadow border-l-4"
 								style={{
 									borderLeftColor: contact.status === 'new' ? '#ef4444' : contact.status === 'read' ? '#eab308' : '#22c55e',
 								}}>
@@ -367,6 +366,7 @@ export default function AdminContactsPage() {
 														<span className="font-semibold text-slate-700">출시 여부:</span>
 														<span className="ml-2 text-slate-600">{contact.brand_launch_status}</span>
 														{contact.brand_launch_month && <span className="text-slate-500"> ({contact.brand_launch_month})</span>}
+														{contact.brand_launch_status === '출시완료' && contact.showroom_operation && <span className="text-green-600"> ✓ 쇼룸 운영중</span>}
 													</div>
 												)}
 												<div>
@@ -472,6 +472,9 @@ export default function AdminContactsPage() {
 												{selectedContact.brand_launch_status}
 												{selectedContact.brand_launch_month && ` (${selectedContact.brand_launch_month})`}
 											</p>
+											{selectedContact.brand_launch_status === '출시완료' && (
+												<p className="text-sm text-slate-900">쇼룸 운영: {selectedContact.showroom_operation ? '✓ 운영중' : '운영하지 않음'}</p>
+											)}
 										</div>
 									)}
 									<div className="space-y-1">
@@ -505,7 +508,7 @@ export default function AdminContactsPage() {
 									</div>
 								)}
 
-								<div className="pt-4 border-t flex gap-2">
+								<div className="pt-4 border-t flex gap-2 justify-between">
 									<Select
 										value={selectedContact.status}
 										onValueChange={value => {
@@ -513,7 +516,7 @@ export default function AdminContactsPage() {
 											setSelectedContact(null);
 										}}
 										disabled={updatingId === selectedContact.id}>
-										<SelectTrigger className="flex-1">
+										<SelectTrigger className="w-auto min-w-[100px]">
 											<SelectValue placeholder="상태 변경" />
 										</SelectTrigger>
 										<SelectContent>

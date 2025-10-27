@@ -256,6 +256,7 @@ export default function ContactForm() {
 								id="phone"
 								name="phone"
 								type="tel"
+								maxLength={11}
 								value={formData.phone}
 								onChange={handleChange}
 								required
