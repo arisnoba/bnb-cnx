@@ -18,12 +18,12 @@ export default function Header() {
 	];
 
 	return (
-		<header className="fixed top-10 z-50 w-full border-b border-white/10 bg-black/15">
+		<header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/15 pt-10">
 			<div className="my-container mx-auto px-[60px]">
 				<div className="flex items-center justify-between border-b border-white/10 px-[20px] pt-[50px] pb-[30px]">
 					{/* Logo */}
 					<Link href="/" className="flex items-center h-[32px] w-[148px]">
-						<span className="text-[31.777px] font-black uppercase text-[#baff00] leading-none">BNB CN</span>
+						<span className="text-3xl font-black uppercase text-brand-neon leading-none">BNB CN</span>
 					</Link>
 
 					{/* Navigation */}

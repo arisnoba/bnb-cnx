@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { BlurFade } from '@/components/ui/blur-fade';
 
 // 이미지 경로는 실제 이미지 파일로 대체
 const imgHero = '/images/about/hero.jpg';
@@ -19,9 +20,9 @@ export default function About() {
 	];
 
 	return (
-		<div className="min-h-screen bg-white">
+		<div className="min-h-screen bg-white space-y-10 p-10">
 			{/* Hero Section with Background */}
-			<div className="relative bg-[#a523d0] h-[724px] rounded-[60px] overflow-hidden mx-[40px] mt-[40px] mb-[10px]">
+			<div className="relative bg-[#a523d0] h-[724px] rounded-[60px] overflow-hidden">
 				{/* Background Overlay */}
 				<div className="absolute inset-0 bg-black/60" />
 				<div className="absolute inset-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
@@ -46,86 +47,85 @@ export default function About() {
 					<Image src={imgLogoBnbCnx} alt="BNB CNX Logo" width={355} height={355} className="h-[355px] w-auto object-contain" />
 				</div>
 			</div>
+			{/* BNB CNX의 차별성 */}
+			<div className="bg-[#333333] rounded-[60px] p-[120px] space-y-[120px]">
+				<h2 className="text-center">
+					<span className="bg-[#a523d0] text-[#baff00] text-[52px] font-extrabold uppercase px-[12px] py-[6px]">BNB CNX의 차별성</span>
+				</h2>
 
-			<div className="px-[40px] pb-[40px] space-y-[40px]">
-				{/* BNB CNX의 차별성 */}
-				<div className="bg-[#333333] rounded-[60px] p-[120px] space-y-[120px]">
-					<h2 className="text-center">
-						<span className="bg-[#a523d0] text-[#baff00] text-[52px] font-extrabold uppercase px-[12px] py-[6px]">BNB CNX의 차별성</span>
-					</h2>
-
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
-						<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
-							<div className="space-y-2">
-								<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
-									자체 커머스 채널
-									<br />
-									CNX 플랙그십
-									<br />
-									스토어 보유
-								</p>
-							</div>
-							<div className="text-right">
-								<p className="text-[#baff00] text-[72px]">warehouse-full</p>
-							</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+						<div className="space-y-2">
+							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+								자체 커머스 채널
+								<br />
+								CNX 플랙그십
+								<br />
+								스토어 보유
+							</p>
 						</div>
-
-						<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
-							<div className="space-y-2">
-								<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
-									전속 왕홍 / 셀럽 /
-									<br />
-									LIVE / 물류 / 마케팅
-									<br />
-									직접 수행
-								</p>
-							</div>
-							<div className="text-right">
-								<p className="text-[#baff00] text-[72px]">bullseye-arrow</p>
-							</div>
+						<div className="text-right">
+							<p className="text-[#baff00] text-[72px]">warehouse-full</p>
 						</div>
+					</div>
 
-						<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
-							<div className="space-y-2">
-								<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
-									브랜딩부터 콘텐츠 제작,
-									<br />
-									유통, 판매 전환까지
-									<br />
-									직접 운영
-								</p>
-							</div>
-							<div className="text-right">
-								<p className="text-[#baff00] text-[72px]">clapperboard-play</p>
-							</div>
+					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+						<div className="space-y-2">
+							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+								전속 왕홍 / 셀럽 /
+								<br />
+								LIVE / 물류 / 마케팅
+								<br />
+								직접 수행
+							</p>
 						</div>
+						<div className="text-right">
+							<p className="text-[#baff00] text-[72px]">bullseye-arrow</p>
+						</div>
+					</div>
 
-						<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
-							<div className="space-y-2">
-								<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
-									이 모든 구조를 통해
-									<br />
-									성과로 증명하는
-									<br />
-									실행 파트너
-								</p>
-							</div>
-							<div className="text-right">
-								<p className="text-[#baff00] text-[72px]">handshake</p>
-							</div>
+					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+						<div className="space-y-2">
+							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+								브랜딩부터 콘텐츠 제작,
+								<br />
+								유통, 판매 전환까지
+								<br />
+								직접 운영
+							</p>
+						</div>
+						<div className="text-right">
+							<p className="text-[#baff00] text-[72px]">clapperboard-play</p>
+						</div>
+					</div>
+
+					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+						<div className="space-y-2">
+							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+								이 모든 구조를 통해
+								<br />
+								성과로 증명하는
+								<br />
+								실행 파트너
+							</p>
+						</div>
+						<div className="text-right">
+							<p className="text-[#baff00] text-[72px]">handshake</p>
 						</div>
 					</div>
 				</div>
+			</div>
 
-				{/* BNB CNX 연혁 */}
-				<div className="bg-[#333333] rounded-[60px] p-[120px] space-y-[120px]">
-					<h2 className="text-center">
-						<span className="bg-[#a523d0] text-[#baff00] text-[52px] font-extrabold uppercase px-[12px] py-[6px]">BNB CNX 연혁</span>
-					</h2>
+			{/* BNB CNX 연혁 */}
+			<div className="bg-[#333333] rounded-[60px] p-[120px] space-y-[120px]">
+				<h2 className="text-center">
+					<span className="bg-[#a523d0] text-[#baff00] text-[52px] font-extrabold uppercase px-[12px] py-[6px]">BNB CNX 연혁</span>
+				</h2>
 
-					<div className="max-w-[1000px] mx-auto space-y-[48px]">
-						{historyItems.map((item, index) => (
-							<div key={index} className="flex items-center gap-[10px]">
+				<div className="max-w-[1000px] mx-auto space-y-[48px]">
+					{historyItems.map((item, index) => (
+						<BlurFade key={index} delay={0.15 * index} inView>
+							<div className="flex items-center gap-[10px]">
 								<div className="bg-[#222222] rounded-[100px] px-[16px] py-[10px] w-[100px] flex-shrink-0">
 									<p className="text-[#baff00] text-[24px] font-extrabold text-center uppercase">{item.year}</p>
 								</div>
@@ -134,8 +134,8 @@ export default function About() {
 								</div>
 								<p className="text-white text-[24px] font-semibold uppercase flex-shrink-0">{item.text}</p>
 							</div>
-						))}
-					</div>
+						</BlurFade>
+					))}
 				</div>
 			</div>
 		</div>
