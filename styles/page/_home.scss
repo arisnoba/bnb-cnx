@@ -43,23 +43,43 @@
 			}
 		}
 
-		// .scroll-section {
-		// 	@include clamp-unit(padding-block, 60, 120);
-		// 	@include clamp-unit(padding-inline, 24, 40);
-		// 	@include clamp-unit(border-radius, 24, 60);
-		// }
-		.scroll-container {
-			@include clamp-unit(padding-inline, 24, 40);
-			@include clamp-unit(gap, 20, 40);
-		}
-		.scroll-item {
-			// @include clamp-unit(width, 300, 600);
-			// @include clamp-unit(height, 300, 600);
-			@include clamp-unit(border-radius, 24, 60);
-			h3 {
-				@include clamp-unit(font-size, 24, 32);
+		.scroll-section {
+			@include clamp-unit(gap, 40, 80);
+			@include clamp-unit(padding-block, 40, 80);
+			.scroll-title {
+				@include clamp-unit(font-size, 32, 52);
+				color: #333;
+				.scroll-logo {
+					height: 1em;
+				}
+			}
+			.scroll-container {
+				@include clamp-unit(padding-inline, 24, 40);
+				@include clamp-unit(gap, 20, 40);
+			}
+			.scroll-item {
+				// @include clamp-unit(width, 300, 600);
+				// @include clamp-unit(height, 300, 600);
+				@include clamp-unit(border-radius, 20, 40);
+				color: white;
+
+				h3 {
+					@include clamp-unit(font-size, 24, 32);
+				}
+				p {
+					@include clamp-unit(font-size, 16, 20);
+				}
+				&-content {
+					@include clamp-unit(padding, 24, 40);
+				}
+				button {
+					@include clamp-unit(width, 40, 72);
+					aspect-ratio: 1/1;
+					flex-shrink: 0;
+				}
 			}
 		}
+
 		.sns-marketing-section {
 			@include clamp-unit(padding-block, 40, 120);
 			@include clamp-unit(padding-inline, 20, 40);

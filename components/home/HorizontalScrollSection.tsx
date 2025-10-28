@@ -124,21 +124,18 @@ export default function HorizontalScrollSection() {
 	}, [isMdOrLarger]);
 
 	return (
-		<section ref={sectionRef} className="relative bg-white h-screen flex flex-col justify-center overflow-hidden scroll-section">
+		<section ref={sectionRef} className="relative bg-white min-h-screen flex flex-col justify-center overflow-hidden scroll-section">
 			{/* Section Title */}
-			<div className="bg-white py-8 md:py-12 px-6 md:px-10">
-				<div className="container mx-auto">
-					<div className="flex flex-col md:flex-row items-center justify-center gap-2 text-[32px] md:text-[52px] font-black">
-						<span className="text-[#333333]">중국시장 진출,</span>
-
-						<div className="flex items-center gap-1">
-							<div className="bg-brand-purple px-3 py-2 flex items-center gap-1">
-								<Image src="/images/common/logo.svg" alt="BNB CNX Logo" width={152} height={24} className="w-auto h-[20px] md:h-[24px] object-contain" />
-							</div>
-							와
+			<div className="container mx-auto">
+				<div className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-2 font-black scroll-title">
+					<span>중국시장 진출,</span>
+					<div className="flex items-center gap-1">
+						<div className="bg-brand-purple px-3 py-2 flex items-center gap-1">
+							<Image src="/images/common/logo.svg" alt="BNB CNX Logo" width={152} height={24} className="w-auto object-contain scroll-logo" />
 						</div>
-						<span className="text-[#333333]">시작하세요.</span>
+						와
 					</div>
+					<span>시작하세요.</span>
 				</div>
 			</div>
 
@@ -156,15 +153,15 @@ export default function HorizontalScrollSection() {
 									</div>
 
 									{/* Card Content */}
-									<div className="relative z-10 h-full flex flex-col justify-between p-6 bg-gradient-to-b from-black/30 to-transparent">
-										<div className="flex justify-between items-start">
-											<div className="text-white">
-												<h3 className="text-[32px] font-black mb-3">{service.title}</h3>
-												<p className="text-[20px] font-semibold leading-[1.35]">{service.description}</p>
+									<div className="relative z-10 h-auto flex flex-col justify-between p-6 bg-gradient-to-b from-black/30 to-transparent scroll-item-content">
+										<div className="flex justify-between items-start gap-4">
+											<div className="">
+												<h3 className="font-black mb-3">{service.title}</h3>
+												<p className="font-semibold leading-[1.35]">{service.description}</p>
 											</div>
 
 											{/* Arrow Button */}
-											<button className="w-[72px] h-[72px] bg-brand-purple rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+											<button className="bg-brand-purple rounded-full flex items-center justify-center hover:scale-110 transition-transform">
 												<ArrowRight className="w-7 h-7 text-brand-neon" />
 											</button>
 										</div>
@@ -176,25 +173,25 @@ export default function HorizontalScrollSection() {
 				</div>
 			) : (
 				// md 이하: 그리드 레이아웃 (모바일 1열, sm 2열)
-				<div className="container mx-auto px-6 py-8">
+				<div className="container mx-auto px-6">
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 						{services.map(service => (
-							<div key={service.id} className={`aspect-square rounded-[24px] ${service.bgColor} overflow-hidden relative group cursor-pointer`}>
+							<div key={service.id} className={`aspect-square rounded-[24px] ${service.bgColor} overflow-hidden relative group cursor-pointer scroll-item`}>
 								{/* Background Image */}
 								<div className="absolute inset-0 z-0">
 									<Image src={service.image} alt={service.title} fill className="object-cover" />
 								</div>
 
 								{/* Card Content */}
-								<div className="relative z-10 h-full flex flex-col justify-between p-6 bg-gradient-to-b from-black/30 to-transparent">
-									<div className="flex flex-col gap-4">
+								<div className="relative z-10 h-full flex flex-col justify-between p-6 bg-gradient-to-b from-black/30 to-transparent scroll-item-content">
+									<div className="flex flex-row flex-nowrap gap-4 items-start justify-between">
 										<div className="text-white">
-											<h3 className="text-[24px] sm:text-[28px] font-black mb-2">{service.title}</h3>
-											<p className="text-[16px] sm:text-[18px] font-semibold leading-[1.35]">{service.description}</p>
+											<h3 className="font-black mb-2">{service.title}</h3>
+											<p className="font-semibold leading-[1.35]">{service.description}</p>
 										</div>
 
 										{/* Arrow Button */}
-										<button className="w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] bg-brand-purple rounded-full flex items-center justify-center hover:scale-110 transition-transform self-end">
+										<button className="bg-brand-purple rounded-full flex items-center justify-center hover:scale-110 transition-transform scroll-item-button">
 											<ArrowRight className="w-6 h-6 text-brand-neon" />
 										</button>
 									</div>
