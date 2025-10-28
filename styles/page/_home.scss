@@ -23,13 +23,10 @@
 			height: calc(100dvh - var(--hero-padding-top) - var(--hero-padding-bottom));
 			@include clamp-unit(padding-top, 120, 200);
 			@include clamp-unit(padding-bottom, 40, 80);
-			@include md {
+
+			@media (min-width: 768px) {
+				height: auto;
 			}
-			// @media (min-width: 768px) {
-			// height: auto;
-			// 	@include clamp-unit(padding-top, 120, 200);
-			// 	@include clamp-unit(padding-bottom, 40, 80);
-			// }
 
 			@include clamp-unit(padding-inline, 40, 80);
 			@include clamp-unit(border-radius, 24, 60);
@@ -402,8 +399,9 @@
 
 			.ppl-header {
 				@include clamp-unit(margin-bottom, 60, 120);
-				@include clamp-unit(padding-inline, 20, 40);
-
+				@media (max-width: 768px) {
+					@include clamp-unit(padding-inline, 20, 40);
+				}
 				.ppl-title-wrapper {
 					@include clamp-unit(padding-inline, 12, 12);
 					@include clamp-unit(padding-block, 8, 8);

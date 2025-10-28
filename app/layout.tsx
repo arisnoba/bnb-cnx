@@ -8,11 +8,6 @@ import { Toaster } from '@/components/ui/sonner';
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 
-// Font Awesome 설정
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-config.autoAddCss = false;
-
 export default function RootLayout({
 	children,
 }: Readonly<{
