@@ -6,5 +6,10 @@
 		h2 {
 			@include clamp-unit(font-size, 32, 64);
 		}
+		.btn-primary {
+			@include clamp-unit(font-size, 16, 28);
+			@include clamp-unit(padding-block, 16, 20);
+			height: auto;
+		}
 	}
 }

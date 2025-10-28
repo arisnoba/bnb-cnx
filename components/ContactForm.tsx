@@ -197,10 +197,10 @@ export default function ContactForm() {
 			<form onSubmit={handleSubmit} className="flex flex-col gap-[40px]">
 				{/* 문의 유형 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
-					<Label className="text-[24px] font-extrabold text-[#222222]">
+					<Label className="font-extrabold text-[#222222] label-title">
 						문의 유형 <span className="text-[#ff6200]">*</span>
 					</Label>
-					<div className="grid grid-cols-2 gap-[16px]">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						{INQUIRY_TYPES.map(type => (
 							<div key={type} className="flex items-center gap-[4px]">
 								<Checkbox id={type} checked={(formData.inquiry_types ?? []).includes(type)} onCheckedChange={(checked: boolean | 'indeterminate') => handleCheckboxChange(type, checked)} />
@@ -214,7 +214,7 @@ export default function ContactForm() {
 
 				{/* 문의 내용 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
-					<Label htmlFor="inquiry_content" className="text-[24px] font-extrabold text-[#222222]">
+					<Label htmlFor="inquiry_content" className="font-extrabold text-[#222222] label-title">
 						문의 내용
 					</Label>
 					<Textarea
@@ -230,10 +230,10 @@ export default function ContactForm() {
 
 				{/* 담당자 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
-					<Label className="text-[24px] font-extrabold text-[#222222]">
+					<Label className="font-extrabold text-[#222222] label-title">
 						담당자 <span className="text-[#ff6200]">*</span>
 					</Label>
-					<div className="grid grid-cols-2 gap-[20px]">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						<div className="flex flex-col gap-[4px]">
 							<Label htmlFor="name" className="text-[16px] font-extrabold text-[#666666]">
 								성함
@@ -284,7 +284,7 @@ export default function ContactForm() {
 
 				{/* 브랜드명 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
-					<Label htmlFor="brand_names" className="text-[24px] font-extrabold text-[#222222]">
+					<Label htmlFor="brand_names" className="font-extrabold text-[#222222] label-title">
 						브랜드명 <span className="text-[#ff6200]">*</span>
 					</Label>
 					<Input
@@ -300,7 +300,7 @@ export default function ContactForm() {
 
 				{/* 브랜드 현황 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
-					<Label className="text-[24px] font-extrabold text-[#222222]">브랜드 현황</Label>
+					<Label className="font-extrabold text-[#222222] label-title">브랜드 현황</Label>
 					<div className="flex flex-col gap-[4px]">
 						<Label htmlFor="brand_launch_status" className="text-[16px] font-extrabold text-[#666666]">
 							브랜드 출시 여부
@@ -360,7 +360,7 @@ export default function ContactForm() {
 
 				{/* 유입 경로 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
-					<Label className="text-[24px] font-extrabold text-[#222222]">
+					<Label className="font-extrabold text-[#222222] label-title">
 						유입 경로 <span className="text-[#ff6200]">*</span>
 					</Label>
 					<Select value={formData.referral_source ?? ''} onValueChange={(value: string) => handleSelectChange('referral_source', value)} required>
@@ -387,18 +387,20 @@ export default function ContactForm() {
 				</div>
 
 				{/* 개인정보 처리방침 동의 */}
-				<div className="flex items-center gap-[8px]">
-					<Checkbox
-						id="privacy_agreed"
-						checked={privacyAgreed}
-						onCheckedChange={(checked: boolean | 'indeterminate') => {
-							if (checked === 'indeterminate') return;
-							setPrivacyAgreed(checked);
-						}}
-					/>
-					<label htmlFor="privacy_agreed" className="text-[20px] font-medium text-[#222222] cursor-pointer">
-						개인정보 수집 및 이용약관에 동의합니다.
-					</label>
+				<div className="flex flex-col md:flex-row items-center gap-[8px]">
+					<div className="flex items-center gap-[4px]">
+						<Checkbox
+							id="privacy_agreed"
+							checked={privacyAgreed}
+							onCheckedChange={(checked: boolean | 'indeterminate') => {
+								if (checked === 'indeterminate') return;
+								setPrivacyAgreed(checked);
+							}}
+						/>
+						<label htmlFor="privacy_agreed" className="text-[20px] font-medium text-[#222222] cursor-pointer">
+							개인정보 수집 및 이용약관에 동의합니다.
+						</label>
+					</div>
 					<Dialog>
 						<DialogTrigger asChild>
 							<button type="button" className="text-[20px] font-medium text-[#222222] underline underline-offset-2 hover:text-[#666666]">
@@ -478,11 +480,8 @@ export default function ContactForm() {
 				</div>
 
 				{/* 제출 버튼 */}
-				<div className="flex items-center justify-center">
-					<Button
-						type="submit"
-						disabled={isSubmitting}
-						className="bg-[#222222] text-[#baff00] text-[28px] font-extrabold px-[40px] py-[20px] rounded-[100px] h-[72px] uppercase hover:bg-[#333333]">
+				<div className="flex items-center justify-center mb-16">
+					<Button type="submit" disabled={isSubmitting} className="btn-primary h-auto">
 						{isSubmitting ? '제출 중...' : '제출하기'}
 					</Button>
 				</div>

@@ -3,13 +3,26 @@
 		// background-color: red !important;
 		.hero-section {
 			@include clamp-unit(padding-top, 100, 200);
-			@include clamp-unit(padding-bottom, 60, 120);
+			@include clamp-unit(padding-inline, 20, 40);
+			@include clamp-unit(padding-bottom, 40, 120);
 			@include clamp-unit(margin-bottom, 40, 60);
 		}
 	}
 	&-form {
-		// @include clamp-unit(padding-top, 40, 60);
-		// @include clamp-unit(padding-bottom, 40, 60);
-		// @include clamp-unit(margin-bottom, 40, 60);
+		padding: 16px;
+		@include lg {
+			padding: 0;
+		}
+		.label-title {
+			@include clamp-unit(font-size, 20, 24);
+		}
+		label {
+			@include clamp-unit(font-size, 16, 24);
+		}
+		input,
+		textarea {
+			@include clamp-unit(font-size, 16, 24);
+			@include clamp-unit(padding, 16, 20);
+		}
 	}
 }

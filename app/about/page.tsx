@@ -20,7 +20,7 @@ export default function About() {
 	];
 
 	return (
-		<div className="min-h-screen bg-white space-y-10 p-10">
+		<div className="min-h-screen cnx-wrapper space-y-4 md:space-y-10">
 			{/* Hero Section with Background */}
 			<div className="relative bg-[#a523d0] h-[724px] rounded-[60px] overflow-hidden">
 				{/* Background Overlay */}
@@ -65,7 +65,7 @@ export default function About() {
 							</p>
 						</div>
 						<div className="text-right">
-							<p className="text-[#baff00] text-[72px]">warehouse-full</p>
+							<i className="fa-light fa-warehouse-full text-[72px] text-brand-neon"></i>
 						</div>
 					</div>
 
@@ -80,7 +80,7 @@ export default function About() {
 							</p>
 						</div>
 						<div className="text-right">
-							<p className="text-[#baff00] text-[72px]">bullseye-arrow</p>
+							<i className="fa-light fa-bullseye-arrow text-[72px] text-brand-neon"></i>
 						</div>
 					</div>
 
@@ -95,7 +95,7 @@ export default function About() {
 							</p>
 						</div>
 						<div className="text-right">
-							<p className="text-[#baff00] text-[72px]">clapperboard-play</p>
+							<i className="fa-light fa-clapperboard-play text-[72px] text-brand-neon"></i>
 						</div>
 					</div>
 
@@ -110,7 +110,7 @@ export default function About() {
 							</p>
 						</div>
 						<div className="text-right">
-							<p className="text-[#baff00] text-[72px]">handshake</p>
+							<i className="fa-light fa-handshake text-[72px] text-brand-neon"></i>
 						</div>
 					</div>
 				</div>

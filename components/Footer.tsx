@@ -1,6 +1,7 @@
 import { Marquee } from '@/components/ui/marquee';
 import Image from 'next/image';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 
 const partnerLogos = [
 	{ name: 'MCM', src: '/images/partners/logo-01.png' },
@@ -31,7 +32,7 @@ export default function Footer() {
 				<div className="container-custom mx-auto">
 					<div className="items-start grid lg:grid-cols-4 grid-cols-1 gap-9 order-1">
 						{/* CTA Section */}
-						<div className="flex-1 flex flex-row lg:flex-col gap-10 lg:col-span-2 col-span-1">
+						<div className="flex-1 flex flex-col md:flex-row lg:flex-col gap-10 lg:col-span-2 col-span-1">
 							<div className="flex flex-col gap-1">
 								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon flex items-center">
 									BNB CN<i className="fa-kit fa-cnx-x text-[.78em] ml-[-.12em]"></i>
@@ -39,7 +40,7 @@ export default function Footer() {
 								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">브랜드 맞춤형 플랜으로 도와드립니다.</h2>
 							</div>
 							<div className="flex items-center justify-center lg:justify-start">
-								<button className="bg-[#222222] text-brand-neon px-10 py-5 rounded-full text-[28px] font-extrabold uppercase w-fit">문의하기</button>
+								<Button className="btn-primary">문의하기</Button>
 							</div>
 						</div>
 
@@ -47,10 +48,8 @@ export default function Footer() {
 						<div className=" text-white text-base font-bold leading-[2] lg:col-span-1 col-span-1 order-3 lg:order-2 text-center lg:text-left">
 							<p>© BNB CNX Inc. All Rights Reserved.</p>
 							<p>
-								사업자등록번호 <span className="font-normal">|</span> 297-87-03451
-							</p>
-							<p>
-								주소 <span className="font-normal">|</span> 서울특별시 서초구 강남대로 89길 (06536)
+								사업자등록번호 <span className="font-normal">|</span> 297-87-03451 <br className="block md:hidden lg:block" /> 주소 <span className="font-normal">|</span> 서울특별시 서초구
+								강남대로 89길 (06536)
 							</p>
 							<p>
 								대표이사 <span className="font-normal">|</span> 박찬호
@@ -58,7 +57,7 @@ export default function Footer() {
 						</div>
 
 						{/* Family Site Dropdown */}
-						<div className="col-span-1 order-2 lg:order-3 flex justify-end">
+						<div className="col-span-1 order-2 lg:order-3 flex lg:justify-end justify-center border-t lg:border-t-0 border-white/10 pt-10 lg:pt-0">
 							<Select onValueChange={value => window.open(value, '_blank')}>
 								<SelectTrigger className="w-fit px-6 min-w-[200px] py-4 border border-white rounded-full text-white text-base font-bold bg-transparent hover:bg-white/10 transition-colors">
 									<SelectValue placeholder="패밀리사이트" />
