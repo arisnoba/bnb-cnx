@@ -115,8 +115,8 @@ export default function CNXMallSection() {
 				{/* Cards */}
 				<div className="cnx-mall-cards flex flex-col">
 					{/* Card 1 - 소개 */}
-					<div className="bg-[#f3f3f3] cnx-mall-card overflow-hidden">
-						<BlurFade className="cnx-mall-card-content" inView delay={0.15}>
+					<BlurFade className="bg-[#f3f3f3] cnx-mall-card overflow-hidden" inView direction="up" offset={12}>
+						<div className="cnx-mall-card-content">
 							{/* Text Content */}
 							<div className="cnx-mall-card-text">
 								<h3 className="text-brand-purple font-black cnx-mall-card-title">CNX 플래그십 스토어 소개</h3>
@@ -133,12 +133,12 @@ export default function CNXMallSection() {
 									<Image src="/images/home/mall-01.jpg" alt="CNX Mall 앱" fill className="object-cover" />
 								</div>
 							</div>
-						</BlurFade>
-					</div>
+						</div>
+					</BlurFade>
 
 					{/* Card 2 - 베네핏 */}
-					<div className="bg-[#f3f3f3] cnx-mall-card overflow-hidden">
-						<BlurFade className="cnx-mall-card-content cnx-mall-card-reverse" inView delay={0.15}>
+					<BlurFade className="bg-[#f3f3f3] cnx-mall-card overflow-hidden" inView delay={0.3} direction="up" offset={12}>
+						<div className="cnx-mall-card-content cnx-mall-card-reverse">
 							{/* Desktop Image */}
 							<div className="cnx-mall-card-desktop bg-[#c2c2c2] overflow-hidden">
 								<div className="relative aspect-[5/4]">
@@ -159,8 +159,8 @@ export default function CNXMallSection() {
 									<p>• BNB CNX 전속 왕홍 협업, LIVE 커머스 · PPL 연계 가능</p>
 								</div>
 							</div>
-						</BlurFade>
-					</div>
+						</div>
+					</BlurFade>
 				</div>
 			</div>
 		</section>
