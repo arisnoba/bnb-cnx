@@ -11,7 +11,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { supabase, ContactFormData } from '@/lib/supabase';
 import { toast } from 'sonner';
 
-const INQUIRY_TYPES = ['중국 SNS 체험단 문의', '중국 SNS 채널 운영대행 문의', 'LIVE 커머스 진행 문의', '글로벌 PPL / 협찬 마케팅 문의', 'CNX 한국 브랜드 셀렉샵 입점 문의', '협업 / 기타 문의 사항'];
+const INQUIRY_TYPES = [
+	'중국 SNS 체험단 문의',
+	'중국 SNS 채널 및 공식몰 운영 대행 문의',
+	'LIVE 커머스 진행 문의',
+	'글로벌 PPL / 협찬 마케팅 문의',
+	'CNX 한국 브랜드 셀렉샵 입점 문의',
+	'협업 / 기타 문의 사항',
+];
 
 const BRAND_LAUNCH_STATUS = ['준비중', '출시완료'];
 

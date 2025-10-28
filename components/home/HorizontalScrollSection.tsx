@@ -93,23 +93,26 @@ export default function HorizontalScrollSection() {
 		window.addEventListener('resize', handleResize);
 
 		return () => {
-			scrollTween.scrollTrigger?.kill();
 			window.removeEventListener('resize', handleResize);
+			// ScrollTrigger를 먼저 kill
+			if (scrollTween.scrollTrigger) {
+				scrollTween.scrollTrigger.kill();
+			}
+			// 그 다음 tween 자체를 kill
+			scrollTween.kill();
 		};
 	}, []);
 
 	return (
-		<section ref={sectionRef} className="relative bg-white overflow-hidden">
+		<section ref={sectionRef} className="relative bg-white overflow-hidden scroll-section">
 			<div className="h-screen flex flex-col">
 				{/* Section Title */}
 				<div className="bg-white py-12 px-10 flex-shrink-0">
 					<div className="container mx-auto">
-						<div className="flex items-center justify-center gap-2 text-[52px] font-black">
-							<span className="text-[#333333]">중국향 매출,</span>
+						<div className="flex flex-col md:flex-row items-center justify-center gap-2 text-[52px] font-black">
+							<span className="text-[#333333]">중국시장 진출,</span>
 							<div className="bg-brand-purple px-3 flex items-center gap-1">
-								<span className="text-brand-neon text-[59.746px] font-black uppercase leading-none flex items-center">
-									BNB CN<i className="fa-kit fa-cnx-x text-[.78em] ml-[-.12em]"></i>
-								</span>
+								<Image src="/images/common/logo.svg" alt="BNB CNX Logo" width={152} height={24} className="w-auto object-contain" />
 							</div>
 							<span className="text-[#333333]">와 시작하세요.</span>
 						</div>
@@ -117,17 +120,17 @@ export default function HorizontalScrollSection() {
 				</div>
 
 				{/* Horizontal Scroll Container */}
-				<div className="flex-1 flex items-center overflow-hidden">
-					<div ref={scrollContainerRef} className="flex gap-10 px-10 will-change-transform">
+				<div className="flex-1 flex items-center overflow-hidden ">
+					<div ref={scrollContainerRef} className="flex scroll-container will-change-transform">
 						{services.map(service => (
-							<div key={service.id} className={`flex-shrink-0 w-[640px] h-[640px] rounded-[40px] ${service.bgColor} overflow-hidden relative group cursor-pointer`}>
+							<div key={service.id} className={`flex-shrink-0 w-[30vw] aspect-square rounded-[40px] ${service.bgColor} overflow-hidden relative group cursor-pointer scroll-item`}>
 								{/* Background Image */}
 								<div className="absolute inset-0 z-0">
 									<Image src={service.image} alt={service.title} fill className="object-cover" />
 								</div>
 
 								{/* Card Content */}
-								<div className="relative z-10 h-full flex flex-col justify-between p-12 bg-gradient-to-b from-black/30 to-transparent">
+								<div className="relative z-10 h-full flex flex-col justify-between bg-gradient-to-b from-black/30 to-transparent">
 									<div className="flex justify-between items-start">
 										<div className="text-white">
 											<h3 className="text-[32px] font-black mb-3">{service.title}</h3>

@@ -1,0 +1,72 @@
+@use 'sass:math';
+
+.home {
+	&-page {
+		.hero-section {
+			// padding-top: 120px ~ 200px
+			$min-top: 20;
+			$max-top: 40;
+			$min-vw: 600;
+			$max-vw: 1920;
+			$slope-top: math.div($max-top - $min-top, $max-vw - $min-vw) * 100;
+			$intercept-top: $min-top - ($slope-top * math.div($min-vw, 100));
+
+			// padding-bottom: 40px ~ 80px
+			$min-bottom: 20;
+			$max-bottom: 40;
+			$slope-bottom: math.div($max-bottom - $min-bottom, $max-vw - $min-vw) * 100;
+			$intercept-bottom: $min-bottom - ($slope-bottom * math.div($min-vw, 100));
+
+			--hero-padding-top: clamp(#{$min-top}px, #{$intercept-top}px + #{$slope-top}vw, #{$max-top}px);
+			--hero-padding-bottom: clamp(#{$min-bottom}px, #{$intercept-bottom}px + #{$slope-bottom}vw, #{$max-bottom}px);
+
+			height: calc(100dvh - var(--hero-padding-top) - var(--hero-padding-bottom));
+			padding-top: var(--hero-padding-top);
+			padding-bottom: var(--hero-padding-bottom);
+			@include md {
+				height: auto;
+				@include clamp-unit(padding-top, 120, 200);
+				@include clamp-unit(padding-bottom, 40, 80);
+			}
+
+			@include clamp-unit(padding-inline, 40, 80);
+			@include clamp-unit(border-radius, 24, 60);
+			h1 {
+				@include clamp-unit(font-size, 20, 60);
+				@include clamp-unit(margin-bottom, 10, 20);
+			}
+			p {
+				@include clamp-unit(font-size, 16, 24);
+			}
+			.hero-logo {
+				@include clamp-unit(height, 32, 72);
+			}
+		}
+		.vision-section {
+			@include clamp-unit(padding-block, 60, 120);
+			@include clamp-unit(padding-inline, 24, 40);
+			@include clamp-unit(border-radius, 24, 60);
+			p {
+				@include clamp-unit(font-size, 16, 24);
+				line-height: 1.5;
+			}
+		}
+		.scroll-section {
+			// @include clamp-unit(padding-block, 60, 120);
+			// @include clamp-unit(padding-inline, 24, 40);
+			// @include clamp-unit(border-radius, 24, 60);
+		}
+		.scroll-container {
+			@include clamp-unit(padding-inline, 24, 40);
+			@include clamp-unit(gap, 20, 40);
+		}
+		.scroll-item {
+			// @include clamp-unit(width, 300, 600);
+			// @include clamp-unit(height, 300, 600);
+			@include clamp-unit(border-radius, 24, 60);
+			h3 {
+				@include clamp-unit(font-size, 24, 32);
+			}
+		}
+	}
+}

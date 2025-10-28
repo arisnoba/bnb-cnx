@@ -36,7 +36,7 @@ const services: ServiceItem[] = [
 
 export default function SNSMarketingSection() {
 	return (
-		<section id="sns-marketing" className="bg-[#f3f3f3] py-32 px-[360px]">
+		<section id="sns-marketing" className="bg-[#f3f3f3] py-32 px-[360px] relative">
 			<div className="max-w-[1000px] mx-auto">
 				{/* Header */}
 				<div className="mb-32 pr-[400px]">

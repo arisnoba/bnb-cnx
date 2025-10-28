@@ -14,47 +14,47 @@ export default function About() {
 		{ year: '2016', text: '중국 MCN 사업 시작, 왕홍 전속 계약 및 매니지먼트' },
 		{ year: '2017', text: '한국 브랜드 전용 라이브 · 스토어 본격 운영' },
 		{ year: '2018', text: '한국 브랜드 중국 총판 담당, 커머스 매출 본격화' },
-		{ year: '2020', text: '누적 거래액 5,700억 원 돌파, 커머스 스튜디오 허브 구축, ChangSha' },
+		{ year: '2020', text: '누적 거래액 5,700억 원 돌파, 커머스 스튜디오 허브 구축' },
 		{ year: '2021', text: '누적 거래액 1조 9,000억 원 / 채널 누적 팔로워 200만 명 돌파' },
 		{ year: '2025', text: '연매출 3,000억 원 달성, 한국 법인 BNB CNX 설립 및 공식 플래그십몰 운영' },
 	];
 
 	return (
-		<div className="min-h-screen cnx-wrapper space-y-4 md:space-y-10">
+		<div className="min-h-screen cnx-wrapper space-y-4 md:space-y-10 about-page">
 			{/* Hero Section with Background */}
-			<div className="relative bg-[#a523d0] h-[724px] rounded-[60px] overflow-hidden">
+			<div className="relative bg-black overflow-hidden hero-section">
 				{/* Background Overlay */}
-				<div className="absolute inset-0 bg-black/60" />
-				<div className="absolute inset-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+				<div className="absolute inset-0 bg-black/40 z-20" />
+				<div className="absolute inset-0 z-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
 				{/* Content */}
-				<div className="relative z-10 pt-[160px] max-w-[1680px] mx-auto">
+				<div className="relative z-40 pt-[160px] max-w-[1680px] mx-auto">
 					<div className="max-w-[880px]">
-						<p className="text-white text-[24px] font-semibold leading-relaxed uppercase">
+						<p className="text-white font-semibold leading-relaxed uppercase">
 							BNB CNX는
 							<br />
 							Commerce / Network / eXperience를
-							<br />
+							<br className="hidden md:block" />
 							핵심 키워드로 하는, 중국 연매출 3,000억원 규모의
-							<br />
+							<br className="hidden md:block" />
 							Nanor Partner의 브랜딩 & 커머스 한국 법인입니다.
 						</p>
 					</div>
 				</div>
 
 				{/* Logo */}
-				<div className="absolute right-0 top-[287px] hidden lg:block">
-					<Image src={imgLogoBnbCnx} alt="BNB CNX Logo" width={355} height={355} className="h-[355px] w-auto object-contain" />
+				<div className="absolute -right-4 -left-4 top-[120px] z-30 md:bottom-[50px] md:top-auto sm:z-10 lg:z-30 lg:w-1/2 lg:left-auto lg:-right-8 lg:bottom-[60px] xl:bottom-[80px]">
+					<Image src={imgLogoBnbCnx} alt="BNB CNX Logo" width={355} height={355} className="w-auto object-contain" />
 				</div>
 			</div>
 			{/* BNB CNX의 차별성 */}
-			<div className="bg-[#333333] rounded-[60px] p-[120px] space-y-[120px]">
+			<div className="bg-[#333333] about-cnx-difference flex flex-col">
 				<h2 className="text-center">
-					<span className="bg-[#a523d0] text-[#baff00] text-[52px] font-extrabold uppercase px-[12px] py-[6px]">BNB CNX의 차별성</span>
+					<span className="bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">BNB CNX의 차별성</span>
 				</h2>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
-					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-[1600px] mx-auto about-cnx-difference-items">
+					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item">
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
 								자체 커머스 채널
@@ -69,7 +69,7 @@ export default function About() {
 						</div>
 					</div>
 
-					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item">
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
 								전속 왕홍 / 셀럽 /
@@ -84,7 +84,7 @@ export default function About() {
 						</div>
 					</div>
 
-					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item">
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
 								브랜딩부터 콘텐츠 제작,
@@ -99,7 +99,7 @@ export default function About() {
 						</div>
 					</div>
 
-					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between h-[380px]">
+					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item">
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
 								이 모든 구조를 통해
@@ -117,22 +117,20 @@ export default function About() {
 			</div>
 
 			{/* BNB CNX 연혁 */}
-			<div className="bg-[#333333] rounded-[60px] p-[120px] space-y-[120px]">
+			<div className="bg-[#333333] about-history flex flex-col ">
 				<h2 className="text-center">
-					<span className="bg-[#a523d0] text-[#baff00] text-[52px] font-extrabold uppercase px-[12px] py-[6px]">BNB CNX 연혁</span>
+					<span className="bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">BNB CNX 연혁</span>
 				</h2>
 
-				<div className="max-w-[1000px] mx-auto space-y-[48px]">
+				<div className="max-w-[1000px] mx-auto flex flex-col about-history-items">
 					{historyItems.map((item, index) => (
 						<BlurFade key={index} delay={0.15 * index} inView>
-							<div className="flex items-center gap-[10px]">
-								<div className="bg-[#222222] rounded-[100px] px-[16px] py-[10px] w-[100px] flex-shrink-0">
-									<p className="text-[#baff00] text-[24px] font-extrabold text-center uppercase">{item.year}</p>
+							<div className="flex items-start md:items-center about-history-item">
+								<div className="bg-[#222222] rounded-[100px] px-[16px] py-[8px]">
+									<p className="text-brand-neon font-extrabold text-center uppercase flex-shrink-0 about-history-item-year">{item.year}</p>
 								</div>
-								<div className="flex-1 h-0 relative border-b border-dashed border-[rgba(255,255,255,0.1)]">
-									{/* <img src={item.line} alt="" className="absolute top-[-2px] left-0 right-0 w-full h-[2px]" /> */}
-								</div>
-								<p className="text-white text-[24px] font-semibold uppercase flex-shrink-0">{item.text}</p>
+								<div className="flex-1 h-0 relative border-b border-dashed border-white/10"></div>
+								<p className="text-white font-semibold uppercase about-history-item-text">{item.text}</p>
 							</div>
 						</BlurFade>
 					))}

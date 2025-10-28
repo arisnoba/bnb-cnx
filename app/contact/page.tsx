@@ -12,9 +12,8 @@ export default function Contact() {
 				<div className="max-w-[880px] mx-auto">
 					<h1 className="font-black text-brand-neon uppercase leading-none">Contact us</h1>
 					<p className="font-semibold text-white leading-relaxed">
-						BNB CNX는 브랜드사 여러분의 다양한 커머스 및 마케팅 문의를 기다리고 있습니다.
-						<br className="hidden md:block" /> 문의해 주시면 남겨주신이 메일로 BNB CNX의 글로벌 커머스 뉴스레터가 정기 발송됩니다. <br className="hidden md:block" />
-						아래 간단한 양식을 작성해 주시면, 담당자 확인 후 영업일 기준 1일이내 답변드리겠습니다.
+						당신의 브랜드가 중국 시장에서 빛날 수 있도록, CNX가 함께합니다.
+						<br className="hidden md:block" /> 진심으로 성장의 방향을 공유할 파트너 브랜드를 기다립니다.
 					</p>
 				</div>
 			</div>
