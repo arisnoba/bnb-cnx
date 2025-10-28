@@ -124,7 +124,7 @@ export default function HorizontalScrollSection() {
 	}, [isMdOrLarger]);
 
 	return (
-		<section ref={sectionRef} className="relative bg-white overflow-hidden scroll-section">
+		<section ref={sectionRef} className="relative bg-white h-screen flex flex-col justify-center overflow-hidden scroll-section">
 			{/* Section Title */}
 			<div className="bg-white py-8 md:py-12 px-6 md:px-10">
 				<div className="container mx-auto">
@@ -145,7 +145,7 @@ export default function HorizontalScrollSection() {
 			{/* md 이상: 가로 스크롤, md 이하: 그리드 레이아웃 */}
 			{isMdOrLarger ? (
 				// md 이상: 가로 스크롤
-				<div className="h-screen flex flex-col">
+				<div className="flex flex-col">
 					<div className="flex-1 flex items-center overflow-hidden">
 						<div ref={scrollContainerRef} className="flex scroll-container will-change-transform">
 							{services.map(service => (

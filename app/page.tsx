@@ -1,5 +1,6 @@
 import HorizontalScrollSection from '@/components/home/HorizontalScrollSection';
 import SNSMarketingSection from '@/components/home/SNSMarketingSection';
+import CNXMallSection from '@/components/home/CNXMallSection';
 import PPLMarketingSection from '@/components/home/PPLMarketingSection';
 import Image from 'next/image';
 
@@ -35,6 +36,9 @@ export default function Home() {
 
 			{/* SNS Marketing Section */}
 			<SNSMarketingSection />
+
+			{/* CNX Mall Section */}
+			<CNXMallSection />
 
 			{/* PPL Marketing Section */}
 			<PPLMarketingSection />

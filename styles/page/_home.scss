@@ -143,6 +143,203 @@
 			}
 		}
 
+		.cnx-mall-section {
+			@include clamp-unit(padding-block, 40, 120);
+			position: relative;
+
+			.cnx-mall-header-wrapper {
+				width: 100%;
+				@include clamp-unit(padding-block, 40, 60);
+			}
+
+			.cnx-mall-header {
+				// Desktop Layout: Horizontal marquees on sides
+				.cnx-mall-header-desktop {
+					display: none;
+
+					@media (min-width: 769px) {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						@include clamp-unit(gap, 20, 40);
+						// @include clamp-unit(margin-bottom, 24, 32);
+					}
+
+					.cnx-mall-marquee-horizontal {
+						flex: 1;
+						overflow: hidden;
+						@include clamp-unit(height, 100, 200);
+					}
+
+					.cnx-product-card {
+						@include clamp-unit(width, 100, 200);
+						@include clamp-unit(height, 100, 200);
+					}
+
+					.cnx-product-image {
+						@include clamp-unit(width, 80, 180);
+						@include clamp-unit(height, 80, 180);
+					}
+
+					.cnx-mall-title-container {
+						flex-shrink: 0;
+					}
+				}
+
+				// Mobile Layout: Title + Description (no marquees)
+				.cnx-mall-header-mobile {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					@include clamp-unit(gap, 16, 24);
+
+					@media (min-width: 769px) {
+						display: none;
+					}
+				}
+
+				.cnx-mall-title-wrapper {
+					@include clamp-unit(padding-inline, 12, 12);
+					@include clamp-unit(padding-block, 8, 8);
+
+					h2 {
+						@include clamp-unit(font-size, 32, 52);
+					}
+				}
+
+				.cnx-mall-description {
+					@include clamp-unit(font-size, 18, 24);
+					@include clamp-unit(padding-inline, 20, 40);
+					line-height: 1.35;
+
+					&.cnx-mall-description-desktop {
+						display: none;
+
+						@media (min-width: 769px) {
+							display: block;
+						}
+					}
+				}
+			}
+
+			// Mobile Marquees - Full width, below description
+			.cnx-mall-marquees-mobile-wrapper {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				@include clamp-unit(gap, 4, 8);
+				@include clamp-unit(margin-bottom, 40, 60);
+
+				@media (min-width: 769px) {
+					display: none;
+				}
+
+				.cnx-marquee-mobile-row {
+					@include clamp-unit(height, 60, 80);
+				}
+
+				.cnx-product-card-mobile {
+					@include clamp-unit(width, 60, 80);
+					@include clamp-unit(height, 60, 80);
+				}
+
+				.cnx-product-image-mobile {
+					@include clamp-unit(width, 50, 70);
+					@include clamp-unit(height, 50, 70);
+				}
+			}
+
+			.cnx-mall-cards {
+				@include clamp-unit(gap, 16, 20);
+
+				@media (max-width: 768px) {
+					gap: 0;
+				}
+			}
+
+			.cnx-mall-card {
+				@include clamp-unit(padding, 0, 0);
+				@include clamp-unit(border-radius, 16, 32);
+				@include clamp-unit(margin-bottom, 16, 20);
+				// @include clamp-unit(height, 250, 386);
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				.cnx-mall-card-content {
+					display: grid;
+					grid-template-columns: 1fr;
+					// height: auto;
+					gap: 0;
+
+					@media (min-width: 768px) {
+						grid-template-columns: 1fr 1fr;
+					}
+
+					&.cnx-mall-card-reverse {
+						@media (min-width: 768px) {
+							grid-template-columns: 1fr 1fr;
+						}
+					}
+				}
+
+				.cnx-mall-card-text {
+					display: flex;
+					flex-direction: column;
+					@include clamp-unit(gap, 16, 24);
+					@include clamp-unit(padding, 24, 40);
+					order: 1;
+
+					@media (min-width: 768px) {
+						order: unset;
+					}
+
+					.cnx-mall-card-title {
+						@include clamp-unit(font-size, 24, 32);
+						line-height: 1.35;
+					}
+
+					.cnx-mall-card-description {
+						@include clamp-unit(font-size, 14, 16);
+						line-height: 1.6;
+
+						p {
+							margin-bottom: 0;
+						}
+					}
+				}
+
+				.cnx-mall-card-phone,
+				.cnx-mall-card-desktop {
+					position: relative;
+					order: 2;
+
+					@media (min-width: 768px) {
+						order: unset;
+					}
+				}
+
+				// .cnx-phone-wrapper {
+				// 	position: absolute;
+				// 	left: 50%;
+				// 	top: 0;
+				// 	transform: translateX(-50%);
+				// 	@include clamp-unit(width, 300, 402);
+				// 	@include clamp-unit(height, 600, 835);
+				// }
+
+				// .cnx-desktop-wrapper {
+				// 	position: absolute;
+				// 	left: 50%;
+				// 	top: 50%;
+				// 	transform: translate(-50%, -50%);
+				// 	@include clamp-unit(width, 500, 716);
+				// 	@include clamp-unit(height, 300, 401);
+				// }
+			}
+		}
+
 		.ppl-marketing-section {
 			@include clamp-unit(padding-block, 40, 120);
 			@include clamp-unit(padding-inline, 20, 40);
