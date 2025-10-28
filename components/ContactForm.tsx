@@ -193,7 +193,7 @@ export default function ContactForm() {
 	};
 
 	return (
-		<div className="bg-white rounded-[60px] px-[60px] pt-px pb-[60px] max-w-[1000px] mx-auto">
+		<div className="mx-auto contact-form">
 			<form onSubmit={handleSubmit} className="flex flex-col gap-[40px]">
 				{/* 문의 유형 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
@@ -413,8 +413,8 @@ export default function ContactForm() {
 								<section>
 									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제1조 (목적)</h3>
 									<p>
-										본 개인정보 처리방침은 CNX(이하 &apos;회사&apos;)가 제공하는 서비스 이용과 관련하여 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 개인정보의
-										파기에 관한 사항을 정보주체에게 안내하는 것을 목적으로 합니다.
+										본 개인정보 처리방침은 CNX(이하 &apos;회사&apos;)가 제공하는 서비스 이용과 관련하여 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간,
+										개인정보의 파기에 관한 사항을 정보주체에게 안내하는 것을 목적으로 합니다.
 									</p>
 								</section>
 

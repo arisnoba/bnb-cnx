@@ -14,9 +14,9 @@ const partnerLogos = [
 
 export default function Footer() {
 	return (
-		<footer className="flex flex-col">
+		<footer className="flex flex-col footer">
 			{/* Logo Marquee Section */}
-			<div className="bg-white border-t border-black/10">
+			<div className="border-t border-black/10">
 				<Marquee className="py-10">
 					{partnerLogos.map((logo, index) => (
 						<div key={index} className="flex items-center justify-center w-[247px] h-[150px] mx-5">
@@ -27,11 +27,11 @@ export default function Footer() {
 			</div>
 
 			{/* Main Footer Content */}
-			<div className="bg-brand-purple border-t border-white/10">
-				<div className="container-custom mx-auto px-[120px] py-[120px] ">
-					<div className="items-start grid grid-cols-4 gap-9">
+			<div className="bg-brand-purple border-t border-white/10 footer-content">
+				<div className="container-custom mx-auto">
+					<div className="items-start grid lg:grid-cols-4 grid-cols-1 gap-9 order-1">
 						{/* CTA Section */}
-						<div className="flex-1 flex flex-col gap-10 col-span-2	">
+						<div className="flex-1 flex flex-row lg:flex-col gap-10 lg:col-span-2 col-span-1">
 							<div className="flex flex-col gap-1">
 								<div className="flex items-center">
 									<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">BNB CN</h2>
@@ -44,11 +44,13 @@ export default function Footer() {
 								</div>
 								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">브랜드 맞춤형 플랜으로 도와드립니다.</h2>
 							</div>
-							<button className="bg-[#222222] text-brand-neon px-10 py-5 rounded-full text-[28px] font-extrabold uppercase w-fit">문의하기</button>
+							<div className="flex items-center justify-center lg:justify-start">
+								<button className="bg-[#222222] text-brand-neon px-10 py-5 rounded-full text-[28px] font-extrabold uppercase w-fit">문의하기</button>
+							</div>
 						</div>
 
 						{/* Company Info Section */}
-						<div className="w-[376px] text-white text-base font-bold leading-[2] col-span-1">
+						<div className=" text-white text-base font-bold leading-[2] lg:col-span-1 col-span-1 order-3 lg:order-2 text-center lg:text-left">
 							<p>© BNB CNX Inc. All Rights Reserved.</p>
 							<p>
 								사업자등록번호 <span className="font-normal">|</span> 297-87-03451
@@ -62,7 +64,7 @@ export default function Footer() {
 						</div>
 
 						{/* Family Site Dropdown */}
-						<div className="w-[374px] col-span-1">
+						<div className="col-span-1 order-2 lg:order-3">
 							<Select onValueChange={value => window.open(value, '_blank')}>
 								<SelectTrigger className="w-full px-6 py-4 border border-white rounded-full text-white text-base font-bold bg-transparent hover:bg-white/10 transition-colors">
 									<SelectValue placeholder="패밀리사이트" />

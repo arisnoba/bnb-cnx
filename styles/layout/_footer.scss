@@ -1,0 +1,10 @@
+.footer {
+	&-content {
+		@include clamp-unit(padding-block, 60, 120);
+		@include clamp-unit(padding-inline, 20, 40);
+
+		h2 {
+			@include clamp-unit(font-size, 32, 64);
+		}
+	}
+}

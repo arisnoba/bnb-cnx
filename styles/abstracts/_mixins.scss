@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // Flexbox Mixins
 @mixin flex-center {
 	display: flex;
@@ -125,11 +127,11 @@
 	width: 100%;
 	max-width: 1680px;
 	margin: 0 auto;
-	padding: 0 $spacing-xl;
+	// padding: 0 $spacing-xl;
 
-	@include lg {
-		padding: 0 $spacing-3xl;
-	}
+	// @include lg {
+	// 	padding: 0 $spacing-3xl;
+	// }
 }
 
 // Hover Effect

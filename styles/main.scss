@@ -11,7 +11,18 @@
 // 3. Components
 @import 'components/buttons';
 
-// 4. Custom Utilities
+// 4. Layouts
+@import 'layout/footer';
+@import 'layout/header';
+
+// 5. Pages
+@import 'page/contact';
+
+// 6. Custom Utilities
+.cnx-wrapper {
+	@include container;
+	@include clamp-unit(padding, 20, 40);
+}
 .container-custom {
 	@include container;
 }

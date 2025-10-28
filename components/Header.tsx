@@ -29,7 +29,7 @@ export default function Header() {
 	];
 
 	return (
-		<header className={cn('fixed top-0 z-50 w-full transition-all duration-400', isScrolled ? 'bg-black/50 backdrop-blur-md' : 'bg-transparent pt-10')}>
+		<header className={cn('fixed top-0 z-50 w-full transition-all duration-400', isScrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-transparent pt-10')}>
 			<div className="max-w-[1720px] mx-auto">
 				<div className={cn('flex items-center justify-between border-b border-white/10 px-[20px] transition-all duration-300', isScrolled ? 'pt-5 pb-5' : 'pt-[50px] pb-[30px]')}>
 					{/* Logo */}

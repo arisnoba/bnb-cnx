@@ -1,0 +1,15 @@
+.contact {
+	&-page {
+		// background-color: red !important;
+		.hero-section {
+			@include clamp-unit(padding-top, 100, 200);
+			@include clamp-unit(padding-bottom, 60, 120);
+			@include clamp-unit(margin-bottom, 40, 60);
+		}
+	}
+	&-form {
+		// @include clamp-unit(padding-top, 40, 60);
+		// @include clamp-unit(padding-bottom, 40, 60);
+		// @include clamp-unit(margin-bottom, 40, 60);
+	}
+}
