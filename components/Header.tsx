@@ -12,7 +12,7 @@ export default function Header() {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 50);
+			setIsScrolled(window.scrollY > 0);
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -30,9 +30,13 @@ export default function Header() {
 	];
 
 	return (
-		<header className={cn('fixed top-0 z-50 w-full transition-all duration-400 header', isScrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-transparent pt-10')}>
+		<header className={cn('fixed top-0 z-50 w-full transition-all duration-600 header', isScrolled ? 'bg-black/80 backdrop-blur-md scrolled' : 'bg-transparent ')}>
 			<div className="max-w-[1720px] mx-auto">
-				<div className={cn('flex items-center justify-between border-b border-white/10 px-[20px] transition-all duration-300', isScrolled ? 'pt-5 pb-5' : 'pt-[50px] pb-[30px]')}>
+				<div
+					className={cn(
+						'flex items-center justify-between border-b border-white/10 transition-all duration-300 header-wrapper',
+						isScrolled ? 'header-wrapper-scrolled' : 'header-wrapper-normal'
+					)}>
 					{/* Logo */}
 					<Link href="/" className="flex items-center h-[32px] header-logo">
 						<Image src="/images/common/logo.svg" alt="BNB CNX" width={152} height={24} />

@@ -20,7 +20,7 @@
 
 // 6. Custom Utilities
 .cnx-wrapper {
-	@include container;
+	// @include container;
 	@include clamp-unit(padding-block, 20, 40);
 	@include clamp-unit(padding-inline, 16, 40);
 }

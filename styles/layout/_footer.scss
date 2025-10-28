@@ -1,4 +1,11 @@
 .footer {
+	&-logo-marquee {
+		@include clamp-unit(padding-block, 24, 60);
+		&-item {
+			width: auto;
+			@include clamp-unit(height, 54, 108);
+		}
+	}
 	&-content {
 		@include clamp-unit(padding-block, 60, 120);
 		@include clamp-unit(padding-inline, 20, 40);

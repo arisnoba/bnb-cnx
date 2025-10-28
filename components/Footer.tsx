@@ -17,11 +17,11 @@ export default function Footer() {
 	return (
 		<footer className="flex flex-col footer">
 			{/* Logo Marquee Section */}
-			<div className="border-t border-black/10">
-				<Marquee className="py-10">
+			<div className="border-t border-black/10 footer-logo-marquee">
+				<Marquee>
 					{partnerLogos.map((logo, index) => (
-						<div key={index} className="flex items-center justify-center w-[247px] h-[150px] mx-5">
-							<Image src={logo.src} alt={logo.name} width={247} height={150} className="object-contain" />
+						<div key={index} className="flex items-center justify-center mx-2 md:mx-5">
+							<Image src={logo.src} alt={logo.name} width={247} height={150} className="object-contain footer-logo-marquee-item" />
 						</div>
 					))}
 				</Marquee>

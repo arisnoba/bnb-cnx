@@ -1,4 +1,19 @@
 .header {
+	@include clamp-unit(padding-inline, 40, 80);
+	&.scrolled {
+		@include clamp-unit(padding-inline, 20, 60);
+	}
+	.header-wrapper {
+		// @include clamp-unit(padding-inline, 20, 80);
+		&-normal {
+			@include clamp-unit(padding-top, 40, 80);
+			@include clamp-unit(padding-bottom, 30, 30);
+		}
+		&-scrolled {
+			@include clamp-unit(padding-top, 10, 20);
+			@include clamp-unit(padding-bottom, 10, 20);
+		}
+	}
 	.header-logo {
 		img {
 			width: auto;

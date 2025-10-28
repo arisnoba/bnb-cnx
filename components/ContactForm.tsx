@@ -86,11 +86,7 @@ export default function ContactForm() {
 		// 필수 항목 검증
 		if (!formData.inquiry_types || formData.inquiry_types.length === 0) {
 			toast.warning('문의 유형을 하나 이상 선택해주세요.');
-			// 첫 번째 체크박스로 스크롤
-			const firstCheckbox = document.querySelector('input[type="checkbox"]');
-			if (firstCheckbox instanceof HTMLElement) {
-				firstCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-			}
+			scrollToElement('inquiry_types');
 			return;
 		}
 
@@ -133,10 +129,10 @@ export default function ContactForm() {
 		if (!formData.referral_source || !formData.referral_source.trim()) {
 			toast.warning('유입 경로를 선택해주세요.');
 			// Select 컴포넌트의 트리거로 스크롤
-			const referralSelect = document.querySelector('[name="referral_source"]')?.closest('[role="combobox"]');
-			if (referralSelect instanceof HTMLElement) {
-				referralSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
-				referralSelect.focus();
+			const referralTrigger = document.getElementById('referral_source')?.closest('[role="combobox"]');
+			if (referralTrigger instanceof HTMLElement) {
+				referralTrigger.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				(referralTrigger as HTMLElement).focus();
 			}
 			return;
 		}
@@ -194,10 +190,10 @@ export default function ContactForm() {
 
 	return (
 		<div className="mx-auto contact-form">
-			<form onSubmit={handleSubmit} className="flex flex-col gap-[40px]">
+			<form noValidate onSubmit={handleSubmit} className="flex flex-col gap-[40px]">
 				{/* 문의 유형 */}
 				<div className="flex flex-col gap-[20px] border-b border-[rgba(0,0,0,0.1)] pb-[40px]">
-					<Label className="font-extrabold text-[#222222] label-title">
+					<Label id="inquiry_types" className="font-extrabold text-[#222222] label-title">
 						문의 유형 <span className="text-[#ff6200]">*</span>
 					</Label>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -364,7 +360,7 @@ export default function ContactForm() {
 						유입 경로 <span className="text-[#ff6200]">*</span>
 					</Label>
 					<Select value={formData.referral_source ?? ''} onValueChange={(value: string) => handleSelectChange('referral_source', value)} required>
-						<SelectTrigger className="h-[54px] text-[20px] border-[rgba(0,0,0,0.1)] rounded-[4px]">
+						<SelectTrigger id="referral_source" className="h-[54px] text-[20px] border-[rgba(0,0,0,0.1)] rounded-[4px]">
 							<SelectValue placeholder="선택해주세요" />
 						</SelectTrigger>
 						<SelectContent>

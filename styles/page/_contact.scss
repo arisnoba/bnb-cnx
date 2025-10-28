@@ -2,10 +2,18 @@
 	&-page {
 		// background-color: red !important;
 		.hero-section {
-			@include clamp-unit(padding-top, 100, 200);
-			@include clamp-unit(padding-inline, 20, 40);
-			@include clamp-unit(padding-bottom, 40, 120);
+			@include clamp-unit(padding-top, 120, 200);
+			@include clamp-unit(padding-inline, 24, 40);
+			@include clamp-unit(padding-bottom, 20, 120);
 			@include clamp-unit(margin-bottom, 40, 60);
+			@include clamp-unit(border-radius, 24, 60);
+			h1 {
+				@include clamp-unit(font-size, 44, 90);
+				@include clamp-unit(margin-bottom, 24, 48);
+			}
+			p {
+				@include clamp-unit(font-size, 16, 24);
+			}
 		}
 	}
 	&-form {
