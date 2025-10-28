@@ -53,11 +53,17 @@ export default function About() {
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
 						{/* Circles Diagram */}
 						<div className="relative h-auto w-full">
-							<picture>
+							{/* <picture className="md:hidden">
 								<source media="(max-width: 580px)" srcSet="/images/home/vision_m.svg" />
 								<source media="(min-width: 581px)" srcSet="/images/home/vision.svg" />
 								<img src="/images/home/vision.svg" alt="CNX-Vision" className="w-full h-auto object-cover" />
-							</picture>
+							</picture> */}
+							<Image src="/images/about/vision.svg" alt="CNX-Vision" width={100} height={100} className="w-full object-cover hidden lg:block" />
+							<div className="flex flex-col -space-y-8 md:flex-row md:-space-x-8 md:space-y-0 md:justify-around lg:hidden">
+								<Image src="/images/about/vision-c.svg" alt="CNX-Vision" width={100} height={100} className="w-full md:w-1/3 h-auto object-cover" />
+								<Image src="/images/about/vision-n.svg" alt="CNX-Vision" width={100} height={100} className="w-full md:w-1/3 h-auto object-cover" />
+								<Image src="/images/about/vision-x.svg" alt="CNX-Vision" width={100} height={100} className="w-full md:w-1/3 h-auto object-cover" />
+							</div>
 						</div>
 
 						{/* Vision Text */}

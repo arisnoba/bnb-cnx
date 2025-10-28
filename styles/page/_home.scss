@@ -21,19 +21,22 @@
 			--hero-padding-bottom: clamp(#{$min-bottom}px, #{$intercept-bottom}px + #{$slope-bottom}vw, #{$max-bottom}px);
 
 			height: calc(100dvh - var(--hero-padding-top) - var(--hero-padding-bottom));
-			padding-top: var(--hero-padding-top);
-			padding-bottom: var(--hero-padding-bottom);
+			@include clamp-unit(padding-top, 120, 200);
+			@include clamp-unit(padding-bottom, 40, 80);
 			@include md {
-				height: auto;
-				@include clamp-unit(padding-top, 120, 200);
-				@include clamp-unit(padding-bottom, 40, 80);
 			}
+			// @media (min-width: 768px) {
+			// height: auto;
+			// 	@include clamp-unit(padding-top, 120, 200);
+			// 	@include clamp-unit(padding-bottom, 40, 80);
+			// }
 
 			@include clamp-unit(padding-inline, 40, 80);
 			@include clamp-unit(border-radius, 24, 60);
 			h1 {
 				@include clamp-unit(font-size, 20, 60);
-				@include clamp-unit(margin-bottom, 10, 20);
+				// @include clamp-unit(margin-bottom, 10, 20);
+				margin-bottom: 20px;
 			}
 			p {
 				@include clamp-unit(font-size, 16, 24);
@@ -189,6 +192,36 @@
 						flex: 1;
 						overflow: hidden;
 						@include clamp-unit(height, 100, 200);
+						position: relative;
+					}
+
+					// Gradient overlays for smooth fade effect
+					.cnx-mall-marquee-left {
+						&::after {
+							content: '';
+							position: absolute;
+							top: 0;
+							right: 0;
+							width: 8vw;
+							height: 100%;
+							background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+							pointer-events: none;
+							z-index: 10;
+						}
+					}
+
+					.cnx-mall-marquee-right {
+						&::after {
+							content: '';
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 8vw;
+							height: 100%;
+							background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+							pointer-events: none;
+							z-index: 10;
+						}
 					}
 
 					.cnx-product-card {
