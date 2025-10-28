@@ -33,15 +33,9 @@ export default function Footer() {
 						{/* CTA Section */}
 						<div className="flex-1 flex flex-row lg:flex-col gap-10 lg:col-span-2 col-span-1">
 							<div className="flex flex-col gap-1">
-								<div className="flex items-center">
-									<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">BNB CN</h2>
-									<div className="relative w-[52px] h-[53px] ml-2">
-										<svg viewBox="0 0 52 53" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-											<path d="M26 0L31.5 21.5L52 26.5L31.5 31.5L26 53L20.5 31.5L0 26.5L20.5 21.5L26 0Z" fill="#baff00" />
-										</svg>
-									</div>
-									<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">가</h2>
-								</div>
+								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon flex items-center">
+									BNB CN<i className="fa-kit fa-cnx-x text-[.78em] ml-[-.12em]"></i>
+								</h2>
 								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">브랜드 맞춤형 플랜으로 도와드립니다.</h2>
 							</div>
 							<div className="flex items-center justify-center lg:justify-start">
@@ -64,9 +58,9 @@ export default function Footer() {
 						</div>
 
 						{/* Family Site Dropdown */}
-						<div className="col-span-1 order-2 lg:order-3">
+						<div className="col-span-1 order-2 lg:order-3 flex justify-end">
 							<Select onValueChange={value => window.open(value, '_blank')}>
-								<SelectTrigger className="w-full px-6 py-4 border border-white rounded-full text-white text-base font-bold bg-transparent hover:bg-white/10 transition-colors">
+								<SelectTrigger className="w-fit px-6 min-w-[200px] py-4 border border-white rounded-full text-white text-base font-bold bg-transparent hover:bg-white/10 transition-colors">
 									<SelectValue placeholder="패밀리사이트" />
 								</SelectTrigger>
 								<SelectContent className="border-white/20">

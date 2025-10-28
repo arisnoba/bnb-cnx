@@ -19,12 +19,9 @@ export default function Home() {
 							<p>Marketing COMMERCE COMPANY</p>
 						</h1>
 						<div className="flex items-center gap-2">
-							<span className="text-brand-neon text-[97px] font-black uppercase leading-none">BNB CN</span>
-							<div className="w-[68px] h-[68px] relative">
-								<svg viewBox="0 0 68 68" fill="none" className="w-full h-full">
-									<circle cx="34" cy="34" r="32" fill="#baff00" />
-								</svg>
-							</div>
+							<span className="text-brand-neon text-[97px] font-black uppercase leading-none flex items-center">
+								BNB CN<i className="fa-kit fa-cnx-x text-[.78em] ml-[-.12em]"></i>
+							</span>
 						</div>
 					</div>
 				</section>
