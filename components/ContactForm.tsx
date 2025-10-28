@@ -202,7 +202,7 @@ export default function ContactForm() {
 					</Label>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						{INQUIRY_TYPES.map(type => (
-							<div key={type} className="flex items-center gap-[4px]">
+							<div key={type} className="flex items-center gap-2">
 								<Checkbox id={type} checked={(formData.inquiry_types ?? []).includes(type)} onCheckedChange={(checked: boolean | 'indeterminate') => handleCheckboxChange(type, checked)} />
 								<label htmlFor={type} className="text-[20px] font-medium text-[#666666] cursor-pointer">
 									{type}
