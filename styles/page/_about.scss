@@ -13,6 +13,15 @@
 		h2 {
 			@include clamp-unit(font-size, 24, 52);
 		}
+		.vision-section {
+			@include clamp-unit(padding-block, 60, 120);
+			@include clamp-unit(padding-inline, 24, 40);
+			@include clamp-unit(border-radius, 24, 60);
+			p {
+				@include clamp-unit(font-size, 16, 24);
+				line-height: 1.5;
+			}
+		}
 	}
 	&-cnx-difference {
 		@include clamp-unit(padding-block, 60, 120);

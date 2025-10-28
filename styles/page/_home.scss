@@ -42,20 +42,12 @@
 				@include clamp-unit(height, 32, 72);
 			}
 		}
-		.vision-section {
-			@include clamp-unit(padding-block, 60, 120);
-			@include clamp-unit(padding-inline, 24, 40);
-			@include clamp-unit(border-radius, 24, 60);
-			p {
-				@include clamp-unit(font-size, 16, 24);
-				line-height: 1.5;
-			}
-		}
-		.scroll-section {
-			// @include clamp-unit(padding-block, 60, 120);
-			// @include clamp-unit(padding-inline, 24, 40);
-			// @include clamp-unit(border-radius, 24, 60);
-		}
+
+		// .scroll-section {
+		// 	@include clamp-unit(padding-block, 60, 120);
+		// 	@include clamp-unit(padding-inline, 24, 40);
+		// 	@include clamp-unit(border-radius, 24, 60);
+		// }
 		.scroll-container {
 			@include clamp-unit(padding-inline, 24, 40);
 			@include clamp-unit(gap, 20, 40);
@@ -66,6 +58,88 @@
 			@include clamp-unit(border-radius, 24, 60);
 			h3 {
 				@include clamp-unit(font-size, 24, 32);
+			}
+		}
+		.sns-marketing-section {
+			@include clamp-unit(padding-block, 40, 120);
+			@include clamp-unit(padding-inline, 20, 40);
+			@media (max-width: 768px) {
+				padding-inline: 0;
+			}
+
+			.sns-header {
+				@include clamp-unit(margin-bottom, 60, 120);
+				@include clamp-unit(padding-inline, 20, 40);
+				// @media (min-width: 768px) {
+				// 	padding-right: 400px;
+				// }
+
+				.sns-title-wrapper {
+					@include clamp-unit(padding-inline, 12, 12);
+					@include clamp-unit(padding-block, 8, 8);
+					@include clamp-unit(margin-bottom, 24, 32);
+
+					h2 {
+						@include clamp-unit(font-size, 32, 48);
+					}
+				}
+
+				.sns-description {
+					@include clamp-unit(font-size, 18, 24);
+					line-height: 1.35;
+				}
+			}
+
+			.sns-decoration {
+				display: none;
+				@media (min-width: 768px) {
+					display: block;
+					position: absolute;
+					right: 360px;
+					top: 120px;
+					width: 419px;
+					height: 632px;
+				}
+			}
+
+			.sns-items {
+				@include clamp-unit(gap, 16, 20);
+
+				@media (max-width: 768px) {
+					gap: 0;
+				}
+			}
+
+			.sns-item {
+				@include clamp-unit(padding, 24, 40);
+				@include clamp-unit(border-radius, 16, 32);
+
+				.sns-item-grid {
+					@include clamp-unit(gap, 16, 20);
+				}
+
+				.sns-card-image,
+				.sns-card-info {
+					@include clamp-unit(border-radius, 12, 16);
+				}
+
+				.sns-card-info {
+					@include clamp-unit(padding, 24, 32);
+
+					.card-number {
+						@include clamp-unit(font-size, 28, 40);
+					}
+
+					.card-title {
+						@include clamp-unit(font-size, 24, 30);
+						@include clamp-unit(margin-bottom, 8, 12);
+					}
+
+					.card-description {
+						@include clamp-unit(font-size, 14, 16);
+						line-height: 1.35;
+					}
+				}
 			}
 		}
 	}
