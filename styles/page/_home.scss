@@ -142,5 +142,135 @@
 				}
 			}
 		}
+
+		.ppl-marketing-section {
+			@include clamp-unit(padding-block, 40, 120);
+			@include clamp-unit(padding-inline, 20, 40);
+			@media (max-width: 768px) {
+				padding-inline: 0;
+			}
+
+			.ppl-header {
+				@include clamp-unit(margin-bottom, 60, 120);
+				@include clamp-unit(padding-inline, 20, 40);
+
+				.ppl-title-wrapper {
+					@include clamp-unit(padding-inline, 12, 12);
+					@include clamp-unit(padding-block, 8, 8);
+					@include clamp-unit(margin-bottom, 24, 32);
+
+					h2 {
+						@include clamp-unit(font-size, 32, 52);
+					}
+				}
+
+				.ppl-description {
+					@include clamp-unit(font-size, 18, 24);
+					line-height: 1.35;
+				}
+			}
+
+			.ppl-cards {
+				@include clamp-unit(gap, 16, 20);
+
+				@media (max-width: 768px) {
+					gap: 0;
+				}
+			}
+
+			.ppl-card {
+				@include clamp-unit(padding, 24, 40);
+				@include clamp-unit(border-radius, 16, 32);
+				@include clamp-unit(margin-bottom, 16, 20);
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				.ppl-card-content {
+					display: grid;
+					grid-template-columns: 1fr;
+					@include clamp-unit(gap, 24, 40);
+
+					@media (min-width: 768px) {
+						grid-template-columns: 1fr 433px;
+					}
+
+					&.ppl-card-reverse {
+						@media (min-width: 768px) {
+							grid-template-columns: 433px 1fr;
+						}
+					}
+				}
+
+				.ppl-card-text {
+					display: flex;
+					flex-direction: column;
+					@include clamp-unit(gap, 16, 24);
+					order: 1;
+
+					@media (min-width: 768px) {
+						order: unset;
+					}
+
+					.ppl-card-title {
+						@include clamp-unit(font-size, 24, 32);
+						line-height: 1.35;
+					}
+
+					.ppl-card-description {
+						@include clamp-unit(font-size, 16, 16);
+						line-height: 1.6;
+
+						p {
+							margin-bottom: 0;
+						}
+					}
+				}
+
+				.ppl-card-images {
+					display: flex;
+					@include clamp-unit(gap, 4, 4);
+					// @include clamp-unit(height, 200, 306);
+					@include clamp-unit(border-radius, 8, 16);
+					overflow: hidden;
+					order: 2;
+
+					@media (min-width: 768px) {
+						order: unset;
+					}
+
+					.ppl-image-wrapper {
+						flex: 1;
+					}
+				}
+
+				.ppl-card-grid-images {
+					display: grid;
+					grid-template-columns: repeat(2, 1fr);
+					grid-template-rows: repeat(2, 1fr);
+					@include clamp-unit(gap, 4, 4);
+					@include clamp-unit(height, 200, 306);
+					@include clamp-unit(border-radius, 12, 16);
+					overflow: hidden;
+					order: 2;
+
+					@media (min-width: 768px) {
+						order: unset;
+					}
+
+					.ppl-grid-image {
+						position: relative;
+					}
+
+					.ppl-play-button {
+						@include clamp-unit(top, 24, 44);
+						@include clamp-unit(left, 50, 97);
+						@include clamp-unit(width, 16, 19);
+						@include clamp-unit(height, 16, 19);
+					}
+				}
+			}
+		}
 	}
 }

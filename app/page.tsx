@@ -1,5 +1,6 @@
 import HorizontalScrollSection from '@/components/home/HorizontalScrollSection';
 import SNSMarketingSection from '@/components/home/SNSMarketingSection';
+import PPLMarketingSection from '@/components/home/PPLMarketingSection';
 import Image from 'next/image';
 
 const imgHero = '/images/home/hero.jpg';
@@ -34,6 +35,9 @@ export default function Home() {
 
 			{/* SNS Marketing Section */}
 			<SNSMarketingSection />
+
+			{/* PPL Marketing Section */}
+			<PPLMarketingSection />
 		</main>
 	);
 }
