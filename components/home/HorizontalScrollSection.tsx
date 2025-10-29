@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { BlurFade } from '@/components/ui/blur-fade';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,7 +135,7 @@ export default function HorizontalScrollSection() {
 		<section ref={sectionRef} className="relative bg-white min-h-screen flex flex-col justify-center overflow-hidden scroll-section">
 			{/* Section Title */}
 			<div className="container mx-auto">
-				<div className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-2 font-black scroll-title">
+				<BlurFade className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-2 font-black scroll-title" inView delay={0.15}>
 					<span>중국 시장 진출,</span>
 					<div className="flex items-center gap-1">
 						<div className="bg-brand-purple px-3 py-2 flex items-center gap-1">
@@ -143,7 +144,7 @@ export default function HorizontalScrollSection() {
 						와
 					</div>
 					<span>시작하세요.</span>
-				</div>
+				</BlurFade>
 			</div>
 
 			{/* md 이상: 가로 스크롤, md 이하: 그리드 레이아웃 */}

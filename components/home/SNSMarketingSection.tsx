@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { BlurFade } from '../ui/blur-fade';
 gsap.registerPlugin(ScrollTrigger);
 
 interface ServiceItem {
@@ -107,17 +107,19 @@ export default function SNSMarketingSection() {
 	return (
 		<section id="sns-marketing" className="bg-[#f3f3f3] sns-marketing-section relative">
 			<div className="max-w-[1000px] mx-auto">
-				<div className="sns-header-wrapper grid grid-cols-1 md:grid-cols-2 gap-10">
+				<div className="sns-header-wrapper flex flex-col md:flex-row gap-10">
 					{/* Header */}
-					<div className="sns-header text-center md:text-left !mb-0 flex flex-col justify-center">
-						<div className="bg-brand-purple sns-title-wrapper inline-flex self-center md:self-start">
+					<div className="sns-header text-center md:text-left !mb-0 flex flex-col justify-center md:w-[60%]">
+						<BlurFade className="bg-brand-purple sns-title-wrapper inline-block self-center md:self-start" inView delay={0.15}>
 							<h2 className="font-black text-brand-neon uppercase">SNS Marketing</h2>
-						</div>
-						<p className="sns-description font-semibold text-[#333333]">BNB CNX는 중국 소비자들의 SNS 반응을 실질적으로 확인할 수 있는 가장 효과적인 솔루션, SNS 마케팅을 제안합니다.</p>
+						</BlurFade>
+						<BlurFade className="sns-description font-semibold text-[#333333]" inView delay={0.3}>
+							<p>BNB CNX는 중국 소비자들의 SNS 반응을 실질적으로 확인할 수 있는 가장 효과적인 솔루션, SNS 마케팅을 제안합니다.</p>
+						</BlurFade>
 					</div>
 
 					{/* Decoration */}
-					<div className="sns-decoration">
+					<div className="sns-decoration md:w-[40%]">
 						<div className="relative w-full h-auto">
 							<div
 								ref={el => {
@@ -162,7 +164,7 @@ export default function SNSMarketingSection() {
 				{/* Service Items */}
 				<div className="sns-items flex flex-col">
 					{services.map((service, index) => (
-						<div key={service.id} className="bg-white sns-item overflow-hidden">
+						<BlurFade key={service.id} className="bg-white sns-item overflow-hidden" inView delay={0.15 * index}>
 							<div className="grid grid-cols-1 md:grid-cols-3 sns-item-grid">
 								{index % 2 === 0 ? (
 									<>
@@ -202,7 +204,7 @@ export default function SNSMarketingSection() {
 									</>
 								)}
 							</div>
-						</div>
+						</BlurFade>
 					))}
 				</div>
 			</div>

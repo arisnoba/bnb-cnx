@@ -14,7 +14,7 @@ export default function Home() {
 		<main className="min-h-screen home-page ">
 			<div className="space-y-4 md:space-y-10 cnx-wrapper">
 				{/* Hero Section */}
-				<section className="relative bg-brand-purple overflow-hidden md:aspect-[184/85] hero-section md:h-auto">
+				<section className="relative bg-brand-purple overflow-hidden md:aspect-[16/9] hero-section md:h-auto">
 					<div className="absolute inset-0 bg-black/70 z-20" />
 					<div className="absolute inset-0 z-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
 					<div className="relative z-30 mx-auto h-full flex flex-col justify-end">

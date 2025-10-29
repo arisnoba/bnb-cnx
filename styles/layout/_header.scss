@@ -17,13 +17,13 @@
 	.header-logo {
 		img {
 			width: auto;
-			@include clamp-unit(height, 16, 32);
+			@include clamp-unit(height, 16, 24);
 		}
 	}
 	.header-nav {
 		@include clamp-unit(gap, 8, 60);
 		.header-nav-link {
-			@include clamp-unit(font-size, 16, 24);
+			@include clamp-unit(font-size, 16, 20);
 			// letter-spacing: -0.02em;
 			&:hover {
 				color: $brand-neon;

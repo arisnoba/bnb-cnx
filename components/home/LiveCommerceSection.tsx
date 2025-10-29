@@ -3,22 +3,23 @@
 import FlowGrid from '@/components/shared/FlowGrid';
 import FlowCard from '@/components/shared/FlowCard';
 import Image from 'next/image';
+import { BlurFade } from '@/components/ui/blur-fade';
 
-export default function BrandChannelSection() {
+export default function LiveCommerceSection() {
 	return (
 		<section className="bg-[#9FA7B3] flow-grid-section !px-0">
 			{/* Header */}
 			<div className="flow-header max-w-[1000px] mx-auto items-center md:items-end relative flow-grid-section-content">
-				<div className="bg-brand-purple flow-title-wrapper">
+				<BlurFade className="bg-brand-purple flow-title-wrapper" inView delay={0.15}>
 					<h2 className="font-black text-brand-neon uppercase whitespace-nowrap">LIVE Commerce</h2>
-				</div>
+				</BlurFade>
 
-				<div className="flow-description text-center md:text-right font-semibold text-[#333333]">
+				<BlurFade className="flow-description text-center md:text-right font-semibold text-[#333333]" inView delay={0.3}>
 					<p>
-						BNB CNX는 ‘팔리는 구조’까지 설계합니다. <br />
+						BNB CNX는 '팔리는 구조'까지 설계합니다. <br />
 						왕흥 매칭→예열 콘텐츠기획→판매 채널 확보→구매 & CS까지
 					</p>
-				</div>
+				</BlurFade>
 				<Image src="/images/home/live/obj.png" alt="LIVE Commerce" width={1000} height={1000} className="md:absolute md:-left-[40%] md:-top-[100px] bottom-0 object-contain md:block " />
 			</div>
 

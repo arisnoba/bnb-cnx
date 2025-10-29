@@ -43,9 +43,9 @@ export default function CNXMallSection() {
 
 						{/* Title */}
 						<div className="cnx-mall-title-container">
-							<div className="bg-brand-purple inline-block cnx-mall-title-wrapper">
+							<BlurFade className="bg-brand-purple inline-block cnx-mall-title-wrapper" inView delay={0.15}>
 								<h2 className="font-black text-brand-neon uppercase">CNX Mall</h2>
-							</div>
+							</BlurFade>
 						</div>
 
 						{/* Marquee Right */}
@@ -65,26 +65,30 @@ export default function CNXMallSection() {
 					{/* Mobile Layout: Title - Description (no marquees here) */}
 					<div className="cnx-mall-header-mobile">
 						{/* Title */}
-						<div className="bg-brand-purple inline-block cnx-mall-title-wrapper">
+						<BlurFade className="bg-brand-purple inline-block cnx-mall-title-wrapper" inView delay={0.15}>
 							<h2 className="font-black text-brand-neon uppercase">CNX Mall</h2>
-						</div>
+						</BlurFade>
 
 						{/* Description */}
-						<p className="cnx-mall-description font-semibold text-[#222222]">
+						<BlurFade className="cnx-mall-description font-semibold text-[#222222]" inView delay={0.3}>
+							<p>
+								CNX 플래그십 스토어는 샤오홍슈·더우인·타오바오
+								<br />내 공식 한국 브랜드관을 개설해
+								<br />
+								중국 소비자에게 신뢰 기반 구매 전환을 만듭니다.
+							</p>
+						</BlurFade>
+					</div>
+
+					{/* Desktop Description */}
+					<BlurFade className="cnx-mall-description cnx-mall-description-desktop font-semibold text-[#222222]" inView delay={0.3}>
+						<p>
 							CNX 플래그십 스토어는 샤오홍슈·더우인·타오바오
 							<br />내 공식 한국 브랜드관을 개설해
 							<br />
 							중국 소비자에게 신뢰 기반 구매 전환을 만듭니다.
 						</p>
-					</div>
-
-					{/* Desktop Description */}
-					<p className="cnx-mall-description cnx-mall-description-desktop font-semibold text-[#222222]">
-						CNX 플래그십 스토어는 샤오홍슈·더우인·타오바오
-						<br />내 공식 한국 브랜드관을 개설해
-						<br />
-						중국 소비자에게 신뢰 기반 구매 전환을 만듭니다.
-					</p>
+					</BlurFade>
 				</div>
 			</div>
 

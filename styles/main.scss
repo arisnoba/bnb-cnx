@@ -23,6 +23,8 @@
 // 6. Custom Utilities
 .cnx-wrapper {
 	// @include container;
+	max-width: 1920px;
+	margin: 0 auto;
 	@include clamp-unit(padding-block, 20, 40);
 	@include clamp-unit(padding-inline, 16, 40);
 }

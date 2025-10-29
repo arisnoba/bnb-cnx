@@ -3,24 +3,25 @@
 import FlowGrid from '@/components/shared/FlowGrid';
 import FlowCard from '@/components/shared/FlowCard';
 import Image from 'next/image';
+import { BlurFade } from '@/components/ui/blur-fade';
 
-export default function BrandChannelSection() {
+export default function OfficialStoreSection() {
 	return (
 		<section className="bg-[#F3F3F3] flow-grid-section overflow-hidden">
 			{/* Header */}
 			<div className="flow-header max-w-[1000px] mx-auto relative">
-				<div className="bg-brand-purple flow-title-wrapper z-10">
+				<BlurFade className="bg-brand-purple flow-title-wrapper z-10" inView delay={0.15}>
 					<h2 className="font-black text-brand-neon uppercase whitespace-nowrap">Official Store</h2>
-				</div>
+				</BlurFade>
 
-				<div className="flow-description font-semibold text-[#333333] z-10">
+				<BlurFade className="flow-description font-semibold text-[#333333] z-10" inView delay={0.3}>
 					<p>
 						중국 소비자에게 신뢰 기반의 구매 전환을 이끄는 핵심은 <br className="hidden md:block" />
 						SNS 내 공식몰 개설과 체계적인 운영입니다. <br />
 						BNB CNX는 브랜드 맞춤형 <br className="hidden md:block lg:hidden" />
-						‘공식몰 셋업 + 운영 대행’을 제공합니다.
+						'공식몰 셋업 + 운영 대행'을 제공합니다.
 					</p>
-				</div>
+				</BlurFade>
 				<Image
 					src="/images/home/store/obj.png"
 					alt="Official Store"

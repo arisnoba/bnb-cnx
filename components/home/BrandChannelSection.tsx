@@ -6,6 +6,7 @@ import FlowCard from '@/components/shared/FlowCard';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { BlurFade } from '@/components/ui/blur-fade';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,16 +77,16 @@ export default function BrandChannelSection() {
 		<section className="bg-white flow-grid-section">
 			{/* Header */}
 			<div className="flow-header items-center relative max-w-[1000px] mx-auto">
-				<div className="bg-brand-purple flow-title-wrapper">
+				<BlurFade className="bg-brand-purple flow-title-wrapper" inView delay={0.15}>
 					<h2 className="font-black text-brand-neon uppercase whitespace-nowrap">BRAND Channel</h2>
-				</div>
+				</BlurFade>
 
-				<div className="flow-description text-center font-semibold text-[#333333]">
+				<BlurFade className="flow-description text-center font-semibold text-[#333333]" inView delay={0.3}>
 					<p>
 						중국 소비자에게 브랜드 검색은 SNS 공식 채널 검색입니다. <br className="hidden md:block" />
 						샤오홍슈 · 더우인 공식 계정 개설은 소비자 신뢰의 출발점입니다.
 					</p>
-				</div>
+				</BlurFade>
 				<div className="">
 					<div
 						ref={el => {

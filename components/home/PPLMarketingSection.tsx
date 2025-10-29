@@ -9,13 +9,15 @@ export default function PPLMarketingSection() {
 			<div className="max-w-[1000px] mx-auto">
 				{/* Header */}
 				<div className="ppl-header text-center md:text-left">
-					<div className="bg-brand-purple inline-block ppl-title-wrapper">
+					<BlurFade className="bg-brand-purple inline-block ppl-title-wrapper" inView delay={0.15}>
 						<h2 className="font-black text-brand-neon uppercase">PPL Marketing</h2>
-					</div>
-					<p className="ppl-description font-semibold text-[#222222]">
-						BNB CNX는 한국 콘텐츠 기반 글로벌 PPL 전략을 통해 브랜드 협찬 <br className="hidden md:block" />
-						소스를 중국향 SNS 마케팅에 집중적 활용할 수 있습니다.
-					</p>
+					</BlurFade>
+					<BlurFade className="ppl-description font-semibold text-[#222222]" inView delay={0.3}>
+						<p>
+							BNB CNX는 한국 콘텐츠 기반 글로벌 PPL 전략을 통해 브랜드 협찬 <br className="hidden md:block" />
+							소스를 중국향 SNS 마케팅에 집중적 활용할 수 있습니다.
+						</p>
+					</BlurFade>
 				</div>
 
 				{/* Cards */}
