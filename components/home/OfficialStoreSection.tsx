@@ -109,7 +109,7 @@ export default function OfficialStoreSection() {
 							성과 관리
 						</>
 					}
-					description={['매출, 방문수, 전환율, 유입 경로 등', '실시간 공식몰 운영 리포트 제공']}
+					description={['매출, 방문수, 전환율, 유입 경로 등 실시간 공식몰 운영 리포트 제공']}
 					className="bg-white"
 					icon={<i className="fa-light fa-ranking-star" />}
 				/>
