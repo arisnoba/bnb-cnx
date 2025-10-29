@@ -446,7 +446,20 @@
 
 			.flow-grid-item {
 				position: relative;
-				z-index: 1;
+				// z-index를 주면 각 아이템이 독립 스태킹 컨텍스트가 되어
+				// 중간 화살표가 다음 아이템에 가려질 수 있음
+				// z-index: 1;
+
+				// 초기에는 화살표를 숨기고 블러 처리
+				&:not(:first-child):not(:last-child)::after {
+					opacity: 0;
+					filter: blur(6px);
+				}
+
+				// 가시화되면 애니메이션으로 노출
+				&.is-visible:not(:first-child):not(:last-child)::after {
+					animation: flow-arrow-in var(--flow-arrow-duration, 0.4s) ease-out var(--flow-arrow-delay, 0s) forwards;
+				}
 				// 모바일: 순서 유지 (1→2→3→4→5→6)
 				&:nth-child(1) {
 					order: 1;
@@ -531,6 +544,17 @@
 						left: -10px;
 						transform: translate(-50%, -50%) rotate(180deg);
 					}
+				}
+			}
+
+			@keyframes flow-arrow-in {
+				0% {
+					opacity: 0;
+					filter: blur(6px);
+				}
+				100% {
+					opacity: 1;
+					filter: blur(0);
 				}
 			}
 
