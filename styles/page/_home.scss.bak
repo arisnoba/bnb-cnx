@@ -133,9 +133,6 @@
 			.sns-item {
 				@include clamp-unit(padding, 24, 40);
 				@include clamp-unit(border-radius, 16, 32);
-				@media (max-width: 768px) {
-					border-radius: 0;
-				}
 
 				.sns-item-grid {
 					@include clamp-unit(gap, 16, 20);
@@ -398,27 +395,21 @@
 			@include clamp-unit(padding-block, 60, 120);
 			@include clamp-unit(padding-inline, 20, 40);
 			position: relative;
-			&-content {
-				@include clamp-unit(padding-inline, 20, 40);
+
+			@media (min-width: 1440px) {
+				@include clamp-unit(padding-inline, 200, 360);
 			}
-			// @media (min-width: 1440px) {
-			// 	@include clamp-unit(padding-inline, 200, 360);
-			// }
 
 			// Header 스타일
 			.flow-header {
 				display: flex;
 				flex-direction: column;
 				@include clamp-unit(gap, 24, 32);
-				// align-items: center;
-				@include clamp-unit(margin-bottom, 50, 100);
-				// text-align: center;
-				@media (max-width: 767px) {
-					margin-bottom: 0;
-				}
+				align-items: center;
+				@include clamp-unit(margin-bottom, 60, 120);
+				text-align: center;
+
 				.flow-title-wrapper {
-					display: inline-flex;
-					width: fit-content;
 					@include clamp-unit(padding-inline, 12, 12);
 					@include clamp-unit(padding-block, 6, 6);
 
@@ -446,36 +437,6 @@
 
 			.flow-grid-item {
 				position: relative;
-
-				// 모바일: 순서 유지 (1→2→3→4→5→6)
-				&:nth-child(1) {
-					order: 1;
-				}
-				&:nth-child(2) {
-					order: 2;
-				}
-				&:nth-child(3) {
-					order: 3;
-				}
-				&:nth-child(4) {
-					order: 4;
-				}
-				&:nth-child(5) {
-					order: 5;
-				}
-				&:nth-child(6) {
-					order: 6;
-				}
-
-				// 데스크톱: 두 번째 줄 순서 역전 (1,2,3 / 6,5,4)
-				@media (min-width: 768px) {
-					&:nth-child(4) {
-						order: 6;
-					}
-					&:nth-child(6) {
-						order: 4;
-					}
-				}
 
 				// 화살표 공통 스타일
 				&:not(:first-child):not(:last-child)::after {
@@ -528,20 +489,20 @@
 					&:nth-child(4)::after,
 					&:nth-child(5)::after {
 						top: 50%;
-						left: -10px;
-						transform: translate(-50%, -50%) rotate(180deg);
+						right: -10px;
+						transform: translate(50%, -50%) rotate(180deg);
 					}
 				}
 			}
 
 			// Flow Card 스타일
 			.flow-card {
-				@include clamp-unit(padding, 24, 40);
-				@include clamp-unit(border-radius, 12, 24);
-				// @include clamp-unit(height, 280, 320);
+				@include clamp-unit(padding, 32, 40);
+				@include clamp-unit(border-radius, 20, 24);
+				@include clamp-unit(height, 280, 320);
 
 				h3 {
-					@include clamp-unit(font-size, 24, 32);
+					@include clamp-unit(font-size, 28, 32);
 					line-height: 1.1;
 				}
 
@@ -555,15 +516,15 @@
 				i.fa-regular,
 				i.fa-light,
 				i.fa-brands {
-					@include clamp-unit(font-size, 40, 72);
+					@include clamp-unit(font-size, 60, 72);
 					color: #a523d0; // brand-purple
 				}
 
 				// SVG 아이콘 스타일
-				// svg {
-				// 	@include clamp-unit(width, 40, 72);
-				// 	// @include clamp-unit(height, 60, 75);
-				// }
+				svg {
+					@include clamp-unit(width, 70, 88);
+					@include clamp-unit(height, 60, 75);
+				}
 			}
 		}
 

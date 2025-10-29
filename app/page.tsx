@@ -2,6 +2,7 @@ import HorizontalScrollSection from '@/components/home/HorizontalScrollSection';
 import SNSMarketingSection from '@/components/home/SNSMarketingSection';
 import BrandChannelSection from '@/components/home/BrandChannelSection';
 import OfficialStoreSection from '@/components/home/OfficialStoreSection';
+import LiveCommerceSection from '@/components/home/LiveCommerceSection';
 import CNXMallSection from '@/components/home/CNXMallSection';
 import PPLMarketingSection from '@/components/home/PPLMarketingSection';
 import Image from 'next/image';
@@ -43,6 +44,8 @@ export default function Home() {
 			<BrandChannelSection />
 			{/* Official Store Section */}
 			<OfficialStoreSection />
+			{/* Live Commerce Section */}
+			<LiveCommerceSection />
 
 			{/* CNX Mall Section */}
 			<CNXMallSection />

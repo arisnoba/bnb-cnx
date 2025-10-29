@@ -72,8 +72,8 @@ export default function SNSMarketingSection() {
 										))}
 
 										{/* Info Card */}
-										<div className="flex-1 bg-brand-purple sns-card-info flex flex-col justify-between border border-black/10 aspect-[30/32] order-1 md:order-none">
-											<p className="text-brand-neon card-number font-black">{service.number}</p>
+										<div className="flex-1 bg-brand-purple sns-card-info flex flex-col justify-between border border-black/10 aspect-auto md:aspect-[30/32] order-1 md:order-none">
+											<p className="text-brand-neon card-number font-black mb-2 md:mb-0">{service.number}</p>
 											<div className="text-white">
 												<h3 className="card-title font-black">{service.title}</h3>
 												<p className="card-description font-semibold whitespace-pre-line">{service.description}</p>
@@ -83,8 +83,8 @@ export default function SNSMarketingSection() {
 								) : (
 									<>
 										{/* Info Card */}
-										<div className="flex-1 bg-brand-purple sns-card-info flex flex-col justify-between border border-black/10 aspect-[30/32] order-1 md:order-none">
-											<p className="text-brand-neon card-number font-black">{service.number}</p>
+										<div className="flex-1 bg-brand-purple sns-card-info flex flex-col justify-between border border-black/10 aspect-auto md:aspect-[30/32] order-1 md:order-none">
+											<p className="text-brand-neon card-number font-black mb-2 md:mb-0">{service.number}</p>
 											<div className="text-white">
 												<h3 className="card-title font-black">{service.title}</h3>
 												<p className="card-description font-semibold whitespace-pre-line">{service.description}</p>

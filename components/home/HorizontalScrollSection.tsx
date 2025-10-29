@@ -32,6 +32,13 @@ const services: ServiceCard[] = [
 		bgColor: 'bg-[#dddddd]',
 	},
 	{
+		id: 'official-store',
+		title: 'Official Store',
+		description: '중국 공략의 핵심은 SNS 공식몰 구축과 운영입니다.',
+		image: '/images/home/service-06.jpg',
+		bgColor: 'bg-[#9fa7b3]',
+	},
+	{
 		id: 'live-commerce',
 		title: 'LIVE Commerce',
 		description: '매출로 직결되는 왕홍의 퍼포먼스를 보여드립니다.',
@@ -128,7 +135,7 @@ export default function HorizontalScrollSection() {
 			{/* Section Title */}
 			<div className="container mx-auto">
 				<div className="flex flex-col lg:flex-row items-center justify-center gap-0 lg:gap-2 font-black scroll-title">
-					<span>중국시장 진출,</span>
+					<span>중국 시장 진출,</span>
 					<div className="flex items-center gap-1">
 						<div className="bg-brand-purple px-3 py-2 flex items-center gap-1">
 							<Image src="/images/common/logo.svg" alt="BNB CNX Logo" width={152} height={24} className="w-auto object-contain scroll-logo" />
