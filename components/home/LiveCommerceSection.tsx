@@ -11,12 +11,12 @@ export default function LiveCommerceSection() {
 			{/* Header */}
 			<div className="flow-header max-w-[1000px] mx-auto items-center md:items-end relative flow-grid-section-content">
 				<BlurFade className="bg-brand-purple flow-title-wrapper" inView delay={0.15}>
-					<h2 className="font-black text-brand-neon uppercase whitespace-nowrap">LIVE Commerce</h2>
+					<h2 className="font-black uppercase whitespace-nowrap text-brand-neon">LIVE Commerce</h2>
 				</BlurFade>
 
 				<BlurFade className="flow-description text-center md:text-right font-semibold text-[#333333]" inView delay={0.3}>
 					<p>
-						BNB CNX는 '팔리는 구조'까지 설계합니다. <br />
+						BNB CNX는 &apos;팔리는 구조&apos;까지 설계합니다. <br />
 						왕흥 매칭→예열 콘텐츠기획→판매 채널 확보→구매 & CS까지
 					</p>
 				</BlurFade>
@@ -24,7 +24,7 @@ export default function LiveCommerceSection() {
 			</div>
 
 			<div className="max-w-[1000px] mx-auto bg-gradient-to-b from-[#F3F3F3] to-[#9FA7B3] flow-grid-section-content pt-10 !md:bg-transparent md:bg-gradient-to-b md:from-[#9FA7B3] md:to-[#9FA7B3]">
-				<h4 className="md:text-right text-left mb-4 text-2xl md:text-3xl font-bold md:text-brand-neon">진행 프로세스</h4>
+				<h4 className="mb-4 text-2xl font-bold text-left md:text-right md:text-3xl md:text-brand-neon">진행 프로세스</h4>
 				{/* Flow Grid */}
 				<FlowGrid className="-mt-[20px] md:-mt-0">
 					{/* 첫 번째 행 */}

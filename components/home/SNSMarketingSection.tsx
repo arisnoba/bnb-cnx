@@ -43,9 +43,10 @@ export default function SNSMarketingSection() {
 	const iconsRef = useRef<(HTMLDivElement | null)[]>([]);
 
 	useEffect(() => {
+		const iconsSnapshot = iconsRef.current;
 		// 약간의 delay를 줘서 ref가 확실히 할당된 후 실행
 		const timer = setTimeout(() => {
-			const icons = iconsRef.current.filter(Boolean);
+			const icons = iconsSnapshot.filter(Boolean);
 
 			if (icons.length === 0) return;
 
@@ -98,7 +99,7 @@ export default function SNSMarketingSection() {
 
 		return () => {
 			clearTimeout(timer);
-			const icons = iconsRef.current.filter(Boolean);
+			const icons = iconsSnapshot.filter(Boolean);
 			ScrollTrigger.getAll().forEach(t => t.kill());
 			gsap.killTweensOf(icons);
 		};
@@ -107,11 +108,11 @@ export default function SNSMarketingSection() {
 	return (
 		<section id="sns-marketing" className="bg-[#f3f3f3] sns-marketing-section relative">
 			<div className="max-w-[1000px] mx-auto">
-				<div className="sns-header-wrapper flex flex-col md:flex-row gap-10">
+				<div className="flex flex-col gap-10 sns-header-wrapper md:flex-row">
 					{/* Header */}
 					<div className="sns-header text-center md:text-left !mb-0 flex flex-col justify-center md:w-[60%]">
-						<BlurFade className="bg-brand-purple sns-title-wrapper inline-block self-center md:self-start" inView delay={0.15}>
-							<h2 className="font-black text-brand-neon uppercase">SNS Marketing</h2>
+						<BlurFade className="inline-block self-center bg-brand-purple sns-title-wrapper md:self-start" inView delay={0.15}>
+							<h2 className="font-black uppercase text-brand-neon">SNS Marketing</h2>
 						</BlurFade>
 						<BlurFade className="sns-description font-semibold text-[#333333]" inView delay={0.3}>
 							<p>BNB CNX는 중국 소비자들의 SNS 반응을 실질적으로 확인할 수 있는 가장 효과적인 솔루션, SNS 마케팅을 제안합니다.</p>
@@ -162,9 +163,9 @@ export default function SNSMarketingSection() {
 				</div>
 
 				{/* Service Items */}
-				<div className="sns-items flex flex-col">
+				<div className="flex flex-col sns-items">
 					{services.map((service, index) => (
-						<BlurFade key={service.id} className="bg-white sns-item overflow-hidden" inView delay={0.15 * index}>
+						<BlurFade key={service.id} className="overflow-hidden bg-white sns-item" inView delay={0.15 * index}>
 							<div className="grid grid-cols-1 md:grid-cols-3 sns-item-grid">
 								{index % 2 === 0 ? (
 									<>
@@ -177,10 +178,10 @@ export default function SNSMarketingSection() {
 
 										{/* Info Card */}
 										<div className="flex-1 bg-brand-purple sns-card-info flex flex-col justify-between border border-black/10 aspect-auto md:aspect-[30/32] order-1 md:order-none">
-											<p className="text-brand-neon card-number font-black mb-2 md:mb-0">{service.number}</p>
+											<p className="mb-2 font-black text-brand-neon card-number md:mb-0">{service.number}</p>
 											<div className="text-white">
-												<h3 className="card-title font-black">{service.title}</h3>
-												<p className="card-description font-semibold whitespace-pre-line">{service.description}</p>
+												<h3 className="font-black card-title">{service.title}</h3>
+												<p className="font-semibold whitespace-pre-line card-description">{service.description}</p>
 											</div>
 										</div>
 									</>
@@ -188,10 +189,10 @@ export default function SNSMarketingSection() {
 									<>
 										{/* Info Card */}
 										<div className="flex-1 bg-brand-purple sns-card-info flex flex-col justify-between border border-black/10 aspect-auto md:aspect-[30/32] order-1 md:order-none">
-											<p className="text-brand-neon card-number font-black mb-2 md:mb-0">{service.number}</p>
+											<p className="mb-2 font-black text-brand-neon card-number md:mb-0">{service.number}</p>
 											<div className="text-white">
-												<h3 className="card-title font-black">{service.title}</h3>
-												<p className="card-description font-semibold whitespace-pre-line">{service.description}</p>
+												<h3 className="font-black card-title">{service.title}</h3>
+												<p className="font-semibold whitespace-pre-line card-description">{service.description}</p>
 											</div>
 										</div>
 

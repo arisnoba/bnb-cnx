@@ -14,8 +14,9 @@ export default function BrandChannelSection() {
 	const iconsRef = useRef<(HTMLDivElement | null)[]>([]);
 
 	useEffect(() => {
+		const iconsSnapshot = iconsRef.current;
 		const timer = setTimeout(() => {
-			const icons = iconsRef.current.filter(Boolean);
+			const icons = iconsSnapshot.filter(Boolean);
 
 			if (icons.length === 0) return;
 
@@ -68,7 +69,7 @@ export default function BrandChannelSection() {
 
 		return () => {
 			clearTimeout(timer);
-			const icons = iconsRef.current.filter(Boolean);
+			const icons = iconsSnapshot.filter(Boolean);
 			ScrollTrigger.getAll().forEach(t => t.kill());
 			gsap.killTweensOf(icons);
 		};
@@ -78,7 +79,7 @@ export default function BrandChannelSection() {
 			{/* Header */}
 			<div className="flow-header items-center relative max-w-[1000px] mx-auto">
 				<BlurFade className="bg-brand-purple flow-title-wrapper" inView delay={0.15}>
-					<h2 className="font-black text-brand-neon uppercase whitespace-nowrap">BRAND Channel</h2>
+					<h2 className="font-black uppercase whitespace-nowrap text-brand-neon">BRAND Channel</h2>
 				</BlurFade>
 
 				<BlurFade className="flow-description text-center font-semibold text-[#333333]" inView delay={0.3}>
@@ -110,7 +111,7 @@ export default function BrandChannelSection() {
 						<Image src="/images/home/brand/ic_tictok.png" alt="Brand Channel" width={132} height={132} className="object-contain" />
 					</div>
 					{/* 모바일용 */}
-					<Image src="/images/home/brand/obj.png" alt="Brand Channel" width={670} height={580} className="md:hidden mt-4 object-contain" />
+					<Image src="/images/home/brand/obj.png" alt="Brand Channel" width={670} height={580} className="object-contain mt-4 md:hidden" />
 				</div>
 			</div>
 

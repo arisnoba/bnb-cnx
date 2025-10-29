@@ -63,20 +63,38 @@ export default function Footer() {
 									<SelectValue placeholder="패밀리사이트" />
 								</SelectTrigger>
 								<SelectContent className="border-white/20">
-									<SelectItem value="https://blog.bnbcnx.com" className=" hover:bg-white/10">
-										회사 블로그
+									<SelectItem value="https://breeze-artist.com" className=" hover:bg-white/10">
+										BAA
 									</SelectItem>
-									<SelectItem value="https://instagram.com/bnbcnx" className=" hover:bg-white/10">
-										공식 인스타그램
+									<SelectItem value="https://bnb-play.com" className=" hover:bg-white/10">
+										BNB PLAY
 									</SelectItem>
-									<SelectItem value="https://smartstore.naver.com/bnbcnx" className=" hover:bg-white/10">
-										네이버 스마트스토어
+									<SelectItem value="https://bx-agency.com" className=" hover:bg-white/10">
+										BX모델에이전시
 									</SelectItem>
-									<SelectItem value="https://partner.bnbcnx.com" className=" hover:bg-white/10">
-										파트너 포털
+									<SelectItem value="https://baewoo.co.kr" className=" hover:bg-white/10">
+										아트센터
 									</SelectItem>
-									<SelectItem value="https://support.bnbcnx.com" className=" hover:bg-white/10">
-										고객센터
+									<SelectItem value="https://vordinsight.com" className=" hover:bg-white/10">
+										블드인사이트
+									</SelectItem>
+									<SelectItem value="https://baewoorun.co.kr" className=" hover:bg-white/10">
+										시니어아트센터
+									</SelectItem>
+									<SelectItem value="https://bnbindustry.com" className=" hover:bg-white/10">
+										의디스트리
+									</SelectItem>
+									<SelectItem value="https://baewoo.kr" className=" hover:bg-white/10">
+										입시센터
+									</SelectItem>
+									<SelectItem value="https://baewoo.net" className=" hover:bg-white/10">
+										키즈센터
+									</SelectItem>
+									<SelectItem value="https://perfectj.co.kr" className=" hover:bg-white/10">
+										퍼펙트제이
+									</SelectItem>
+									<SelectItem value="https://baewoo.me" className=" hover:bg-white/10">
+										하이틴센터
 									</SelectItem>
 								</SelectContent>
 							</Select>

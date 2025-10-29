@@ -10,8 +10,8 @@ export default function OfficialStoreSection() {
 		<section id="official-store" className="bg-[#F3F3F3] flow-grid-section overflow-hidden">
 			{/* Header */}
 			<div className="flow-header max-w-[1000px] mx-auto relative">
-				<BlurFade className="bg-brand-purple flow-title-wrapper z-10" inView delay={0.15}>
-					<h2 className="font-black text-brand-neon uppercase whitespace-nowrap">Official Store</h2>
+				<BlurFade className="z-10 bg-brand-purple flow-title-wrapper" inView delay={0.15}>
+					<h2 className="font-black uppercase whitespace-nowrap text-brand-neon">Official Store</h2>
 				</BlurFade>
 
 				<BlurFade className="flow-description font-semibold text-[#333333] z-10" inView delay={0.3}>
@@ -19,7 +19,7 @@ export default function OfficialStoreSection() {
 						중국 소비자에게 신뢰 기반의 구매 전환을 이끄는 핵심은 <br className="hidden md:block" />
 						SNS 내 공식몰 개설과 체계적인 운영입니다. <br />
 						BNB CNX는 브랜드 맞춤형 <br className="hidden md:block lg:hidden" />
-						'공식몰 셋업 + 운영 대행'을 제공합니다.
+						&apos;공식몰 셋업 + 운영 대행&apos;을 제공합니다.
 					</p>
 				</BlurFade>
 				<Image
