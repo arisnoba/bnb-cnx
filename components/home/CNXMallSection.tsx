@@ -119,7 +119,7 @@ export default function CNXMallSection() {
 				{/* Cards */}
 				<div className="cnx-mall-cards flex flex-col">
 					{/* Card 1 - 소개 */}
-					<BlurFade className="bg-[#f3f3f3] cnx-mall-card overflow-hidden" inView direction="up" offset={12}>
+					<BlurFade className="bg-[#f3f3f3] cnx-mall-card overflow-hidden" inView delay={0.15}>
 						<div className="cnx-mall-card-content">
 							{/* Text Content */}
 							<div className="cnx-mall-card-text">
@@ -141,7 +141,7 @@ export default function CNXMallSection() {
 					</BlurFade>
 
 					{/* Card 2 - 베네핏 */}
-					<BlurFade className="bg-[#f3f3f3] cnx-mall-card overflow-hidden" inView delay={0.3} direction="up" offset={12}>
+					<BlurFade className="bg-[#f3f3f3] cnx-mall-card overflow-hidden" inView delay={0.45}>
 						<div className="cnx-mall-card-content cnx-mall-card-reverse">
 							{/* Desktop Image */}
 							<div className="cnx-mall-card-desktop bg-[#c2c2c2] overflow-hidden">

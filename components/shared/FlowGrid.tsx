@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
+import { BlurFade } from '@/components/ui/blur-fade';
 
 interface FlowGridProps {
 	children: ReactNode;
@@ -13,9 +14,9 @@ export default function FlowGrid({ children, className = '' }: FlowGridProps) {
 	return (
 		<div className={`flow-grid-container w-full max-w-[1000px] mx-auto ${className}`}>
 			{childrenArray.map((child, index) => (
-				<div key={index} className="flow-grid-item">
+				<BlurFade key={index} className="flow-grid-item" inView delay={0.15 * index}>
 					{child}
-				</div>
+				</BlurFade>
 			))}
 		</div>
 	);

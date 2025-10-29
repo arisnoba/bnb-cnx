@@ -139,9 +139,6 @@ export default function BrandChannelSection() {
 
 				<FlowCard variant="secondary" title="구매전환" description="공식몰, LIVE 커머스 링크 연동" icon={<i className="fa-light fa-store" />} />
 			</FlowGrid>
-
-			{/* Decorative Images - Optional */}
-			{/* TODO: Add decorative images as per design */}
 		</section>
 	);
 }

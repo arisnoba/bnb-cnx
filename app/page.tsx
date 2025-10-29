@@ -6,6 +6,7 @@ import LiveCommerceSection from '@/components/home/LiveCommerceSection';
 import CNXMallSection from '@/components/home/CNXMallSection';
 import PPLMarketingSection from '@/components/home/PPLMarketingSection';
 import Image from 'next/image';
+import { BlurFade } from '@/components/ui/blur-fade';
 
 const imgHero = '/images/home/hero.jpg';
 
@@ -18,18 +19,22 @@ export default function Home() {
 					<div className="absolute inset-0 bg-black/70 z-20" />
 					<div className="absolute inset-0 z-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
 					<div className="relative z-30 mx-auto h-full flex flex-col justify-end">
-						<h1 className="text-white text-[60px] font-black leading-[1.2] tracking-[1.2px] uppercase mb-8">
-							REAL.
-							<br />
-							GLOBAL.
-							<br />
-							EXPERIENTIAL GROWTH.
-							<br />
-							Marketing COMMERCE COMPANY
-						</h1>
-						<div className="flex items-center gap-2">
-							<Image src="/images/common/logo.svg" alt="BNB CNX Logo" width={152} height={24} className="w-auto object-contain hero-logo" />
-						</div>
+						<BlurFade className="text-white text-[60px] font-black leading-[1.2] tracking-[1.2px] uppercase mb-8" inView delay={0.15}>
+							<h1>
+								REAL.
+								<br />
+								GLOBAL.
+								<br />
+								EXPERIENTIAL GROWTH.
+								<br />
+								Marketing COMMERCE COMPANY
+							</h1>
+						</BlurFade>
+						<BlurFade className="flex items-center gap-2" inView delay={0.3}>
+							<div>
+								<Image src="/images/common/logo.svg" alt="BNB CNX Logo" width={152} height={24} className="w-auto object-contain hero-logo" />
+							</div>
+						</BlurFade>
 					</div>
 				</section>
 			</div>

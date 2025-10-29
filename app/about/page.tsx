@@ -30,15 +30,17 @@ export default function About() {
 				{/* Content */}
 				<div className="relative z-40 pt-[160px] max-w-[1680px] mx-auto">
 					<div className="max-w-[880px]">
-						<p className="text-white font-semibold leading-relaxed uppercase">
-							BNB CNX는
-							<br />
-							Commerce / Network / eXperience를
-							<br className="hidden md:block" />
-							핵심 키워드로 하는, 중국 연매출 3,000억원 규모의
-							<br className="hidden md:block" />
-							Nanor Partner의 브랜딩 & 커머스 한국 법인입니다.
-						</p>
+						<BlurFade className="text-white font-semibold leading-relaxed uppercase" inView delay={0.15}>
+							<p>
+								BNB CNX는
+								<br />
+								Commerce / Network / eXperience를
+								<br className="hidden md:block" />
+								핵심 키워드로 하는, 중국 연매출 3,000억원 규모의
+								<br className="hidden md:block" />
+								Nanor Partner의 브랜딩 & 커머스 한국 법인입니다.
+							</p>
+						</BlurFade>
 					</div>
 				</div>
 
@@ -68,27 +70,35 @@ export default function About() {
 
 						{/* Vision Text */}
 						<div className="flex flex-col justify-center">
-							<h2 className="text-brand-neon text-[48px] font-black mb-8">Vision</h2>
-							<p className="text-white font-semibold mb-4">
-								브랜드의 실질적 성장을 돕는 글로벌 브랜딩 & 커머스 파트너 BNB CNX는 글로벌의 장벽이었던 콘텐츠, 유통, 트래픽, 마케팅의 어려움을 넘어, 브랜드가 타겟팅한 시장 안에서 실질적인
-								성과를 경험할 수 있도록 설계된 비즈니스를 만들어 나갑니다.
-							</p>
-							<p className="text-white font-semibold">
-								전략 기획부터 실행까지 하나의 흐름으로 연결되며, 브랜드에게 &apos;성과를 보이고, 상품이 팔리고, 매출이 상승하는&apos; 경험을 만들어가는 것, 그것이 BNB CNX가 추구하는
-								비전입니다.
-							</p>
+							<BlurFade className="text-brand-neon text-[48px] font-black mb-8" inView delay={0.15}>
+								<h2>Vision</h2>
+							</BlurFade>
+							<BlurFade className="text-white font-semibold mb-4" inView delay={0.3}>
+								<p>
+									브랜드의 실질적 성장을 돕는 글로벌 브랜딩 & 커머스 파트너 BNB CNX는 글로벌의 장벽이었던 콘텐츠, 유통, 트래픽, 마케팅의 어려움을 넘어, 브랜드가 타겟팅한 시장 안에서 실질적인
+									성과를 경험할 수 있도록 설계된 비즈니스를 만들어 나갑니다.
+								</p>
+							</BlurFade>
+							<BlurFade className="text-white font-semibold" inView delay={0.45}>
+								<p>
+									전략 기획부터 실행까지 하나의 흐름으로 연결되며, 브랜드에게 &apos;성과를 보이고, 상품이 팔리고, 매출이 상승하는&apos; 경험을 만들어가는 것, 그것이 BNB CNX가 추구하는
+									비전입니다.
+								</p>
+							</BlurFade>
 						</div>
 					</div>
 				</div>
 			</section>
 			{/* BNB CNX의 차별성 */}
 			<div className="bg-[#333333] about-cnx-difference flex flex-col">
-				<h2 className="text-center">
-					<span className="bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">BNB CNX의 차별성</span>
-				</h2>
+				<BlurFade className="text-center" inView delay={0.15}>
+					<h2>
+						<span className="bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">BNB CNX의 차별성</span>
+					</h2>
+				</BlurFade>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-[1600px] mx-auto about-cnx-difference-items">
-					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item">
+					<BlurFade className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item" inView delay={0.3}>
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
 								자체 커머스 채널
@@ -101,9 +111,9 @@ export default function About() {
 						<div className="text-right">
 							<i className="fa-light fa-warehouse-full text-[72px] text-brand-neon"></i>
 						</div>
-					</div>
+					</BlurFade>
 
-					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item">
+					<BlurFade className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item" inView delay={0.45}>
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
 								전속 왕홍 / 셀럽 /
@@ -116,9 +126,9 @@ export default function About() {
 						<div className="text-right">
 							<i className="fa-light fa-bullseye-arrow text-[72px] text-brand-neon"></i>
 						</div>
-					</div>
+					</BlurFade>
 
-					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item">
+					<BlurFade className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item" inView delay={0.6}>
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
 								브랜딩부터 콘텐츠 제작,
@@ -131,9 +141,9 @@ export default function About() {
 						<div className="text-right">
 							<i className="fa-light fa-clapperboard-play text-[72px] text-brand-neon"></i>
 						</div>
-					</div>
+					</BlurFade>
 
-					<div className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item">
+					<BlurFade className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item" inView delay={0.75}>
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
 								이 모든 구조를 통해
@@ -146,15 +156,17 @@ export default function About() {
 						<div className="text-right">
 							<i className="fa-light fa-handshake text-[72px] text-brand-neon"></i>
 						</div>
-					</div>
+					</BlurFade>
 				</div>
 			</div>
 
 			{/* BNB CNX 연혁 */}
 			<div className="bg-[#333333] about-history flex flex-col ">
-				<h2 className="text-center">
-					<span className="bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">BNB CNX 연혁</span>
-				</h2>
+				<BlurFade className="text-center" inView delay={0.15}>
+					<h2>
+						<span className="bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">BNB CNX 연혁</span>
+					</h2>
+				</BlurFade>
 
 				<div className="max-w-[1000px] mx-auto flex flex-col about-history-items">
 					{historyItems.map((item, index) => (

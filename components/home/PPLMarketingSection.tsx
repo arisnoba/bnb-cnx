@@ -23,7 +23,7 @@ export default function PPLMarketingSection() {
 				{/* Cards */}
 				<div className="ppl-cards flex flex-col">
 					{/* Card 1 */}
-					<BlurFade className="bg-white ppl-card overflow-hidden" inView direction="up" offset={12}>
+					<BlurFade className="bg-white ppl-card overflow-hidden" inView delay={0.15}>
 						<div className="ppl-card-content">
 							{/* Text Content */}
 							<div className="ppl-card-text">
@@ -52,7 +52,7 @@ export default function PPLMarketingSection() {
 					</BlurFade>
 
 					{/* Card 2 */}
-					<BlurFade className="bg-white ppl-card overflow-hidden" inView delay={0.3} direction="up" offset={12}>
+					<BlurFade className="bg-white ppl-card overflow-hidden" inView delay={0.45}>
 						<div className="ppl-card-content ppl-card-reverse">
 							{/* Images Grid */}
 							<div className="ppl-card-grid-images">
