@@ -38,24 +38,31 @@ export default function SNSMarketingSection() {
 	return (
 		<section id="sns-marketing" className="bg-[#f3f3f3] sns-marketing-section relative">
 			<div className="max-w-[1000px] mx-auto">
-				{/* Header */}
-				<div className="sns-header text-center md:text-left">
-					<div className="bg-brand-purple inline-block sns-title-wrapper">
-						<h2 className="font-black text-brand-neon uppercase">SNS Marketing</h2>
+				<div className="sns-header-wrapper grid grid-cols-1 md:grid-cols-2 gap-10">
+					{/* Header */}
+					<div className="sns-header text-center md:text-left !mb-0 flex flex-col justify-center">
+						<div className="bg-brand-purple inline-block sns-title-wrapper">
+							<h2 className="font-black text-brand-neon uppercase">SNS Marketing</h2>
+						</div>
+						<p className="sns-description font-semibold text-[#333333]">
+							BNB CNX는 <br className="hidden md:block" />
+							중국 소비자들의 SNS 반응을 실질적으로 확인할 수 있는 <br className="hidden md:block" />
+							가장 효과적인 솔루션, SNS 마케팅을 제안합니다.
+						</p>
 					</div>
-					<p className="sns-description font-semibold text-[#333333]">
-						BNB CNX는 <br className="hidden md:block" />
-						중국 소비자들의 SNS 반응을 실질적으로 확인할 수 있는 <br className="hidden md:block" />
-						가장 효과적인 솔루션, SNS 마케팅을 제안합니다.
-					</p>
-				</div>
 
-				{/* Decoration */}
-				{/* <div className="sns-decoration">
-					<div className="relative w-full h-full">
-						<Image src="/images/home/image-39.jpg" alt="Decoration" fill className="object-cover" />
+					{/* Decoration */}
+					<div className="sns-decoration">
+						<div className="relative w-full h-auto">
+							<Image src="/images/home/sns/ic_bookmark.svg" alt="icon" width={62} height={62} className="object-contain absolute top-[25%] left-[10%]" />
+							<Image src="/images/home/sns/ic_like.svg" alt="icon" width={62} height={62} className="object-contain absolute bottom-[26%] left-[15%]" />
+							<Image src="/images/home/sns/ic_msg.svg" alt="icon" width={62} height={62} className="object-contain absolute bottom-[35%] right-[15%]" />
+							<Image src="/images/home/sns/ic_sms.svg" alt="icon" width={62} height={62} className="object-contain absolute bottom-[15%] right-[35%]" />
+							<Image src="/images/home/sns/ic_thumbs.svg" alt="icon" width={62} height={62} className="object-contain absolute top-[15%] right-[10%]" />
+							<Image src="/images/home/sns/obj.png" alt="Decoration" width={440} height={436} className="object-contain mx-auto" />
+						</div>
 					</div>
-				</div> */}
+				</div>
 
 				{/* Service Items */}
 				<div className="sns-items flex flex-col">

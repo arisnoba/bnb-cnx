@@ -26,7 +26,7 @@ export default function BrandChannelSection() {
 					alt="Official Store"
 					width={510}
 					height={616}
-					className="w-[80vw] mx-auto md:absolute md:w-[50vw] md:-right-[15%] md:-top-[40px] lg:w-[45vw] lg:-right-[10%] lg:-top-[60px] xl:-right-[15%] xl:-top-[60px] max-w-[510px] object-contain md:block -z-1"
+					className="w-[80vw] mx-auto md:absolute md:w-[45vw] md:-right-[11%] md:-top-[40px] lg:w-[40vw] lg:-right-[5%] lg:-top-[60px] xl:-right-[15%] xl:-top-[60px] max-w-[510px] object-contain md:block -z-1"
 				/>
 			</div>
 

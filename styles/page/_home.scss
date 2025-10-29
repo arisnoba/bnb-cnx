@@ -110,17 +110,17 @@
 				}
 			}
 
-			.sns-decoration {
-				display: none;
-				@media (min-width: 768px) {
-					display: block;
-					position: absolute;
-					right: 360px;
-					top: 120px;
-					width: 419px;
-					height: 632px;
-				}
-			}
+			// .sns-decoration {
+			// 	display: none;
+			// 	@media (min-width: 768px) {
+			// 		display: block;
+			// 		position: absolute;
+			// 		right: 360px;
+			// 		top: 120px;
+			// 		width: 419px;
+			// 		height: 632px;
+			// 	}
+			// }
 
 			.sns-items {
 				@include clamp-unit(gap, 16, 20);
