@@ -1,6 +1,11 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ServiceItem {
 	id: string;
@@ -35,30 +40,120 @@ const services: ServiceItem[] = [
 ];
 
 export default function SNSMarketingSection() {
+	const iconsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+	useEffect(() => {
+		// 약간의 delay를 줘서 ref가 확실히 할당된 후 실행
+		const timer = setTimeout(() => {
+			const icons = iconsRef.current.filter(Boolean);
+
+			if (icons.length === 0) return;
+
+			// 초기 상태 설정
+			gsap.set(icons, {
+				scale: 0,
+				opacity: 0,
+			});
+
+			// ScrollTrigger로 화면에 들어올 때 순차적으로 애니메이션
+			ScrollTrigger.create({
+				trigger: '.sns-header-wrapper',
+				start: 'top 80%',
+				once: true,
+				onEnter: () => {
+					// 1단계: 뿅뿅 나타나는 애니메이션
+					gsap.to(icons, {
+						scale: 1,
+						opacity: 1,
+						duration: 0.6,
+						ease: 'back.out(1.7)',
+						stagger: 0.1,
+						onComplete: () => {
+							// 2단계: 둥둥 떠있는 루핑 애니메이션
+							icons.forEach((icon, index) => {
+								gsap.to(icon, {
+									y: index % 2 === 0 ? -15 : -20,
+									duration: 2 + index * 0.2,
+									ease: 'sine.inOut',
+									repeat: -1,
+									yoyo: true,
+									delay: index * 0.1,
+								});
+
+								// 살짝 회전하는 효과
+								gsap.to(icon, {
+									rotation: index % 2 === 0 ? 5 : -5,
+									duration: 3 + index * 0.3,
+									ease: 'sine.inOut',
+									repeat: -1,
+									yoyo: true,
+									delay: index * 0.15,
+								});
+							});
+						},
+					});
+				},
+			});
+		}, 100);
+
+		return () => {
+			clearTimeout(timer);
+			const icons = iconsRef.current.filter(Boolean);
+			ScrollTrigger.getAll().forEach(t => t.kill());
+			gsap.killTweensOf(icons);
+		};
+	}, []);
+
 	return (
 		<section id="sns-marketing" className="bg-[#f3f3f3] sns-marketing-section relative">
 			<div className="max-w-[1000px] mx-auto">
 				<div className="sns-header-wrapper grid grid-cols-1 md:grid-cols-2 gap-10">
 					{/* Header */}
 					<div className="sns-header text-center md:text-left !mb-0 flex flex-col justify-center">
-						<div className="bg-brand-purple inline-block sns-title-wrapper">
+						<div className="bg-brand-purple sns-title-wrapper inline-flex self-center md:self-start">
 							<h2 className="font-black text-brand-neon uppercase">SNS Marketing</h2>
 						</div>
-						<p className="sns-description font-semibold text-[#333333]">
-							BNB CNX는 <br className="hidden md:block" />
-							중국 소비자들의 SNS 반응을 실질적으로 확인할 수 있는 <br className="hidden md:block" />
-							가장 효과적인 솔루션, SNS 마케팅을 제안합니다.
-						</p>
+						<p className="sns-description font-semibold text-[#333333]">BNB CNX는 중국 소비자들의 SNS 반응을 실질적으로 확인할 수 있는 가장 효과적인 솔루션, SNS 마케팅을 제안합니다.</p>
 					</div>
 
 					{/* Decoration */}
 					<div className="sns-decoration">
 						<div className="relative w-full h-auto">
-							<Image src="/images/home/sns/ic_bookmark.svg" alt="icon" width={62} height={62} className="object-contain absolute top-[25%] left-[10%]" />
-							<Image src="/images/home/sns/ic_like.svg" alt="icon" width={62} height={62} className="object-contain absolute bottom-[26%] left-[15%]" />
-							<Image src="/images/home/sns/ic_msg.svg" alt="icon" width={62} height={62} className="object-contain absolute bottom-[35%] right-[15%]" />
-							<Image src="/images/home/sns/ic_sms.svg" alt="icon" width={62} height={62} className="object-contain absolute bottom-[15%] right-[35%]" />
-							<Image src="/images/home/sns/ic_thumbs.svg" alt="icon" width={62} height={62} className="object-contain absolute top-[15%] right-[10%]" />
+							<div
+								ref={el => {
+									iconsRef.current[0] = el;
+								}}
+								className="absolute top-[25%] left-[10%]">
+								<Image src="/images/home/sns/ic_bookmark.svg" alt="icon" width={62} height={62} className="object-contain" />
+							</div>
+							<div
+								ref={el => {
+									iconsRef.current[1] = el;
+								}}
+								className="absolute bottom-[26%] left-[15%]">
+								<Image src="/images/home/sns/ic_like.svg" alt="icon" width={62} height={62} className="object-contain" />
+							</div>
+							<div
+								ref={el => {
+									iconsRef.current[2] = el;
+								}}
+								className="absolute bottom-[35%] right-[15%]">
+								<Image src="/images/home/sns/ic_msg.svg" alt="icon" width={62} height={62} className="object-contain" />
+							</div>
+							<div
+								ref={el => {
+									iconsRef.current[3] = el;
+								}}
+								className="absolute bottom-[15%] right-[35%]">
+								<Image src="/images/home/sns/ic_sms.svg" alt="icon" width={62} height={62} className="object-contain" />
+							</div>
+							<div
+								ref={el => {
+									iconsRef.current[4] = el;
+								}}
+								className="absolute top-[15%] right-[10%]">
+								<Image src="/images/home/sns/ic_thumbs.svg" alt="icon" width={62} height={62} className="object-contain" />
+							</div>
 							<Image src="/images/home/sns/obj.png" alt="Decoration" width={440} height={436} className="object-contain mx-auto" />
 						</div>
 					</div>
