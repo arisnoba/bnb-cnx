@@ -15,6 +15,7 @@ interface ServiceCard {
 	description: string;
 	image: string;
 	bgColor: string;
+	anchor: string;
 }
 
 const services: ServiceCard[] = [
@@ -24,6 +25,7 @@ const services: ServiceCard[] = [
 		description: '브랜드의 첫 반응, 지금 시작해야 합니다.',
 		image: '/images/home/service-01.jpg',
 		bgColor: 'bg-[#dddddd]',
+		anchor: '#sns-marketing',
 	},
 	{
 		id: 'sns-brand-channel',
@@ -31,6 +33,7 @@ const services: ServiceCard[] = [
 		description: "브랜드 '공식 채널' 세팅 노하우가 중요합니다.",
 		image: '/images/home/service-02.jpg',
 		bgColor: 'bg-[#dddddd]',
+		anchor: '#sns-brand-channel',
 	},
 	{
 		id: 'official-store',
@@ -38,6 +41,7 @@ const services: ServiceCard[] = [
 		description: '중국 공략의 핵심은 SNS 공식몰 구축과 운영입니다.',
 		image: '/images/home/service-06.jpg',
 		bgColor: 'bg-[#9fa7b3]',
+		anchor: '#official-store',
 	},
 	{
 		id: 'live-commerce',
@@ -45,6 +49,7 @@ const services: ServiceCard[] = [
 		description: '매출로 직결되는 왕홍의 퍼포먼스를 보여드립니다.',
 		image: '/images/home/service-03.jpg',
 		bgColor: 'bg-[#9fa7b3]',
+		anchor: '#live-commerce',
 	},
 	{
 		id: 'cnx-mall',
@@ -52,6 +57,7 @@ const services: ServiceCard[] = [
 		description: '한국 브랜드만을 위한 중국 플래그십 스토어가 열립니다.',
 		image: '/images/home/service-04.jpg',
 		bgColor: 'bg-[#9fb3a5]',
+		anchor: '#cnx-mall',
 	},
 	{
 		id: 'ppl-marketing',
@@ -59,6 +65,7 @@ const services: ServiceCard[] = [
 		description: '차별화된 중국향 노출 PPL을 진행합니다.',
 		image: '/images/home/service-05.jpg',
 		bgColor: 'bg-[#b3a49f]',
+		anchor: '#ppl-marketing',
 	},
 ];
 
@@ -66,6 +73,23 @@ export default function HorizontalScrollSection() {
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 	const [isMdOrLarger, setIsMdOrLarger] = useState(false);
+
+	// 섹션으로 스크롤하는 함수
+	const scrollToSection = (anchor: string) => {
+		const targetId = anchor.replace('#', '');
+		const targetElement = document.getElementById(targetId);
+
+		if (targetElement) {
+			const headerOffset = 80; // 헤더 높이만큼 오프셋 (필요시 조정)
+			const elementPosition = targetElement.getBoundingClientRect().top;
+			const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth',
+			});
+		}
+	};
 
 	useEffect(() => {
 		// md 해상도 체크 (768px)
@@ -154,7 +178,10 @@ export default function HorizontalScrollSection() {
 					<div className="flex-1 flex items-center overflow-hidden">
 						<div ref={scrollContainerRef} className="flex scroll-container will-change-transform">
 							{services.map(service => (
-								<div key={service.id} className={`flex-shrink-0 w-[30vw] aspect-square rounded-[40px] ${service.bgColor} overflow-hidden relative group cursor-pointer scroll-item`}>
+								<div
+									key={service.id}
+									className={`flex-shrink-0 w-[30vw] aspect-square rounded-[40px] ${service.bgColor} overflow-hidden relative group cursor-pointer scroll-item`}
+									onClick={() => scrollToSection(service.anchor)}>
 									{/* Background Image */}
 									<div className="absolute inset-0 z-0">
 										<Image src={service.image} alt={service.title} fill className="object-cover" />
@@ -184,7 +211,10 @@ export default function HorizontalScrollSection() {
 				<div className="container mx-auto px-6">
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 						{services.map(service => (
-							<div key={service.id} className={`aspect-square rounded-[24px] ${service.bgColor} overflow-hidden relative group cursor-pointer scroll-item`}>
+							<div
+								key={service.id}
+								className={`aspect-square rounded-[24px] ${service.bgColor} overflow-hidden relative group cursor-pointer scroll-item`}
+								onClick={() => scrollToSection(service.anchor)}>
 								{/* Background Image */}
 								<div className="absolute inset-0 z-0">
 									<Image src={service.image} alt={service.title} fill className="object-cover" />

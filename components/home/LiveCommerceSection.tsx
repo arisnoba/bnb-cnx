@@ -7,7 +7,7 @@ import { BlurFade } from '@/components/ui/blur-fade';
 
 export default function LiveCommerceSection() {
 	return (
-		<section className="bg-[#9FA7B3] flow-grid-section !px-0">
+		<section id="live-commerce" className="bg-[#9FA7B3] flow-grid-section !px-0">
 			{/* Header */}
 			<div className="flow-header max-w-[1000px] mx-auto items-center md:items-end relative flow-grid-section-content">
 				<BlurFade className="bg-brand-purple flow-title-wrapper" inView delay={0.15}>

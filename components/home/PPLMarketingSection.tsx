@@ -5,7 +5,7 @@ import { BlurFade } from '@/components/ui/blur-fade';
 
 export default function PPLMarketingSection() {
 	return (
-		<section className="bg-[#f3f3f3] ppl-marketing-section relative">
+		<section id="ppl-marketing" className="bg-[#f3f3f3] ppl-marketing-section relative">
 			<div className="max-w-[1000px] mx-auto">
 				{/* Header */}
 				<div className="ppl-header text-center md:text-left">

@@ -74,7 +74,7 @@ export default function BrandChannelSection() {
 		};
 	}, []);
 	return (
-		<section className="bg-white flow-grid-section">
+		<section id="sns-brand-channel" className="bg-white flow-grid-section">
 			{/* Header */}
 			<div className="flow-header items-center relative max-w-[1000px] mx-auto">
 				<BlurFade className="bg-brand-purple flow-title-wrapper" inView delay={0.15}>

@@ -7,7 +7,7 @@ import { BlurFade } from '@/components/ui/blur-fade';
 
 export default function OfficialStoreSection() {
 	return (
-		<section className="bg-[#F3F3F3] flow-grid-section overflow-hidden">
+		<section id="official-store" className="bg-[#F3F3F3] flow-grid-section overflow-hidden">
 			{/* Header */}
 			<div className="flow-header max-w-[1000px] mx-auto relative">
 				<BlurFade className="bg-brand-purple flow-title-wrapper z-10" inView delay={0.15}>

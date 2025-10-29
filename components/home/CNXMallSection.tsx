@@ -22,7 +22,7 @@ const productImages = [
 
 export default function CNXMallSection() {
 	return (
-		<section className="bg-white cnx-mall-section relative overflow-hidden">
+		<section id="cnx-mall" className="bg-white cnx-mall-section relative overflow-hidden">
 			{/* Header with Marquees - Full Width */}
 			<div className="cnx-mall-header-wrapper">
 				<div className="cnx-mall-header text-center">
