@@ -437,6 +437,8 @@
 
 			.flow-grid-item {
 				position: relative;
+
+				// 화살표 공통 스타일
 				&:not(:first-child):not(:last-child)::after {
 					content: '\f054';
 					font-family: 'Font Awesome 7 Pro';
@@ -455,111 +457,40 @@
 					place-items: center;
 				}
 
-				// 모바일: 2~5번째 아이템 다음에 화살표
-				&:nth-child(2)::after,
-				&:nth-child(3)::after,
-				&:nth-child(4)::after,
-				&:nth-child(5)::after {
-					@media (max-width: 767px) {
+				// 모바일: 모든 아이템 아래 방향 (↓)
+				@media (max-width: 767px) {
+					&:nth-child(2)::after,
+					&:nth-child(3)::after,
+					&:nth-child(4)::after,
+					&:nth-child(5)::after {
 						bottom: 0;
 						left: 50%;
 						transform: translate(-50%, 50%) rotate(90deg);
 					}
 				}
 
-				// 데스크톱: 2번째 아이템 (세팅) 다음 - 가로 우측
-				&:nth-child(2)::after {
-					@media (min-width: 768px) {
-						content: '\f054';
-						font-family: 'Font Awesome 7 Pro';
-						font-weight: 900;
-						position: absolute;
+				// 데스크톱: 각 아이템별 방향 설정
+				@media (min-width: 768px) {
+					// 2번 (세팅): 우측으로 (→)
+					&:nth-child(2)::after {
 						top: 50%;
 						right: -10px;
 						transform: translate(50%, -50%);
-						@include clamp-unit(width, 36, 41);
-						@include clamp-unit(height, 36, 41);
-						@include clamp-unit(font-size, 16, 18);
-						background: white;
-						border: 2px solid #a523d0;
-						border-radius: 50%;
-						color: #a523d0;
-						z-index: 10;
-						line-height: 1;
-						display: grid;
-						place-items: center;
 					}
-				}
 
-				// 데스크톱: 3번째 아이템 (기획) 다음 - 세로 아래
-				&:nth-child(3)::after {
-					@media (min-width: 768px) {
-						content: '\f054';
-						font-family: 'Font Awesome 7 Pro';
-						font-weight: 900;
-						position: absolute;
-						bottom: 0;
+					// 3번 (기획): 아래로 (↓)
+					&:nth-child(3)::after {
+						bottom: -10px;
 						left: 50%;
 						transform: translate(-50%, 50%) rotate(90deg);
-						@include clamp-unit(width, 36, 41);
-						@include clamp-unit(height, 36, 41);
-						@include clamp-unit(font-size, 16, 18);
-						background: white;
-						border: 2px solid #a523d0;
-						border-radius: 50%;
-						color: #a523d0;
-						z-index: 10;
-						line-height: 1;
-						display: grid;
-						place-items: center;
 					}
-				}
 
-				// 데스크톱: 4번째 아이템 (구매전환) 다음 - 가로 좌측
-				&:nth-child(4)::after {
-					@media (min-width: 768px) {
-						content: '\f054';
-						font-family: 'Font Awesome 7 Pro';
-						font-weight: 900;
-						position: absolute;
+					// 4번, 5번 (구매전환, 트래픽): 좌측으로 (←)
+					&:nth-child(4)::after,
+					&:nth-child(5)::after {
 						top: 50%;
-						right: 0;
+						right: -10px;
 						transform: translate(50%, -50%) rotate(180deg);
-						@include clamp-unit(width, 36, 41);
-						@include clamp-unit(height, 36, 41);
-						@include clamp-unit(font-size, 16, 18);
-						background: white;
-						border: 2px solid #a523d0;
-						border-radius: 50%;
-						color: #a523d0;
-						z-index: 10;
-						line-height: 1;
-						display: grid;
-						place-items: center;
-					}
-				}
-
-				// 데스크톱: 5번째 아이템 (트래픽) 다음 - 가로 좌측
-				&:nth-child(5)::after {
-					@media (min-width: 768px) {
-						content: '\f054';
-						font-family: 'Font Awesome 7 Pro';
-						font-weight: 900;
-						position: absolute;
-						top: 50%;
-						right: 0;
-						transform: translate(50%, -50%) rotate(180deg);
-						@include clamp-unit(width, 36, 41);
-						@include clamp-unit(height, 36, 41);
-						@include clamp-unit(font-size, 16, 18);
-						background: white;
-						border: 2px solid #a523d0;
-						border-radius: 50%;
-						color: #a523d0;
-						z-index: 10;
-						line-height: 1;
-						display: grid;
-						place-items: center;
 					}
 				}
 			}
