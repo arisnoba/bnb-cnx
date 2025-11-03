@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
+  safelist: [
+    'marquee-root',
+    'marquee-item',
+    'marquee-root--pause-on-hover',
+    {
+      pattern: /^animate-(marquee|marquee-vertical)$/,
+    },
+  ],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
