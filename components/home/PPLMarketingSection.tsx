@@ -8,9 +8,9 @@ export default function PPLMarketingSection() {
 		<section id="ppl-marketing" className="bg-[#f3f3f3] ppl-marketing-section relative">
 			<div className="max-w-[1000px] mx-auto">
 				{/* Header */}
-				<div className="ppl-header text-center md:text-left">
-					<BlurFade className="bg-brand-purple inline-block ppl-title-wrapper" inView delay={0.15}>
-						<h2 className="font-black text-brand-neon uppercase">PPL Marketing</h2>
+				<div className="text-center ppl-header md:text-left">
+					<BlurFade className="inline-block bg-brand-purple ppl-title-wrapper" inView delay={0.15}>
+						<h2 className="font-black uppercase text-brand-neon">PPL Marketing</h2>
 					</BlurFade>
 					<BlurFade className="ppl-description font-semibold text-[#222222]" inView delay={0.3}>
 						<p>
@@ -21,13 +21,13 @@ export default function PPLMarketingSection() {
 				</div>
 
 				{/* Cards */}
-				<div className="ppl-cards flex flex-col">
+				<div className="flex flex-col ppl-cards">
 					{/* Card 1 */}
-					<BlurFade className="bg-white ppl-card overflow-hidden" inView delay={0.15}>
+					<BlurFade className="overflow-hidden bg-white ppl-card" inView delay={0.15}>
 						<div className="ppl-card-content">
 							{/* Text Content */}
 							<div className="ppl-card-text">
-								<h3 className="text-brand-purple font-black ppl-card-title">
+								<h3 className="font-black text-brand-purple ppl-card-title">
 									한국 콘텐츠 시청 중국 소비자를
 									<br />
 									위한 BNB CNX PPL
@@ -52,51 +52,27 @@ export default function PPLMarketingSection() {
 					</BlurFade>
 
 					{/* Card 2 */}
-					<BlurFade className="bg-white ppl-card overflow-hidden" inView delay={0.45}>
+					<BlurFade className="overflow-hidden bg-white ppl-card" inView delay={0.45}>
 						<div className="ppl-card-content ppl-card-reverse">
 							{/* Images Grid */}
 							<div className="ppl-card-grid-images">
-								<div className="relative ppl-grid-image overflow-hidden">
+								<div className="overflow-hidden relative ppl-grid-image">
 									<Image src="/images/home/ppl-01.jpg" alt="PPL 효과 1" fill className="object-cover" />
-									<div className="absolute ppl-play-button">
-										<svg width="19" height="19" viewBox="0 0 19 19" fill="none">
-											<circle cx="9.5" cy="9.5" r="9.5" fill="#baff00" />
-											<path d="M7 5.5L13 9.5L7 13.5V5.5Z" fill="#222222" />
-										</svg>
-									</div>
 								</div>
-								<div className="relative ppl-grid-image overflow-hidden">
+								<div className="overflow-hidden relative ppl-grid-image">
 									<Image src="/images/home/ppl-02.jpg" alt="PPL 효과 2" fill className="object-cover" />
-									<div className="absolute ppl-play-button">
-										<svg width="19" height="19" viewBox="0 0 19 19" fill="none">
-											<circle cx="9.5" cy="9.5" r="9.5" fill="#baff00" />
-											<path d="M7 5.5L13 9.5L7 13.5V5.5Z" fill="#222222" />
-										</svg>
-									</div>
 								</div>
-								<div className="relative ppl-grid-image overflow-hidden">
+								<div className="overflow-hidden relative ppl-grid-image">
 									<Image src="/images/home/ppl-03.jpg" alt="PPL 효과 3" fill className="object-cover" />
-									<div className="absolute ppl-play-button">
-										<svg width="19" height="19" viewBox="0 0 19 19" fill="none">
-											<circle cx="9.5" cy="9.5" r="9.5" fill="#baff00" />
-											<path d="M7 5.5L13 9.5L7 13.5V5.5Z" fill="#222222" />
-										</svg>
-									</div>
 								</div>
-								<div className="relative ppl-grid-image overflow-hidden">
+								<div className="overflow-hidden relative ppl-grid-image">
 									<Image src="/images/home/ppl-04.jpg" alt="PPL 효과 4" fill className="object-cover" />
-									<div className="absolute ppl-play-button">
-										<svg width="19" height="19" viewBox="0 0 19 19" fill="none">
-											<circle cx="9.5" cy="9.5" r="9.5" fill="#baff00" />
-											<path d="M7 5.5L13 9.5L7 13.5V5.5Z" fill="#222222" />
-										</svg>
-									</div>
 								</div>
 							</div>
 
 							{/* Text Content */}
 							<div className="ppl-card-text">
-								<h3 className="text-brand-purple font-black ppl-card-title">
+								<h3 className="font-black text-brand-purple ppl-card-title">
 									BNB CNX의 글로벌 PPL,
 									<br />
 									정말 효과 있나요?
