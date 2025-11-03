@@ -57,10 +57,11 @@ export function Marquee({
 	const resolvedGap = typeof gap === 'number' ? `${gap}px` : gap;
 	const loops = Math.max(1, repeat);
 
-	const rootStyle: CSSProperties = {
+	const rootStyle = {
+		'--gap': resolvedGap,
 		gap: resolvedGap,
 		...style,
-	};
+	} as CSSProperties;
 
 	const itemStyle: CSSProperties = {
 		gap: resolvedGap,
