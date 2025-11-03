@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Marquee } from '@/components/ui/marquee';
 import { BlurFade } from '@/components/ui/blur-fade';
@@ -21,52 +22,62 @@ const productImages = [
 ];
 
 export default function CNXMallSection() {
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
+
 	return (
-		<section id="cnx-mall" className="bg-white cnx-mall-section relative overflow-hidden">
+		<section id="cnx-mall" className="overflow-hidden relative bg-white cnx-mall-section">
 			{/* Header with Marquees - Full Width */}
 			<div className="cnx-mall-header-wrapper">
-				<div className="cnx-mall-header text-center">
+				<div className="text-center cnx-mall-header">
 					{/* Desktop Layout: Marquee Left - Title - Marquee Right */}
 					<div className="cnx-mall-header-desktop">
 						{/* Marquee Left */}
 						<div className="cnx-mall-marquee-horizontal cnx-mall-marquee-left">
-							<Marquee className="w-full" pauseOnHover={false}>
-								{productImages.map((image, index) => (
-									<div key={index} className="cnx-product-card bg-white overflow-hidden flex items-center justify-center">
-										<div className="relative cnx-product-image">
-											<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" />
+							{isMounted && (
+								<Marquee className="w-full" pauseOnHover={false}>
+									{productImages.map((image, index) => (
+										<div key={index} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card">
+											<div className="relative cnx-product-image">
+												<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100px, 200px" />
+											</div>
 										</div>
-									</div>
-								))}
-							</Marquee>
+									))}
+								</Marquee>
+							)}
 						</div>
 
 						{/* Title */}
 						<div className="cnx-mall-title-container">
-							<BlurFade className="bg-brand-purple inline-block cnx-mall-title-wrapper" inView delay={0.15}>
-								<h2 className="font-black text-brand-neon uppercase">CNX Mall</h2>
+							<BlurFade className="inline-block bg-brand-purple cnx-mall-title-wrapper" inView delay={0.15}>
+								<h2 className="font-black uppercase text-brand-neon">CNX Mall</h2>
 							</BlurFade>
 						</div>
 
 						{/* Marquee Right */}
 						<div className="cnx-mall-marquee-horizontal cnx-mall-marquee-right">
-							<Marquee className="w-full" pauseOnHover={false} reverse>
-								{productImages.map((image, index) => (
-									<div key={index} className="cnx-product-card bg-white overflow-hidden flex items-center justify-center">
-										<div className="relative cnx-product-image">
-											<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" />
+							{isMounted && (
+								<Marquee className="w-full" pauseOnHover={false} reverse>
+									{productImages.map((image, index) => (
+										<div key={index} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card">
+											<div className="relative cnx-product-image">
+												<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100px, 200px" />
+											</div>
 										</div>
-									</div>
-								))}
-							</Marquee>
+									))}
+								</Marquee>
+							)}
 						</div>
 					</div>
 
 					{/* Mobile Layout: Title - Description (no marquees here) */}
 					<div className="cnx-mall-header-mobile">
 						{/* Title */}
-						<BlurFade className="bg-brand-purple inline-block cnx-mall-title-wrapper" inView delay={0.15}>
-							<h2 className="font-black text-brand-neon uppercase">CNX Mall</h2>
+						<BlurFade className="inline-block bg-brand-purple cnx-mall-title-wrapper" inView delay={0.15}>
+							<h2 className="font-black uppercase text-brand-neon">CNX Mall</h2>
 						</BlurFade>
 
 						{/* Description */}
@@ -94,36 +105,40 @@ export default function CNXMallSection() {
 
 			{/* Mobile Marquees - Below Description, Full Width */}
 			<div className="cnx-mall-marquees-mobile-wrapper">
-				<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false}>
-					{productImages.map((image, index) => (
-						<div key={`mobile1-${index}`} className="cnx-product-card-mobile bg-white overflow-hidden flex items-center justify-center">
-							<div className="relative cnx-product-image-mobile">
-								<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" />
-							</div>
-						</div>
-					))}
-				</Marquee>
-				<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false} reverse>
-					{productImages.map((image, index) => (
-						<div key={`mobile2-${index}`} className="cnx-product-card-mobile bg-white overflow-hidden flex items-center justify-center">
-							<div className="relative cnx-product-image-mobile">
-								<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" />
-							</div>
-						</div>
-					))}
-				</Marquee>
+				{isMounted && (
+					<>
+						<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false}>
+							{productImages.map((image, index) => (
+								<div key={`mobile1-${index}`} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card-mobile">
+									<div className="relative cnx-product-image-mobile">
+										<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 60px, 80px" />
+									</div>
+								</div>
+							))}
+						</Marquee>
+						<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false} reverse>
+							{productImages.map((image, index) => (
+								<div key={`mobile2-${index}`} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card-mobile">
+									<div className="relative cnx-product-image-mobile">
+										<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 60px, 80px" />
+									</div>
+								</div>
+							))}
+						</Marquee>
+					</>
+				)}
 			</div>
 
 			{/* Main Content Container - Only Cards */}
 			<div className="max-w-[1000px] mx-auto relative z-10">
 				{/* Cards */}
-				<div className="cnx-mall-cards flex flex-col">
+				<div className="flex flex-col cnx-mall-cards">
 					{/* Card 1 - 소개 */}
 					<BlurFade className="bg-[#f3f3f3] cnx-mall-card overflow-hidden" inView delay={0.15}>
 						<div className="cnx-mall-card-content">
 							{/* Text Content */}
 							<div className="cnx-mall-card-text">
-								<h3 className="text-brand-purple font-black cnx-mall-card-title">CNX 플래그십 스토어 소개</h3>
+								<h3 className="font-black text-brand-purple cnx-mall-card-title">CNX 플래그십 스토어 소개</h3>
 								<div className="text-[#666666] font-semibold cnx-mall-card-description">
 									<p>• 샤오홍슈 · 더우인 · 타오바오 내 한국 브랜드 셀럽샵 공식몰 운영</p>
 									<p>• 플랫폼별 브랜드 콘텐츠 업로드, 팔로워 · 조회수 중심 노출</p>
@@ -152,7 +167,7 @@ export default function CNXMallSection() {
 
 							{/* Text Content */}
 							<div className="cnx-mall-card-text">
-								<h3 className="text-brand-purple font-black cnx-mall-card-title">
+								<h3 className="font-black text-brand-purple cnx-mall-card-title">
 									CNX 플래그십 스토어
 									<br />
 									브랜드 입점 베네핏
