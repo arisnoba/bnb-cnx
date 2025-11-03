@@ -118,6 +118,24 @@
 	}
 }
 
+@layer utilities {
+	.animate-marquee {
+		animation: marquee var(--duration, 40s) linear infinite;
+	}
+
+	.animate-marquee-vertical {
+		animation: marquee-vertical var(--duration, 40s) linear infinite;
+	}
+
+	.group-hover\:\[animation-play-state\:paused\]:hover {
+		animation-play-state: paused;
+	}
+
+	.\[animation-direction\:reverse\] {
+		animation-direction: reverse;
+	}
+}
+
 @layer base {
 	* {
 		@apply border-border;
