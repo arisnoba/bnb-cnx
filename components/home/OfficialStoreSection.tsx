@@ -53,7 +53,7 @@ export default function OfficialStoreSection() {
 							<br />& 셋업
 						</>
 					}
-					description={['브랜드 공식 계정 개설 & 공식 인증', '(타사 대비 50% 빠른 진행)']}
+					description={['브랜드 공식몰 개설 진행']}
 					className="bg-white"
 					icon={<i className="fa-light fa-award" />}
 				/>
@@ -67,7 +67,7 @@ export default function OfficialStoreSection() {
 							상세페이지 현지화
 						</>
 					}
-					description={['중국어 상세페이지 제작, 재고 등록 및 관리, 플랫폼 특성에 맞는 키워드 및 컨텐츠 최적화']}
+					description={['중국어 상세페이지 제작, 재고 등록 및 관리, 플랫폼 특성에 맞는 키워드 최적화']}
 					className="bg-white"
 					icon={<i className="fa-light fa-camcorder" />}
 				/>

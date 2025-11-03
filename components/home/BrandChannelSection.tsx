@@ -131,10 +131,10 @@ export default function BrandChannelSection() {
 
 				<FlowCard variant="secondary" title="세팅" description={['브랜드 공식 계정 개설 & 공식 인증', '(타사 대비 50% 빠른 진행)']} icon={<i className="fa-light fa-badge-check" />} />
 
-				<FlowCard variant="secondary" title="기획" description={['콘텐츠 큐레이션, 촬영 및 제작', '(브랜드와 실시간 소통)']} icon={<i className="fa-light fa-camcorder" />} />
+				<FlowCard variant="secondary" title="기획" description={['현지 트렌드에 맞춰 기획 및 제작', '(브랜드와 실시간 소통)']} icon={<i className="fa-light fa-camcorder" />} />
 
 				{/* 두 번째 행 */}
-				<FlowCard variant="secondary" title="운영" description={['콘텐츠 제작 및 업로드', '+ 댓글·DM 응대', '(브랜드 전담팀 운영)']} icon={<i className="fa-light fa-message-smile" />} />
+				<FlowCard variant="secondary" title="운영" description={['콘텐츠 업로드 관리', '+ 댓글·DM 응대', '(브랜드 전담팀 운영)']} icon={<i className="fa-light fa-message-smile" />} />
 
 				<FlowCard variant="secondary" title="트래픽" description="유입 분석 & 월간 리포트 제공" icon={<i className="fa-light fa-file-chart-column" />} />
 
