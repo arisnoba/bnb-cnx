@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
@@ -19,7 +19,7 @@ interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
 	/**
 	 * Content to be displayed in the marquee
 	 */
-	children: React.ReactNode;
+	children: ReactNode;
 	/**
 	 * Whether to animate vertically instead of horizontally
 	 * @default false
@@ -30,34 +30,65 @@ interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
 	 * @default 4
 	 */
 	repeat?: number;
+	/**
+	 * Animation duration in seconds
+	 * @default 40
+	 */
+	duration?: number;
+	/**
+	 * Gap between repeated marquee items. Accepts any CSS length value.
+	 * @default '1rem'
+	 */
+	gap?: string | number;
 }
 
-export function Marquee({ className, reverse = false, pauseOnHover = false, children, vertical = false, repeat = 4, ...props }: MarqueeProps) {
+export function Marquee({
+	className,
+	reverse = false,
+	pauseOnHover = false,
+	children,
+	vertical = false,
+	repeat = 4,
+	duration = 40,
+	gap = '1rem',
+	style,
+	...props
+}: MarqueeProps) {
+	const resolvedGap = typeof gap === 'number' ? `${gap}px` : gap;
+	const loops = Math.max(1, repeat);
+
+	const rootStyle: CSSProperties = {
+		gap: resolvedGap,
+		...style,
+	};
+
+	const itemStyle: CSSProperties = {
+		gap: resolvedGap,
+		animationName: vertical ? 'marquee-vertical' : 'marquee',
+		animationDuration: `${duration}s`,
+		animationTimingFunction: 'linear',
+		animationIterationCount: 'infinite',
+		animationDirection: reverse ? 'reverse' : 'normal',
+	};
+
 	return (
 		<div
 			{...props}
+			style={rootStyle}
 			className={cn(
-				'flex overflow-hidden p-2 group [gap:var(--gap)] [--duration:40s] [--gap:1rem]',
-				{
-					'flex-row': !vertical,
-					'flex-col': vertical,
-				},
+				'marquee-root flex overflow-hidden p-2',
+				vertical ? 'flex-col' : 'flex-row',
+				pauseOnHover && 'marquee-root--pause-on-hover',
 				className
 			)}>
-			{Array(repeat)
-				.fill(0)
-				.map((_, i) => (
-					<div
-						key={i}
-						className={cn('flex justify-around shrink-0 [gap:var(--gap)]', {
-							'flex-row animate-marquee': !vertical,
-							'flex-col animate-marquee-vertical': vertical,
-							'group-hover:[animation-play-state:paused]': pauseOnHover,
-							'[animation-direction:reverse]': reverse,
-						})}>
-						{children}
-					</div>
-				))}
+			{Array.from({ length: loops }).map((_, index) => (
+				<div
+					key={index}
+					className={cn('marquee-item flex justify-around shrink-0', vertical ? 'flex-col' : 'flex-row')}
+					style={itemStyle}>
+					{children}
+				</div>
+			))}
 		</div>
 	);
 }

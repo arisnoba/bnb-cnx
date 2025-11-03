@@ -7,15 +7,6 @@ module.exports = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
-  safelist: [
-    'animate-marquee',
-    'animate-marquee-vertical',
-    'group-hover:[animation-play-state:paused]',
-    '[animation-direction:reverse]',
-    '[--duration:40s]',
-    '[--gap:1rem]',
-    '[gap:var(--gap)]',
-  ],
   theme: {
     container: {
       center: true,

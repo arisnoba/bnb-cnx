@@ -112,28 +112,22 @@
 		--ring: 212.7 26.8% 83.9%;
 	}
 	.theme {
-		--animate-marquee: marquee var(--duration) infinite linear;
-		--animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
 		--animate-blink-cursor: blink-cursor 1.2s step-end infinite;
 	}
 }
 
 @layer utilities {
-	.animate-marquee {
-		animation: marquee var(--duration, 40s) linear infinite;
-	}
-
-	.animate-marquee-vertical {
-		animation: marquee-vertical var(--duration, 40s) linear infinite;
-	}
-
 	.group-hover\:\[animation-play-state\:paused\]:hover {
 		animation-play-state: paused;
 	}
 
-	.\[animation-direction\:reverse\] {
-		animation-direction: reverse;
-	}
+.\[animation-direction\:reverse\] {
+	animation-direction: reverse;
+}
+
+.marquee-root--pause-on-hover:hover .marquee-item {
+	animation-play-state: paused;
+}
 }
 
 @layer base {
