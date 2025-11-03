@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Marquee } from '@/components/ui/marquee';
 import { BlurFade } from '@/components/ui/blur-fade';
@@ -22,12 +21,6 @@ const productImages = [
 ];
 
 export default function CNXMallSection() {
-	const [isMounted, setIsMounted] = useState(false);
-
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
-
 	return (
 		<section id="cnx-mall" className="overflow-hidden relative bg-white cnx-mall-section">
 			{/* Header with Marquees - Full Width */}
@@ -37,8 +30,7 @@ export default function CNXMallSection() {
 					<div className="cnx-mall-header-desktop">
 						{/* Marquee Left */}
 						<div className="cnx-mall-marquee-horizontal cnx-mall-marquee-left">
-							{isMounted && (
-								<Marquee className="w-full" pauseOnHover={false}>
+							<Marquee className="w-full" pauseOnHover={false}>
 									{productImages.map((image, index) => (
 										<div key={index} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card">
 											<div className="relative cnx-product-image">
@@ -46,8 +38,7 @@ export default function CNXMallSection() {
 											</div>
 										</div>
 									))}
-								</Marquee>
-							)}
+							</Marquee>
 						</div>
 
 						{/* Title */}
@@ -59,8 +50,7 @@ export default function CNXMallSection() {
 
 						{/* Marquee Right */}
 						<div className="cnx-mall-marquee-horizontal cnx-mall-marquee-right">
-							{isMounted && (
-								<Marquee className="w-full" pauseOnHover={false} reverse>
+							<Marquee className="w-full" pauseOnHover={false} reverse>
 									{productImages.map((image, index) => (
 										<div key={index} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card">
 											<div className="relative cnx-product-image">
@@ -68,8 +58,7 @@ export default function CNXMallSection() {
 											</div>
 										</div>
 									))}
-								</Marquee>
-							)}
+							</Marquee>
 						</div>
 					</div>
 
@@ -104,30 +93,26 @@ export default function CNXMallSection() {
 			</div>
 
 			{/* Mobile Marquees - Below Description, Full Width */}
-			<div className="cnx-mall-marquees-mobile-wrapper">
-				{isMounted && (
-					<>
-						<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false}>
-							{productImages.map((image, index) => (
-								<div key={`mobile1-${index}`} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card-mobile">
-									<div className="relative cnx-product-image-mobile">
-										<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 60px, 80px" />
-									</div>
-								</div>
-							))}
-						</Marquee>
-						<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false} reverse>
-							{productImages.map((image, index) => (
-								<div key={`mobile2-${index}`} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card-mobile">
-									<div className="relative cnx-product-image-mobile">
-										<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 60px, 80px" />
-									</div>
-								</div>
-							))}
-						</Marquee>
-					</>
-				)}
-			</div>
+		<div className="cnx-mall-marquees-mobile-wrapper">
+			<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false}>
+					{productImages.map((image, index) => (
+						<div key={`mobile1-${index}`} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card-mobile">
+							<div className="relative cnx-product-image-mobile">
+								<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 60px, 80px" />
+							</div>
+						</div>
+					))}
+			</Marquee>
+			<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false} reverse>
+					{productImages.map((image, index) => (
+						<div key={`mobile2-${index}`} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card-mobile">
+							<div className="relative cnx-product-image-mobile">
+								<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 60px, 80px" />
+							</div>
+						</div>
+					))}
+			</Marquee>
+		</div>
 
 			{/* Main Content Container - Only Cards */}
 			<div className="max-w-[1000px] mx-auto relative z-10">
