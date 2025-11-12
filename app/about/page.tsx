@@ -87,8 +87,10 @@ export default function About() {
 			{/* BNB CNX의 차별성 */}
 			<div className="bg-[#333333] about-cnx-difference flex flex-col">
 				<BlurFade className="text-center" inView delay={0.15}>
-					<h2>
-						<span className="bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">BNB CNX의 차별성</span>
+					<h2 className="flex justify-center">
+						<span className="flex w-fit items-center gap-[.25em] bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">
+							<Image src="/images/common/logo.svg" alt="BNB CNX" width={24} height={24} className="object-contain w-auto logo-type" />의 차별성
+						</span>
 					</h2>
 				</BlurFade>
 
@@ -184,8 +186,10 @@ export default function About() {
 			{/* BNB CNX 연혁 */}
 			<div className="bg-[#333333] about-history flex flex-col ">
 				<BlurFade className="text-center" inView delay={0.15}>
-					<h2>
-						<span className="bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">BNB CNX 연혁</span>
+					<h2 className="flex justify-center">
+						<span className="flex w-fit items-center gap-[.25em] bg-brand-purple text-brand-neon font-extrabold uppercase px-[12px] py-[6px]">
+							BNB <Image src="/images/common/cnx.svg" alt="CNX" width={24} height={24} className="object-contain w-auto logo-type" /> 연혁
+						</span>
 					</h2>
 				</BlurFade>
 

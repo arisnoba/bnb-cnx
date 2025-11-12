@@ -13,6 +13,9 @@
 		h2 {
 			@include clamp-unit(font-size, 24, 52);
 		}
+		.logo-type {
+			height: 0.8em;
+		}
 		.vision-section {
 			@include clamp-unit(padding-block, 60, 120);
 			@include clamp-unit(padding-inline, 24, 40);
@@ -31,6 +34,9 @@
 		// h2 {
 		// 	@include clamp-unit(font-size, 52, 104);
 		// }
+		.logo-type {
+			height: 0.8em;
+		}
 		&-items {
 			width: 100%;
 			@include clamp-unit(gap, 8, 20);
