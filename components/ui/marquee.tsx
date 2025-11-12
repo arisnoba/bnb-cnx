@@ -59,6 +59,7 @@ export function Marquee({
 
 	const rootStyle = {
 		'--gap': resolvedGap,
+		'--duration': `${duration}s`,
 		gap: resolvedGap,
 		...style,
 	} as CSSProperties;

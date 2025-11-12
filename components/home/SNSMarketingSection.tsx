@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BlurFade } from '../ui/blur-fade';
 import ContactButton from '../common/ContactButton';
+import { Marquee } from '../ui/marquee';
 gsap.registerPlugin(ScrollTrigger);
 
 interface ServiceItem {
@@ -22,21 +23,29 @@ const services: ServiceItem[] = [
 		number: '01',
 		title: '방문형 체험단',
 		description: '오프라인 매장 기반,\n현장 방문 후기 콘텐츠 + 방문객 유치',
-		images: ['/images/home/visit-01.jpg', '/images/home/visit-02.jpg'],
+		images: [
+			'/images/home/visit-01.jpg',
+			'/images/home/visit-02.jpg',
+			'/images/home/visit-03.jpg',
+			'/images/home/visit-04.jpg',
+			'/images/home/visit-05.jpg',
+			'/images/home/visit-06.jpg',
+			'/images/home/visit-07.jpg',
+		],
 	},
 	{
 		id: 'product',
 		number: '02',
 		title: '제품형 체험단',
 		description: '브랜드 제품 실사용 후기 중심 /\n노출 + 구매 전환 유도',
-		images: ['/images/home/product-01.jpg', '/images/home/product-02.jpg'],
+		images: ['/images/home/product-01.jpg', '/images/home/product-02.jpg', '/images/home/product-03.jpg', '/images/home/product-04.jpg'],
 	},
 	{
 		id: 'journalist',
 		number: '03',
 		title: '기자단',
 		description: '브랜드 제공 소스를 활용해\n홍보 방향성에 맞게 콘텐츠 발행',
-		images: ['/images/home/journalist-01.jpg', '/images/home/journalist-02.jpg'],
+		images: ['/images/home/journalist-01.jpg', '/images/home/journalist-02.jpg', '/images/home/journalist-03.jpg'],
 	},
 ];
 
@@ -167,42 +176,54 @@ export default function SNSMarketingSection() {
 				<div className="flex flex-col sns-items">
 					{services.map((service, index) => (
 						<BlurFade key={service.id} className="overflow-hidden bg-white sns-item" inView delay={0.15 * index}>
-							<div className="grid grid-cols-1 md:grid-cols-3 sns-item-grid">
+							<div className="flex flex-col md:flex-row sns-item-grid">
 								{index % 2 === 0 ? (
 									<>
-										{/* Images */}
-										{service.images.map((image, imgIndex) => (
-											<div key={imgIndex} className="flex-1 bg-[#a8a8a8] sns-card-image border border-black/10 overflow-hidden relative aspect-[30/32] order-2 md:order-none">
-												<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover" />
-											</div>
-										))}
-
 										{/* Info Card */}
-										<div className="flex-1 bg-brand-purple sns-card-info flex flex-col justify-between border border-black/10 aspect-auto md:aspect-[30/32] order-1 md:order-none">
+										<div className="flex flex-col order-1 justify-between p-6 w-full md:w-1/3 bg-brand-purple sns-card-info md:p-8">
 											<p className="mb-2 font-black text-brand-neon card-number md:mb-0">{service.number}</p>
 											<div className="text-white">
 												<h3 className="font-black card-title">{service.title}</h3>
 												<p className="font-semibold whitespace-pre-line card-description">{service.description}</p>
 											</div>
+										</div>
+
+										{/* Images Marquee */}
+										<div className="overflow-hidden order-2 w-full md:w-2/3 sns-card-image-marquee">
+											<Marquee reverse={false} pauseOnHover={false} duration={25} className="p-0">
+												{service.images.map((image, imgIndex) => (
+													<div key={imgIndex} className="flex justify-center items-center overflow-hidden bg-[#a8a8a8] sns-card-image">
+														<div className="relative w-[300px] h-[320px]">
+															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover" />
+														</div>
+													</div>
+												))}
+											</Marquee>
 										</div>
 									</>
 								) : (
 									<>
+										{/* Images Marquee */}
+										<div className="overflow-hidden order-2 w-full md:w-2/3 md:order-1 sns-card-image-marquee">
+											<Marquee reverse={true} pauseOnHover={false} duration={25} className="p-0">
+												{service.images.map((image, imgIndex) => (
+													<div key={imgIndex} className="flex justify-center items-center overflow-hidden bg-[#a8a8a8] sns-card-image ">
+														<div className="relative w-[300px] h-[320px]">
+															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover" />
+														</div>
+													</div>
+												))}
+											</Marquee>
+										</div>
+
 										{/* Info Card */}
-										<div className="flex-1 bg-brand-purple sns-card-info flex flex-col justify-between border border-black/10 aspect-auto md:aspect-[30/32] order-1 md:order-none">
+										<div className="flex flex-col order-1 justify-between p-6 w-full md:w-1/3 bg-brand-purple sns-card-info md:p-8 md:order-2">
 											<p className="mb-2 font-black text-brand-neon card-number md:mb-0">{service.number}</p>
 											<div className="text-white">
 												<h3 className="font-black card-title">{service.title}</h3>
 												<p className="font-semibold whitespace-pre-line card-description">{service.description}</p>
 											</div>
 										</div>
-
-										{/* Images */}
-										{service.images.map((image, imgIndex) => (
-											<div key={imgIndex} className="flex-1 bg-[#a8a8a8] sns-card-image border border-black/10 overflow-hidden relative aspect-[30/32] order-2 md:order-none">
-												<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover" />
-											</div>
-										))}
 									</>
 								)}
 							</div>

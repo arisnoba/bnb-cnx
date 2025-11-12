@@ -257,7 +257,8 @@
 				}
 
 				.sns-card-image,
-				.sns-card-info {
+				.sns-card-info,
+				.sns-card-image-marquee {
 					@include clamp-unit(border-radius, 12, 16);
 				}
 
