@@ -4,6 +4,7 @@ import FlowGrid from '@/components/shared/FlowGrid';
 import FlowCard from '@/components/shared/FlowCard';
 import Image from 'next/image';
 import { BlurFade } from '@/components/ui/blur-fade';
+import ContactButton from '../common/ContactButton';
 
 export default function OfficialStoreSection() {
 	return (
@@ -114,6 +115,7 @@ export default function OfficialStoreSection() {
 					icon={<i className="fa-light fa-ranking-star" />}
 				/>
 			</FlowGrid>
+			<ContactButton />
 		</section>
 	);
 }

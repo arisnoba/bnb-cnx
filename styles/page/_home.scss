@@ -42,22 +42,137 @@
 				@include clamp-unit(height, 32, 72);
 			}
 		}
+		.cta-button-section {
+			@include clamp-unit(margin-top, 20, 50);
+		}
 
-		.scroll-section {
+		.carousel-section {
 			@include clamp-unit(gap, 40, 80);
-			@include clamp-unit(padding-block, 40, 80);
-			.scroll-title {
+			@include clamp-unit(padding-block, 40, 120);
+			.carousel-title {
 				@include clamp-unit(font-size, 32, 52);
+				@include clamp-unit(margin-bottom, 50, 100);
 				color: #333;
-				.scroll-logo {
+				.carousel-logo {
 					height: 0.9em;
 				}
 			}
-			.scroll-container {
-				@include clamp-unit(padding-inline, 24, 40);
-				@include clamp-unit(gap, 20, 40);
+			.swiper-pagination {
+				pointer-events: none;
+				// bottom: -20px;
+				&-bullet {
+					background-color: #a523d0;
+					// opacity: 0.5;
+					opacity: 1;
+					&-active {
+						background-color: #baff00;
+						opacity: 1;
+					}
+				}
 			}
-			.scroll-item {
+			.carousel-container {
+				position: relative;
+
+				.service-carousel {
+					@include clamp-unit(padding-bottom, 40, 60);
+				}
+
+				// Custom Navigation Buttons
+				.service-carousel-button-prev,
+				.service-carousel-button-next {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+					@include clamp-unit(width, 48, 56);
+					@include clamp-unit(height, 48, 56);
+					border-radius: 50%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+					z-index: 20;
+					transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+					// Glassmorphism effect - visible on any background
+					background: rgba(255, 255, 255, 0.95);
+					backdrop-filter: blur(12px);
+					border: 2px solid rgba(165, 35, 208, 0.2);
+					box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(165, 35, 208, 0.15);
+
+					// Icon color
+					color: #a523d0;
+
+					// Initially hidden
+					opacity: 0;
+					visibility: hidden;
+
+					// Hover state
+					&:hover {
+						background: rgba(165, 35, 208, 1);
+						border-color: #a523d0;
+						color: #baff00;
+						box-shadow: 0 6px 24px rgba(165, 35, 208, 0.4), 0 4px 12px rgba(165, 35, 208, 0.25);
+						transform: translateY(-50%) scale(1.1);
+					}
+
+					// Active state
+					&:active {
+						transform: translateY(-50%) scale(0.95);
+					}
+
+					// Disabled state
+					&.swiper-button-disabled {
+						opacity: 0.3 !important;
+						cursor: not-allowed;
+						pointer-events: none;
+					}
+
+					// SVG styling
+					svg {
+						width: 24px;
+						height: 24px;
+						transition: transform 0.3s ease;
+					}
+
+					&:hover svg {
+						transform: scale(1.1);
+					}
+				}
+
+				.service-carousel-button-prev {
+					@include clamp-unit(left, 16, 32);
+				}
+
+				.service-carousel-button-next {
+					@include clamp-unit(right, 16, 32);
+				}
+
+				// Show navigation on carousel hover
+				&:hover {
+					.service-carousel-button-prev,
+					.service-carousel-button-next {
+						opacity: 1;
+						visibility: visible;
+					}
+				}
+
+				// Mobile: Always show buttons but with reduced opacity
+				@media (max-width: 768px) {
+					.service-carousel-button-prev,
+					.service-carousel-button-next {
+						opacity: 0.7;
+						visibility: visible;
+					}
+
+					&:hover {
+						.service-carousel-button-prev,
+						.service-carousel-button-next {
+							opacity: 1;
+						}
+					}
+				}
+			}
+			.carousel-item {
 				// @include clamp-unit(width, 300, 600);
 				// @include clamp-unit(height, 300, 600);
 				@include clamp-unit(border-radius, 20, 40);
@@ -718,6 +833,35 @@
 						@include clamp-unit(width, 16, 19);
 						@include clamp-unit(height, 16, 19);
 					}
+				}
+			}
+		}
+
+		// 공통 불릿 리스트 스타일
+		.ppl-card-description,
+		.cnx-mall-card-description {
+			list-style: none;
+			padding-left: 0;
+
+			li {
+				position: relative;
+				padding-left: 0.75em;
+				margin-bottom: 0.5em;
+
+				&::before {
+					content: '';
+					position: absolute;
+					left: 0;
+					width: 0.3em;
+					height: 0.3em;
+					border-radius: 50%;
+					background-color: #666;
+					font-size: 0.8em;
+					top: 0.75em;
+				}
+
+				&:last-child {
+					margin-bottom: 0;
 				}
 			}
 		}

@@ -4,6 +4,7 @@ import FlowGrid from '@/components/shared/FlowGrid';
 import FlowCard from '@/components/shared/FlowCard';
 import Image from 'next/image';
 import { BlurFade } from '@/components/ui/blur-fade';
+import ContactButton from '../common/ContactButton';
 
 export default function LiveCommerceSection() {
 	return (
@@ -20,7 +21,13 @@ export default function LiveCommerceSection() {
 						왕홍 매칭 → 예열 콘텐츠 기획 → 판매 채널 확보 → 구매 & CS까지
 					</p>
 				</BlurFade>
-				<Image src="/images/home/live/obj.png" alt="LIVE Commerce" width={1000} height={1000} className="md:absolute md:-left-[40%] md:-top-[100px] bottom-0 object-contain md:block " />
+				<Image
+					src="/images/home/live/obj.png"
+					alt="LIVE Commerce"
+					width={1000}
+					height={1000}
+					className="md:absolute md:-left-[40%] md:-top-[90px] lg:-top-[80px] bottom-0 object-contain md:block "
+				/>
 			</div>
 
 			<div className="max-w-[1000px] mx-auto bg-gradient-to-b from-[#F3F3F3] to-[#9FA7B3] flow-grid-section-content pt-10 !md:bg-transparent md:bg-gradient-to-b md:from-[#9FA7B3] md:to-[#9FA7B3]">
@@ -33,7 +40,7 @@ export default function LiveCommerceSection() {
 					<FlowCard
 						variant="secondary"
 						title="기획"
-						description={['브랜드 맞춤 ', '왕홍 매칭 또는 브랜드 자체 LIVE 기획']}
+						description={['브랜드 맞춤 왕홍 매칭 또는', '브랜드 자체 LIVE 기획']}
 						className="bg-white"
 						icon={<i className="fa-light fa-screen-users" />}
 					/>
@@ -59,6 +66,7 @@ export default function LiveCommerceSection() {
 
 					<FlowCard variant="secondary" title="배송" description="실시간 주문 → CS까지 통합 관리" className="bg-white" icon={<i className="fa-light fa-truck-bolt" />} />
 				</FlowGrid>
+				<ContactButton />
 			</div>
 		</section>
 	);

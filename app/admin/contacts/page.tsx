@@ -384,14 +384,6 @@ export default function AdminContactsPage() {
 													<span className="font-semibold text-slate-700">브랜드:</span>
 													<span className="ml-2 text-slate-600">{contact.brand_names}</span>
 												</div>
-												{contact.brand_launch_status && (
-													<div>
-														<span className="font-semibold text-slate-700">출시 여부:</span>
-														<span className="ml-2 text-slate-600">{contact.brand_launch_status}</span>
-														{contact.brand_launch_month && <span className="text-slate-500"> ({contact.brand_launch_month})</span>}
-														{contact.brand_launch_status === '출시완료' && contact.showroom_operation && <span className="text-green-600"> ✓ 쇼룸 운영중</span>}
-													</div>
-												)}
 												<div>
 													<span className="font-semibold text-slate-700">유입 경로:</span>
 													<span className="ml-2 text-slate-600">
@@ -559,18 +551,6 @@ export default function AdminContactsPage() {
 										<Label className="text-sm font-semibold text-slate-700">브랜드명</Label>
 										<p className="text-sm text-slate-900">{selectedContact.brand_names}</p>
 									</div>
-									{selectedContact.brand_launch_status && (
-										<div className="space-y-1">
-											<Label className="text-sm font-semibold text-slate-700">브랜드 출시 여부</Label>
-											<p className="text-sm text-slate-900">
-												{selectedContact.brand_launch_status}
-												{selectedContact.brand_launch_month && ` (${selectedContact.brand_launch_month})`}
-											</p>
-											{selectedContact.brand_launch_status === '출시완료' && (
-												<p className="text-sm text-slate-900">쇼룸 운영: {selectedContact.showroom_operation ? '✓ 운영중' : '운영하지 않음'}</p>
-											)}
-										</div>
-									)}
 									<div className="space-y-1">
 										<Label className="text-sm font-semibold text-slate-700">유입 경로</Label>
 										<p className="text-sm text-slate-900">

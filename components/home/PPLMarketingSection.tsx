@@ -32,10 +32,10 @@ export default function PPLMarketingSection() {
 									<br />
 									위한 BNB CNX PPL
 								</h3>
-								<div className="text-[#666666] font-semibold ppl-card-description">
-									<p>• 드라마·예능·영화 등 한류 메인 콘텐츠를 중심으로 한 협찬 마케팅</p>
-									<p>• 협찬 제품 이미지를 커머스 상세페이지, SNS 시딩 마케팅, 왕홍 협업에 활용</p>
-								</div>
+								<ul className="text-[#666666] font-semibold ppl-card-description">
+									<li>드라마·예능·영화 등 한류 메인 콘텐츠를 중심으로 한 협찬 마케팅</li>
+									<li>협찬 제품 이미지를 커머스 상세페이지, SNS 시딩 마케팅, 왕홍 협업에 활용</li>
+								</ul>
 							</div>
 
 							{/* Images */}
@@ -77,11 +77,11 @@ export default function PPLMarketingSection() {
 									<br />
 									정말 효과 있나요?
 								</h3>
-								<div className="text-[#666666] font-semibold ppl-card-description">
-									<p>• 한국 셀럽이 사용하는 브랜드 제품의 주인공이 될 수 있습니다.</p>
-									<p>• 콘텐츠 제작 환경을 총괄하기 때문에 제품 노출 설계가 용이합니다.</p>
-									<p>• 어느 PPL보다 확실한 노출 효과, 브랜드에서 직접 확인할 수 있습니다.</p>
-								</div>
+								<ul className="text-[#666666] font-semibold ppl-card-description">
+									<li>한국 셀럽이 사용하는 브랜드 제품의 주인공이 될 수 있습니다.</li>
+									<li>콘텐츠 제작 환경을 총괄하기 때문에 제품 노출 설계가 용이합니다.</li>
+									<li>어느 PPL보다 확실한 노출 효과, 브랜드에서 직접 확인할 수 있습니다.</li>
+								</ul>
 							</div>
 						</div>
 					</BlurFade>

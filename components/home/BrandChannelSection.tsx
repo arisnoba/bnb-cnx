@@ -7,6 +7,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BlurFade } from '@/components/ui/blur-fade';
+import ContactButton from '../common/ContactButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -140,6 +141,7 @@ export default function BrandChannelSection() {
 
 				<FlowCard variant="secondary" title="구매전환" description="공식몰, LIVE 커머스 링크 연동" icon={<i className="fa-light fa-store" />} />
 			</FlowGrid>
+			<ContactButton />
 		</section>
 	);
 }

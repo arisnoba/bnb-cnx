@@ -20,17 +20,17 @@ export default function About() {
 	];
 
 	return (
-		<div className="min-h-screen cnx-wrapper space-y-4 md:space-y-10 about-page">
+		<div className="space-y-4 min-h-screen cnx-wrapper md:space-y-10 about-page">
 			{/* Hero Section with Background */}
-			<div className="relative bg-black overflow-hidden hero-section">
+			<div className="overflow-hidden relative bg-black hero-section">
 				{/* Background Overlay */}
-				<div className="absolute inset-0 bg-black/40 z-20" />
+				<div className="absolute inset-0 z-20 bg-black/40" />
 				<div className="absolute inset-0 z-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
 				{/* Content */}
 				<div className="relative z-40 pt-[160px] max-w-[1680px] mx-auto">
 					<div className="max-w-[880px]">
-						<BlurFade className="text-white font-semibold leading-relaxed uppercase" inView delay={0.15}>
+						<BlurFade className="font-semibold leading-relaxed text-white uppercase" inView delay={0.15}>
 							<p>
 								BNB CNX는
 								<br />
@@ -46,25 +46,20 @@ export default function About() {
 
 				{/* Logo */}
 				<div className="absolute -right-4 -left-4 top-[120px] z-30 md:bottom-[50px] md:top-auto sm:z-10 lg:z-30 lg:w-1/2 lg:left-auto lg:-right-8 lg:bottom-[60px] xl:bottom-[80px]">
-					<Image src={imgLogoBnbCnx} alt="BNB CNX Logo" width={355} height={355} className="w-auto object-contain" />
+					<Image src={imgLogoBnbCnx} alt="BNB CNX Logo" width={355} height={355} className="object-contain w-auto" />
 				</div>
 			</div>
 			{/* Vision Section */}
 			<section className="bg-[#222222] overflow-hidden vision-section">
 				<div className="container mx-auto">
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+					<div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
 						{/* Circles Diagram */}
-						<div className="relative h-auto w-full">
-							{/* <picture className="md:hidden">
-								<source media="(max-width: 580px)" srcSet="/images/home/vision_m.svg" />
-								<source media="(min-width: 581px)" srcSet="/images/home/vision.svg" />
-								<img src="/images/home/vision.svg" alt="CNX-Vision" className="w-full h-auto object-cover" />
-							</picture> */}
-							<Image src="/images/about/vision.svg" alt="CNX-Vision" width={100} height={100} className="w-full object-cover hidden lg:block" />
+						<div className="relative w-full h-auto">
+							<Image src="/images/about/vision.svg" alt="CNX-Vision" width={100} height={100} className="hidden object-cover w-full lg:block" />
 							<div className="flex flex-col -space-y-8 md:flex-row md:-space-x-8 md:space-y-0 md:justify-around lg:hidden">
-								<Image src="/images/about/vision-c.svg" alt="CNX-Vision" width={100} height={100} className="w-full md:w-1/3 h-auto object-cover" />
-								<Image src="/images/about/vision-n.svg" alt="CNX-Vision" width={100} height={100} className="w-full md:w-1/3 h-auto object-cover" />
-								<Image src="/images/about/vision-x.svg" alt="CNX-Vision" width={100} height={100} className="w-full md:w-1/3 h-auto object-cover" />
+								<Image src="/images/about/vision-c.svg" alt="CNX-Vision" width={100} height={100} className="object-cover w-full h-auto md:w-1/3" />
+								<Image src="/images/about/vision-n.svg" alt="CNX-Vision" width={100} height={100} className="object-cover w-full h-auto md:w-1/3" />
+								<Image src="/images/about/vision-x.svg" alt="CNX-Vision" width={100} height={100} className="object-cover w-full h-auto md:w-1/3" />
 							</div>
 						</div>
 
@@ -73,13 +68,13 @@ export default function About() {
 							<BlurFade className="text-brand-neon text-[48px] font-black mb-8" inView delay={0.15}>
 								<h2>Vision</h2>
 							</BlurFade>
-							<BlurFade className="text-white font-semibold mb-4" inView delay={0.3}>
+							<BlurFade className="mb-4 font-semibold text-white" inView delay={0.3}>
 								<p>
 									브랜드의 실질적 성장을 돕는 글로벌 브랜딩 & 커머스 파트너 BNB CNX는 글로벌의 장벽이었던 콘텐츠, 유통, 트래픽, 마케팅의 어려움을 넘어, 브랜드가 타겟팅한 시장 안에서 실질적인
 									성과를 경험할 수 있도록 설계된 비즈니스를 만들어 나갑니다.
 								</p>
 							</BlurFade>
-							<BlurFade className="text-white font-semibold" inView delay={0.45}>
+							<BlurFade className="font-semibold text-white" inView delay={0.45}>
 								<p>
 									전략 기획부터 실행까지 하나의 흐름으로 연결되며, 브랜드에게 &apos;성과를 보이고, 상품이 팔리고, 매출이 상승하는&apos; 경험을 만들어가는 것, 그것이 BNB CNX가 추구하는
 									비전입니다.
@@ -97,7 +92,33 @@ export default function About() {
 					</h2>
 				</BlurFade>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-[1600px] mx-auto about-cnx-difference-items">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1600px] mx-auto about-cnx-difference-items">
+					<BlurFade className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item" inView delay={0.3}>
+						<div className="space-y-2">
+							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+								중국 + 한국인 마케터 조직
+								<br /> 고객사 니즈, 현지 트렌드에 맞는
+								<br /> 실무형 체제 운영
+							</p>
+						</div>
+						<div className="text-right">
+							<i className="fa-light fa-users-line text-[72px] text-brand-neon"></i>
+						</div>
+					</BlurFade>
+
+					<BlurFade className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item" inView delay={0.3}>
+						<div className="space-y-2">
+							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
+								다양한 카테고리 분야별
+								<br /> 성공 사례 다수 보유
+								<br /> 중국향 마케팅 성과 검증
+							</p>
+						</div>
+						<div className="text-right">
+							<i className="fa-light fa-trophy text-[72px] text-brand-neon"></i>
+						</div>
+					</BlurFade>
+
 					<BlurFade className="bg-[#222222] rounded-[24px] p-[48px] flex flex-col justify-between about-cnx-difference-item" inView delay={0.3}>
 						<div className="space-y-2">
 							<p className="text-white text-[24px] font-semibold uppercase leading-[1.35]">
@@ -173,10 +194,10 @@ export default function About() {
 						<BlurFade key={index} delay={0.15 * index} inView>
 							<div className="flex items-start md:items-center about-history-item">
 								<div className="bg-[#222222] rounded-[100px] px-[16px] py-[8px]">
-									<p className="text-brand-neon font-extrabold text-center uppercase flex-shrink-0 about-history-item-year">{item.year}</p>
+									<p className="flex-shrink-0 font-extrabold text-center uppercase text-brand-neon about-history-item-year">{item.year}</p>
 								</div>
-								<div className="flex-1 h-0 relative border-b border-dashed border-white/10"></div>
-								<p className="text-white font-semibold uppercase about-history-item-text">{item.text}</p>
+								<div className="relative flex-1 h-0 border-b border-dashed border-white/10"></div>
+								<p className="font-semibold text-white uppercase about-history-item-text">{item.text}</p>
 							</div>
 						</BlurFade>
 					))}

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { Marquee } from '@/components/ui/marquee';
 import { BlurFade } from '@/components/ui/blur-fade';
+import ContactButton from '../common/ContactButton';
 
 const productImages = [
 	'/images/home/marquee/marquee-01.jpg',
@@ -18,6 +19,8 @@ const productImages = [
 	'/images/home/marquee/marquee-11.jpg',
 	'/images/home/marquee/marquee-12.jpg',
 	'/images/home/marquee/marquee-13.jpg',
+	'/images/home/marquee/marquee-14.jpg',
+	'/images/home/marquee/marquee-15.jpg',
 ];
 
 export default function CNXMallSection() {
@@ -31,13 +34,13 @@ export default function CNXMallSection() {
 						{/* Marquee Left */}
 						<div className="cnx-mall-marquee-horizontal cnx-mall-marquee-left">
 							<Marquee className="w-full" pauseOnHover={false}>
-									{productImages.map((image, index) => (
-										<div key={index} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card">
-											<div className="relative cnx-product-image">
-												<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100px, 200px" />
-											</div>
+								{productImages.map((image, index) => (
+									<div key={index} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card">
+										<div className="relative cnx-product-image">
+											<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100px, 200px" />
 										</div>
-									))}
+									</div>
+								))}
 							</Marquee>
 						</div>
 
@@ -51,13 +54,13 @@ export default function CNXMallSection() {
 						{/* Marquee Right */}
 						<div className="cnx-mall-marquee-horizontal cnx-mall-marquee-right">
 							<Marquee className="w-full" pauseOnHover={false} reverse>
-									{productImages.map((image, index) => (
-										<div key={index} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card">
-											<div className="relative cnx-product-image">
-												<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100px, 200px" />
-											</div>
+								{productImages.map((image, index) => (
+									<div key={index} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card">
+										<div className="relative cnx-product-image">
+											<Image src={image} alt={`제품 ${index + 1}`} fill className="object-contain" sizes="(max-width: 768px) 100px, 200px" />
 										</div>
-									))}
+									</div>
+								))}
 							</Marquee>
 						</div>
 					</div>
@@ -93,8 +96,8 @@ export default function CNXMallSection() {
 			</div>
 
 			{/* Mobile Marquees - Below Description, Full Width */}
-		<div className="cnx-mall-marquees-mobile-wrapper">
-			<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false}>
+			<div className="cnx-mall-marquees-mobile-wrapper">
+				<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false}>
 					{productImages.map((image, index) => (
 						<div key={`mobile1-${index}`} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card-mobile">
 							<div className="relative cnx-product-image-mobile">
@@ -102,8 +105,8 @@ export default function CNXMallSection() {
 							</div>
 						</div>
 					))}
-			</Marquee>
-			<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false} reverse>
+				</Marquee>
+				<Marquee className="w-full cnx-marquee-mobile-row" pauseOnHover={false} reverse>
 					{productImages.map((image, index) => (
 						<div key={`mobile2-${index}`} className="flex overflow-hidden justify-center items-center bg-white cnx-product-card-mobile">
 							<div className="relative cnx-product-image-mobile">
@@ -111,8 +114,8 @@ export default function CNXMallSection() {
 							</div>
 						</div>
 					))}
-			</Marquee>
-		</div>
+				</Marquee>
+			</div>
 
 			{/* Main Content Container - Only Cards */}
 			<div className="max-w-[1000px] mx-auto relative z-10">
@@ -124,11 +127,11 @@ export default function CNXMallSection() {
 							{/* Text Content */}
 							<div className="cnx-mall-card-text">
 								<h3 className="font-black text-brand-purple cnx-mall-card-title">CNX 플래그십 스토어 소개</h3>
-								<div className="text-[#666666] font-semibold cnx-mall-card-description">
-									<p>• 샤오홍슈 · 더우인 · 타오바오 내 한국 브랜드 셀럽샵 공식몰 운영</p>
-									<p>• 플랫폼별 브랜드 콘텐츠 업로드, 팔로워 · 조회수 중심 노출</p>
-									<p>• 콘텐츠 기반 CTR & 구매 전환 최적화 세팅</p>
-								</div>
+								<ul className="text-[#666666] font-semibold cnx-mall-card-description">
+									<li>샤오홍슈 · 더우인 · 타오바오 내 한국 브랜드 셀럽샵 공식몰 운영</li>
+									<li>플랫폼별 브랜드 콘텐츠 업로드, 팔로워 · 조회수 중심 노출</li>
+									<li>콘텐츠 기반 CTR & 구매 전환 최적화 세팅</li>
+								</ul>
 							</div>
 
 							{/* Phone Image */}
@@ -157,16 +160,17 @@ export default function CNXMallSection() {
 									<br />
 									브랜드 입점 베네핏
 								</h3>
-								<div className="text-[#666666] font-semibold cnx-mall-card-description">
-									<p>• 공식몰 무료 입점 + 1개월 운영비 무료 (선착순 브랜드 대상)</p>
-									<p>• 브랜드 콘텐츠 제작 지원, 상세페이지 현지화, 상품별 CS 대응</p>
-									<p>• BNB CNX 전속 왕홍 협업, LIVE 커머스 · PPL 연계 가능</p>
-								</div>
+								<ul className="text-[#666666] font-semibold cnx-mall-card-description">
+									<li>공식몰 무료 입점 + 1개월 운영비 무료 (선착순 브랜드 대상)</li>
+									<li>브랜드 콘텐츠 제작 지원, 상세페이지 현지화, 상품별 CS 대응</li>
+									<li>BNB CNX 전속 왕홍 협업, LIVE 커머스 · PPL 연계 가능</li>
+								</ul>
 							</div>
 						</div>
 					</BlurFade>
 				</div>
 			</div>
+			<ContactButton />
 		</section>
 	);
 }

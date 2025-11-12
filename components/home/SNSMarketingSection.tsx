@@ -5,6 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BlurFade } from '../ui/blur-fade';
+import ContactButton from '../common/ContactButton';
 gsap.registerPlugin(ScrollTrigger);
 
 interface ServiceItem {
@@ -208,6 +209,7 @@ export default function SNSMarketingSection() {
 						</BlurFade>
 					))}
 				</div>
+				<ContactButton />
 			</div>
 		</section>
 	);

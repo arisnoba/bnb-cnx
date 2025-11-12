@@ -1,4 +1,4 @@
-import HorizontalScrollSection from '@/components/home/HorizontalScrollSection';
+import ServiceCarouselSection from '@/components/home/ServiceCarouselSection';
 import SNSMarketingSection from '@/components/home/SNSMarketingSection';
 import BrandChannelSection from '@/components/home/BrandChannelSection';
 import OfficialStoreSection from '@/components/home/OfficialStoreSection';
@@ -39,8 +39,8 @@ export default function Home() {
 				</section>
 			</div>
 
-			{/* Horizontal Scroll Section */}
-			<HorizontalScrollSection />
+			{/* Service Carousel Section */}
+			<ServiceCarouselSection />
 
 			{/* SNS Marketing Section */}
 			<SNSMarketingSection />
