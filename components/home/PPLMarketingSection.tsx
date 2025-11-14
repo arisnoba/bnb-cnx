@@ -73,7 +73,7 @@ export default function PPLMarketingSection() {
 							{/* Text Content */}
 							<div className="ppl-card-text">
 								<h3 className="font-black text-brand-purple ppl-card-title">
-									BNB CNX의 글로벌 PPL,
+									BNB CNX의 글로벌 PPL
 									<br />
 									정말 효과 있나요?
 								</h3>

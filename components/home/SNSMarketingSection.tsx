@@ -14,7 +14,9 @@ interface ServiceItem {
 	number: string;
 	title: string;
 	description: string;
+	duration: number;
 	images: string[];
+	hashtags: string[][];
 }
 
 const services: ServiceItem[] = [
@@ -23,6 +25,7 @@ const services: ServiceItem[] = [
 		number: '01',
 		title: '방문형 체험단',
 		description: '오프라인 매장 기반,\n현장 방문 후기 콘텐츠 + 방문객 유치',
+		duration: 30,
 		images: [
 			'/images/home/visit-01.jpg',
 			'/images/home/visit-02.jpg',
@@ -32,20 +35,43 @@ const services: ServiceItem[] = [
 			'/images/home/visit-06.jpg',
 			'/images/home/visit-07.jpg',
 		],
+		hashtags: [
+			['#맛집', '#리뷰'],
+			['#패션', '#후기'],
+			['#뷰티', '#리뷰'],
+			['#미용', '#체험'],
+			['#병원', '#방문'],
+			['#호텔', '#숙박'],
+			['#액티비티', '#체험단'],
+		],
 	},
 	{
 		id: 'product',
 		number: '02',
 		title: '제품형 체험단',
 		description: '브랜드 제품 실사용 후기 중심 /\n노출 + 구매 전환 유도',
+		duration: 20,
 		images: ['/images/home/product-01.jpg', '/images/home/product-02.jpg', '/images/home/product-03.jpg', '/images/home/product-04.jpg'],
+		hashtags: [
+			['#패션', '#제품리뷰'],
+			['#뷰티', '#코스메틱'],
+			['#라이프', '#스타일'],
+			['#건강식품', '#제품'],
+		],
 	},
 	{
 		id: 'journalist',
 		number: '03',
 		title: '기자단',
 		description: '브랜드 제공 소스를 활용해\n홍보 방향성에 맞게 콘텐츠 발행',
-		images: ['/images/home/journalist-01.jpg', '/images/home/journalist-02.jpg', '/images/home/journalist-03.jpg'],
+		duration: 25,
+		images: ['/images/home/journalist-01.jpg', '/images/home/journalist-02.jpg', '/images/home/journalist-03.jpg', '/images/home/journalist-04.jpg'],
+		hashtags: [
+			['#맛집', '#브랜딩'],
+			['#숙소', '#리뷰'],
+			['#뷰티', '#트렌드'],
+			['#패션', '#스타일'],
+		],
 	},
 ];
 
@@ -190,11 +216,21 @@ export default function SNSMarketingSection() {
 
 										{/* Images Marquee */}
 										<div className="overflow-hidden order-2 w-full md:w-2/3 sns-card-image-marquee">
-											<Marquee reverse={false} pauseOnHover={false} duration={25} className="p-0">
+											<Marquee reverse={false} pauseOnHover={true} duration={service.duration} className="p-0">
 												{service.images.map((image, imgIndex) => (
-													<div key={imgIndex} className="flex justify-center items-center overflow-hidden bg-[#a8a8a8] sns-card-image">
+													<div key={imgIndex} className="flex justify-center items-center overflow-hidden bg-[#a8a8a8] sns-card-image group">
 														<div className="relative w-[300px] h-[320px]">
-															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover" />
+															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover transition-transform duration-300 md:group-hover:scale-110" />
+															{/* Overlay - Desktop: hover effect, Mobile: always visible */}
+															<div className="flex absolute inset-0 justify-start items-end p-4 bg-black/50 opacity-100 md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100">
+																<div className="flex flex-wrap gap-2">
+																	{service.hashtags[imgIndex]?.map((tag, tagIndex) => (
+																		<span key={tagIndex} className="px-3 py-1 text-sm font-bold rounded-full bg-brand-neon text-brand-purple">
+																			{tag}
+																		</span>
+																	))}
+																</div>
+															</div>
 														</div>
 													</div>
 												))}
@@ -205,11 +241,21 @@ export default function SNSMarketingSection() {
 									<>
 										{/* Images Marquee */}
 										<div className="overflow-hidden order-2 w-full md:w-2/3 md:order-1 sns-card-image-marquee">
-											<Marquee reverse={true} pauseOnHover={false} duration={25} className="p-0">
+											<Marquee reverse={true} pauseOnHover={true} duration={service.duration} className="p-0">
 												{service.images.map((image, imgIndex) => (
-													<div key={imgIndex} className="flex justify-center items-center overflow-hidden bg-[#a8a8a8] sns-card-image ">
+													<div key={imgIndex} className="flex justify-center items-center overflow-hidden bg-[#a8a8a8] sns-card-image group">
 														<div className="relative w-[300px] h-[320px]">
-															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover" />
+															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover transition-transform duration-300 md:group-hover:scale-110" />
+															{/* Overlay - Desktop: hover effect, Mobile: always visible */}
+															<div className="flex absolute inset-0 justify-start items-end p-4 bg-black/50 opacity-100 md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100">
+																<div className="flex flex-wrap gap-2">
+																	{service.hashtags[imgIndex]?.map((tag, tagIndex) => (
+																		<span key={tagIndex} className="px-3 py-1 text-sm font-bold rounded-full bg-brand-neon text-brand-purple">
+																			{tag}
+																		</span>
+																	))}
+																</div>
+															</div>
 														</div>
 													</div>
 												))}

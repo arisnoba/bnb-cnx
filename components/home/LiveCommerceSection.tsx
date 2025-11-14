@@ -19,6 +19,7 @@ export default function LiveCommerceSection() {
 					<p>
 						BNB CNX는 &apos;팔리는 구조&apos;까지 설계합니다. <br />
 						왕홍 매칭 → 예열 콘텐츠 기획 → 판매 채널 확보 → 구매 & CS까지
+						<br /> 원스톱 전환 시스템을 운영합니다.
 					</p>
 				</BlurFade>
 				<Image
