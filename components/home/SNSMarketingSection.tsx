@@ -221,8 +221,8 @@ export default function SNSMarketingSection() {
 													<div key={imgIndex} className="flex justify-center items-center overflow-hidden bg-[#a8a8a8] sns-card-image group">
 														<div className="relative w-[300px] h-[320px]">
 															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover transition-transform duration-300 md:group-hover:scale-110" />
-															{/* Overlay - Desktop: hover effect, Mobile: always visible */}
-															<div className="flex absolute inset-0 justify-start items-end p-4 bg-black/50 opacity-100 md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100">
+															{/* Overlay - Desktop: visible by default, hide on hover, Mobile: always visible */}
+															<div className="flex absolute inset-0 justify-start items-end p-4 bg-black/50 opacity-100 md:transition-opacity md:duration-300 md:group-hover:opacity-0">
 																<div className="flex flex-wrap gap-2">
 																	{service.hashtags[imgIndex]?.map((tag, tagIndex) => (
 																		<span key={tagIndex} className="px-3 py-1 text-sm font-bold rounded-full bg-brand-neon text-brand-purple">
@@ -246,8 +246,8 @@ export default function SNSMarketingSection() {
 													<div key={imgIndex} className="flex justify-center items-center overflow-hidden bg-[#a8a8a8] sns-card-image group">
 														<div className="relative w-[300px] h-[320px]">
 															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover transition-transform duration-300 md:group-hover:scale-110" />
-															{/* Overlay - Desktop: hover effect, Mobile: always visible */}
-															<div className="flex absolute inset-0 justify-start items-end p-4 bg-black/50 opacity-100 md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100">
+															{/* Overlay - Desktop: visible by default, hide on hover, Mobile: always visible */}
+															<div className="flex absolute inset-0 justify-start items-end p-4 bg-black/50 opacity-100 md:transition-opacity md:duration-300 md:group-hover:opacity-0">
 																<div className="flex flex-wrap gap-2">
 																	{service.hashtags[imgIndex]?.map((tag, tagIndex) => (
 																		<span key={tagIndex} className="px-3 py-1 text-sm font-bold rounded-full bg-brand-neon text-brand-purple">
