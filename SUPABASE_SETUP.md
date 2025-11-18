@@ -7,16 +7,6 @@
 -  **리전**: `ap-northeast-2` (서울)
 -  **상태**: `ACTIVE_HEALTHY`
 
-## 환경 변수 설정
-
-`.env.local` 파일을 프로젝트 루트에 생성하고 다음 내용을 추가하세요:
-
-```bash
-# Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=https://msbfcyrygirjdlliajhk.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zYmZjeXJ5Z2lyamRsbGlhamhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1MzcwMzUsImV4cCI6MjA3NzExMzAzNX0.jiofYwucodPgWhcJO-okt6tGhMjY0Z-nV9l56zahQEs
-```
-
 ## 데이터베이스 구조
 
 ### Contacts 테이블
@@ -44,7 +34,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
 
 ### Supabase SQL Editor에서 실행할 스크립트
 
-아래 코드 블록 전체를 그대로 복사해 SQL Editor에 붙여 넣은 뒤 실행하세요. (````sql```` 과 ````` 끝나는 줄 사이의 모든 내용을 선택하면 됩니다.)
+아래 코드 블록 전체를 그대로 복사해 SQL Editor에 붙여 넣은 뒤 실행하세요. (`sql` 과 ````` 끝나는 줄 사이의 모든 내용을 선택하면 됩니다.)
 
 ```sql
 -- 1. RLS 활성화
