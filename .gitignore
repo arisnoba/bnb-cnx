@@ -38,3 +38,6 @@ next-env.d.ts
 
 # ftp
 deploy.js
+
+.serena
+.serena/*
