@@ -42,3 +42,5 @@ deploy.js
 .serena
 .serena/*
 .agents.md
+
+SUPABASE_SETUP.md
