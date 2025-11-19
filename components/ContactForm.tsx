@@ -356,35 +356,46 @@ export default function ContactForm() {
 								<section>
 									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제2조 (수집하는 개인정보 항목)</h3>
 									<p>회사는 문의 접수 및 상담을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
-									<ul className="mt-2 space-y-1 list-disc list-inside">
+									<ul className="pl-4 mt-2 space-y-1 list-disc">
 										<li>필수항목: 성함, 연락처, 이메일, 브랜드명</li>
-										<li>선택항목: 문의 내용, 브랜드 현황, 유입 경로</li>
+										<li>
+											선택항목: 문의 내용, 브랜드 현황, 유입 경로
+											<br />
+											선택항목은 문의 상담을 위한 참고 용도로만 사용되며, 입력하지 않아도 서비스 이용에는 제한이 없습니다.
+										</li>
 									</ul>
 								</section>
 
 								<section>
 									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제3조 (개인정보의 수집 및 이용목적)</h3>
 									<p>회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.</p>
-									<ul className="mt-2 space-y-1 list-disc list-inside">
+									<ul className="pl-4 mt-2 space-y-1 list-disc">
 										<li>서비스 문의 접수 및 상담</li>
 										<li>고객 요청사항 처리 및 응대</li>
-										<li>마케팅 및 광고 활용 (동의 시)</li>
+										<li>홍보·이벤트 정보 제공 등 마케팅 목적의 활용은 별도 동의를 받습니다.</li>
 									</ul>
 								</section>
 
 								<section>
 									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제4조 (개인정보의 보유 및 이용기간)</h3>
 									<p>회사는 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령에 의해 보존할 필요가 있는 경우 일정기간 보존 후 파기합니다.</p>
-									<ul className="mt-2 space-y-1 list-disc list-inside">
+									<ul className="pl-4 mt-2 space-y-1 list-disc">
 										<li>보존 기간: 3년</li>
 										<li>보존 근거: 전자상거래 등에서의 소비자보호에 관한 법률</li>
+										<li>파기 절차: 목적 달성 후 즉시 파기</li>
+										<li>파기 방법: 전자파일(영구삭제), 문서(파쇄)</li>
 									</ul>
 								</section>
 
 								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제5조 (정보주체의 권리)</h3>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제5조 (개인정보의 제3자 제공 여부)</h3>
+									<p>회사는 이용자의 개인정보를 제3자에게 제공하지 않습니다.</p>
+								</section>
+
+								<section>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제6조 (정보주체의 권리)</h3>
 									<p>정보주체는 다음과 같은 권리를 행사할 수 있습니다.</p>
-									<ul className="mt-2 space-y-1 list-disc list-inside">
+									<ul className="pl-4 mt-2 space-y-1 list-disc">
 										<li>개인정보 열람 요구</li>
 										<li>개인정보 정정 요구</li>
 										<li>개인정보 삭제 요구</li>
@@ -393,12 +404,13 @@ export default function ContactForm() {
 								</section>
 
 								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제6조 (개인정보 보호책임자)</h3>
+									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제7조 (개인정보 보호책임자)</h3>
 									<p>
 										회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고
 										있습니다.
 									</p>
 									<div className="pl-4 mt-2">
+										<p>- 개인정보보호책임자: 김ㅇㅇ (운영팀)</p>
 										<p>- 문의처: biz@bnb-cnx.com</p>
 										<p>- 전화번호: 070-4715-8801</p>
 									</div>
