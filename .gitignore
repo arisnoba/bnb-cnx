@@ -42,5 +42,7 @@ deploy.js
 .serena
 .serena/*
 .agents.md
+.claude
+.claude/*
 
 SUPABASE_SETUP.md
