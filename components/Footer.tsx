@@ -58,7 +58,7 @@ export default function Footer() {
 							</div>
 							<div>
 								<p>Contact</p>
-								<a href="tel:02-1234-5678">02-1234-5678</a>
+								<a href="tel:070-4715-8801">070-4715-8801</a>
 								<br />
 								<a href="mailto:biz@bnb-cnx.com">biz@bnb-cnx.com</a>
 							</div>
