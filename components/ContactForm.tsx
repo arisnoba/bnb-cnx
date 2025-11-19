@@ -35,6 +35,7 @@ export default function ContactForm() {
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [privacyAgreed, setPrivacyAgreed] = useState(false);
+	const [marketingAgreed, setMarketingAgreed] = useState(false);
 
 	const handleCheckboxChange = (value: string, checked: boolean | 'indeterminate') => {
 		if (checked === 'indeterminate') return;
@@ -159,6 +160,7 @@ export default function ContactForm() {
 			const { error } = await supabase.from('contacts').insert([
 				{
 					...formData,
+					marketing_agreed: marketingAgreed,
 					status: 'new',
 				},
 			]);
@@ -177,6 +179,7 @@ export default function ContactForm() {
 				referral_other: '',
 			});
 			setPrivacyAgreed(false);
+			setMarketingAgreed(false);
 		} catch (error) {
 			console.error('Error submitting form:', error);
 			toast.error('문의 제출 중 오류가 발생했습니다. 다시 시도해주세요.');
@@ -318,112 +321,169 @@ export default function ContactForm() {
 						/>
 					)}
 				</div>
+				<div className='space-y-4'>
+					{/* 개인정보 처리방침 동의 */}
+					<div className="flex flex-col md:flex-row items-center gap-[8px]">
+						<div className="flex items-center gap-[4px]">
+							<Checkbox
+								id="privacy_agreed"
+								checked={privacyAgreed}
+								onCheckedChange={(checked: boolean | 'indeterminate') => {
+									if (checked === 'indeterminate') return;
+									setPrivacyAgreed(checked);
+								}}
+							/>
+							<label htmlFor="privacy_agreed" className="text-[20px] font-medium text-[#222222] cursor-pointer">
+								[필수] 개인정보 수집 및 이용약관에 동의합니다.
+							</label>
+						</div>
+						<Dialog>
+							<DialogTrigger asChild>
+								<button type="button" className="text-[20px] font-medium text-[#222222] underline underline-offset-2 hover:text-[#666666]">
+									약관보기
+								</button>
+							</DialogTrigger>
+							<DialogContent className="max-w-[600px] max-h-[80vh] overflow-y-auto">
+								<DialogHeader>
+									<DialogTitle className="text-[24px] font-bold text-[#222222]">개인정보 처리방침</DialogTitle>
+								</DialogHeader>
+								<div className="text-[16px] leading-relaxed text-[#666666] space-y-4">
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">제1조 (목적)</h3>
+										<p>
+											본 개인정보 처리방침은 CNX(이하 &apos;회사&apos;)가 제공하는 서비스 이용과 관련하여 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간,
+											개인정보의 파기에 관한 사항을 정보주체에게 안내하는 것을 목적으로 합니다.
+										</p>
+									</section>
 
-				{/* 개인정보 처리방침 동의 */}
-				<div className="flex flex-col md:flex-row items-center gap-[8px]">
-					<div className="flex items-center gap-[4px]">
-						<Checkbox
-							id="privacy_agreed"
-							checked={privacyAgreed}
-							onCheckedChange={(checked: boolean | 'indeterminate') => {
-								if (checked === 'indeterminate') return;
-								setPrivacyAgreed(checked);
-							}}
-						/>
-						<label htmlFor="privacy_agreed" className="text-[20px] font-medium text-[#222222] cursor-pointer">
-							개인정보 수집 및 이용약관에 동의합니다.
-						</label>
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">제2조 (수집하는 개인정보 항목)</h3>
+										<p>회사는 문의 접수 및 상담을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
+										<ul className="pl-4 mt-2 space-y-1 list-disc">
+											<li>필수항목: 성함, 연락처, 이메일, 브랜드명</li>
+											<li>
+												선택항목: 문의 내용, 브랜드 현황, 유입 경로
+												<br />
+												선택항목은 문의 상담을 위한 참고 용도로만 사용되며, 입력하지 않아도 서비스 이용에는 제한이 없습니다.
+											</li>
+										</ul>
+									</section>
+
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">제3조 (개인정보의 수집 및 이용목적)</h3>
+										<p>회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.</p>
+										<ul className="pl-4 mt-2 space-y-1 list-disc">
+											<li>서비스 문의 접수 및 상담</li>
+											<li>고객 요청사항 처리 및 응대</li>
+											<li>홍보·이벤트 정보 제공 등 마케팅 목적의 활용은 별도 동의를 받습니다.</li>
+										</ul>
+									</section>
+
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">제4조 (개인정보의 보유 및 이용기간)</h3>
+										<p>회사는 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령에 의해 보존할 필요가 있는 경우 일정기간 보존 후 파기합니다.</p>
+										<ul className="pl-4 mt-2 space-y-1 list-disc">
+											<li>보존 기간: 3년</li>
+											<li>보존 근거: 전자상거래 등에서의 소비자보호에 관한 법률</li>
+											<li>파기 절차: 목적 달성 후 즉시 파기</li>
+											<li>파기 방법: 전자파일(영구삭제), 문서(파쇄)</li>
+										</ul>
+									</section>
+
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">제5조 (개인정보의 제3자 제공 여부)</h3>
+										<p>회사는 이용자의 개인정보를 제3자에게 제공하지 않습니다.</p>
+									</section>
+
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">제6조 (정보주체의 권리)</h3>
+										<p>정보주체는 다음과 같은 권리를 행사할 수 있습니다.</p>
+										<ul className="pl-4 mt-2 space-y-1 list-disc">
+											<li>개인정보 열람 요구</li>
+											<li>개인정보 정정 요구</li>
+											<li>개인정보 삭제 요구</li>
+											<li>개인정보 처리 정지 요구</li>
+										</ul>
+									</section>
+
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">제7조 (개인정보 보호책임자)</h3>
+										<p>
+											회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고
+											있습니다.
+										</p>
+										<div className="pl-4 mt-2">
+											<p>- 개인정보보호책임자: 김ㅇㅇ (운영팀)</p>
+											<p>- 문의처: biz@bnb-cnx.com</p>
+											<p>- 전화번호: 070-4715-8801</p>
+										</div>
+									</section>
+
+									<section className="text-[14px] text-[#999999]">
+										<p>본 방침은 2024년 1월 1일부터 시행됩니다.</p>
+									</section>
+								</div>
+							</DialogContent>
+						</Dialog>
 					</div>
-					<Dialog>
-						<DialogTrigger asChild>
-							<button type="button" className="text-[20px] font-medium text-[#222222] underline underline-offset-2 hover:text-[#666666]">
-								약관보기
-							</button>
-						</DialogTrigger>
-						<DialogContent className="max-w-[600px] max-h-[80vh] overflow-y-auto">
-							<DialogHeader>
-								<DialogTitle className="text-[24px] font-bold text-[#222222]">개인정보 처리방침</DialogTitle>
-							</DialogHeader>
-							<div className="text-[16px] leading-relaxed text-[#666666] space-y-4">
-								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제1조 (목적)</h3>
-									<p>
-										본 개인정보 처리방침은 CNX(이하 &apos;회사&apos;)가 제공하는 서비스 이용과 관련하여 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간,
-										개인정보의 파기에 관한 사항을 정보주체에게 안내하는 것을 목적으로 합니다.
-									</p>
-								</section>
 
-								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제2조 (수집하는 개인정보 항목)</h3>
-									<p>회사는 문의 접수 및 상담을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p>
-									<ul className="pl-4 mt-2 space-y-1 list-disc">
-										<li>필수항목: 성함, 연락처, 이메일, 브랜드명</li>
-										<li>
-											선택항목: 문의 내용, 브랜드 현황, 유입 경로
-											<br />
-											선택항목은 문의 상담을 위한 참고 용도로만 사용되며, 입력하지 않아도 서비스 이용에는 제한이 없습니다.
-										</li>
-									</ul>
-								</section>
+					{/* 마케팅 정보 수신 동의 */}
+					<div className="flex flex-col md:flex-row items-center gap-[8px]">
+						<div className="flex items-center gap-[4px]">
+							<Checkbox
+								id="marketing_agreed"
+								checked={marketingAgreed}
+								onCheckedChange={(checked: boolean | 'indeterminate') => {
+									if (checked === 'indeterminate') return;
+									setMarketingAgreed(checked);
+								}}
+							/>
+							<label htmlFor="marketing_agreed" className="text-[20px] font-medium text-[#222222] cursor-pointer">
+								[선택] 마케팅 정보 수신에 동의합니다.
+							</label>
+						</div>
+						<Dialog>
+							<DialogTrigger asChild>
+								<button type="button" className="text-[20px] font-medium text-[#222222] underline underline-offset-2 hover:text-[#666666]">
+									약관보기
+								</button>
+							</DialogTrigger>
+							<DialogContent className="max-w-[600px] max-h-[80vh] overflow-y-auto">
+								<DialogHeader>
+									<DialogTitle className="text-[24px] font-bold text-[#222222]">마케팅 정보 수신 동의</DialogTitle>
+								</DialogHeader>
+								<div className="text-[16px] leading-relaxed text-[#666666] space-y-4">
+									<section>
+										<p>
+											CNX는 정보통신망 이용촉진 및 정보보호 등에 관한 법률에 따라 고객님께 다양한 혜택과 정보를 제공하기 위해 아래와 같이 마케팅 정보를 전송합니다.
+										</p>
+									</section>
 
-								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제3조 (개인정보의 수집 및 이용목적)</h3>
-									<p>회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.</p>
-									<ul className="pl-4 mt-2 space-y-1 list-disc">
-										<li>서비스 문의 접수 및 상담</li>
-										<li>고객 요청사항 처리 및 응대</li>
-										<li>홍보·이벤트 정보 제공 등 마케팅 목적의 활용은 별도 동의를 받습니다.</li>
-									</ul>
-								</section>
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">1. 수집 및 이용 목적</h3>
+										<p>새로운 서비스(제품) 안내, 이벤트 및 광고성 정보 제공</p>
+									</section>
 
-								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제4조 (개인정보의 보유 및 이용기간)</h3>
-									<p>회사는 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령에 의해 보존할 필요가 있는 경우 일정기간 보존 후 파기합니다.</p>
-									<ul className="pl-4 mt-2 space-y-1 list-disc">
-										<li>보존 기간: 3년</li>
-										<li>보존 근거: 전자상거래 등에서의 소비자보호에 관한 법률</li>
-										<li>파기 절차: 목적 달성 후 즉시 파기</li>
-										<li>파기 방법: 전자파일(영구삭제), 문서(파쇄)</li>
-									</ul>
-								</section>
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">2. 수집 항목</h3>
+										<p>성함, 연락처, 이메일</p>
+									</section>
 
-								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제5조 (개인정보의 제3자 제공 여부)</h3>
-									<p>회사는 이용자의 개인정보를 제3자에게 제공하지 않습니다.</p>
-								</section>
+									<section>
+										<h3 className="text-[18px] font-bold text-[#222222] mb-2">3. 보유 및 이용 기간</h3>
+										<p>동의 철회 시</p>
+									</section>
 
-								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제6조 (정보주체의 권리)</h3>
-									<p>정보주체는 다음과 같은 권리를 행사할 수 있습니다.</p>
-									<ul className="pl-4 mt-2 space-y-1 list-disc">
-										<li>개인정보 열람 요구</li>
-										<li>개인정보 정정 요구</li>
-										<li>개인정보 삭제 요구</li>
-										<li>개인정보 처리 정지 요구</li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 className="text-[18px] font-bold text-[#222222] mb-2">제7조 (개인정보 보호책임자)</h3>
-									<p>
-										회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고
-										있습니다.
-									</p>
-									<div className="pl-4 mt-2">
-										<p>- 개인정보보호책임자: 김ㅇㅇ (운영팀)</p>
-										<p>- 문의처: biz@bnb-cnx.com</p>
-										<p>- 전화번호: 070-4715-8801</p>
-									</div>
-								</section>
-
-								<section className="text-[14px] text-[#999999]">
-									<p>본 방침은 2024년 1월 1일부터 시행됩니다.</p>
-								</section>
-							</div>
-						</DialogContent>
-					</Dialog>
+									<section>
+										<p className="text-[#ff6200]">
+											※ 귀하는 동의를 거부할 권리가 있으나, 거부 시 이벤트 안내 등 혜택 정보를 받으실 수 없습니다.
+										</p>
+									</section>
+								</div>
+							</DialogContent>
+						</Dialog>
+					</div>
 				</div>
-
 				{/* 제출 버튼 */}
 				<div className="flex justify-center items-center mb-16">
 					<Button type="submit" disabled={isSubmitting} className="h-auto btn-primary">

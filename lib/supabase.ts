@@ -27,6 +27,7 @@ export type Database = {
 					id: string;
 					inquiry_content: string;
 					inquiry_types: string[];
+					marketing_agreed: boolean | null;
 					name: string;
 					phone: string;
 					referral_other: string | null;
@@ -44,6 +45,7 @@ export type Database = {
 					id?: string;
 					inquiry_content?: string;
 					inquiry_types?: string[];
+					marketing_agreed?: boolean | null;
 					name: string;
 					phone: string;
 					referral_other?: string | null;
@@ -61,6 +63,7 @@ export type Database = {
 					id?: string;
 					inquiry_content?: string;
 					inquiry_types?: string[];
+					marketing_agreed?: boolean | null;
 					name?: string;
 					phone?: string;
 					referral_other?: string | null;
