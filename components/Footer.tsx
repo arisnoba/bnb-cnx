@@ -2,7 +2,7 @@ import { Marquee } from '@/components/ui/marquee';
 import Image from 'next/image';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-
+import Link from 'next/link';
 const partnerLogos = [
 	{ name: 'MCM', src: '/images/partners/logo-01.png' },
 	{ name: 'Charles & Keith', src: '/images/partners/logo-02.png' },
@@ -40,7 +40,9 @@ export default function Footer() {
 								<h2 className="font-black text-[68px] leading-[1.2] text-brand-neon">브랜드 맞춤형 플랜으로 도와드립니다.</h2>
 							</div>
 							<div className="flex justify-start items-center">
-								<Button className="btn-primary">문의하기</Button>
+								<Link href="/contact">
+									<Button className="btn-primary">문의하기</Button>
+								</Link>
 							</div>
 						</div>
 
