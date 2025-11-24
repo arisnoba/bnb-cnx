@@ -395,6 +395,10 @@ export default function AdminContactsPage() {
 													<span className="font-semibold text-slate-700">문의 일시:</span>
 													<span className="ml-2 text-slate-600">{contact.created_at ? new Date(contact.created_at).toLocaleString('ko-KR') : '-'}</span>
 												</div>
+												<div>
+													<span className="font-semibold text-slate-700">마케팅 동의:</span>
+													<span className={`ml-2 font-medium ${contact.marketing_agreed ? 'text-blue-600' : 'text-slate-500'}`}>{contact.marketing_agreed ? '동의함' : '미동의'}</span>
+												</div>
 											</div>
 
 											{contact.inquiry_types && contact.inquiry_types.length > 0 && (
@@ -557,6 +561,10 @@ export default function AdminContactsPage() {
 											{selectedContact.referral_source}
 											{selectedContact.referral_other && ` (${selectedContact.referral_other})`}
 										</p>
+									</div>
+									<div className="space-y-1">
+										<Label className="text-sm font-semibold text-slate-700">마케팅 수신 동의</Label>
+										<p className={`text-sm font-medium ${selectedContact.marketing_agreed ? 'text-blue-600' : 'text-slate-500'}`}>{selectedContact.marketing_agreed ? '동의함' : '미동의'}</p>
 									</div>
 								</div>
 

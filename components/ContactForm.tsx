@@ -16,7 +16,7 @@ const INQUIRY_TYPES = [
 	'중국 SNS 채널 및 공식몰 운영 대행 문의',
 	'LIVE 커머스 진행 문의',
 	'글로벌 PPL / 협찬 마케팅 문의',
-	'CNX 한국 브랜드 셀렉샵 입점 문의',
+	'CNX 한국 브랜드 셀렉샵 무료입점 문의',
 	'협업 / 기타 문의 사항',
 ];
 
@@ -47,7 +47,13 @@ export default function ContactForm() {
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target;
-		setFormData(prev => ({ ...prev, [name]: value }));
+		let newValue = value;
+
+		if (name === 'phone') {
+			newValue = formatPhoneNumber(value);
+		}
+
+		setFormData(prev => ({ ...prev, [name]: newValue }));
 	};
 
 	const handleSelectChange = (name: string, value: string) => {
@@ -58,6 +64,25 @@ export default function ContactForm() {
 	const validateEmail = (email: string): boolean => {
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		return emailRegex.test(email);
+	};
+
+	// 전화번호 포맷팅 (하이픈 자동 추가)
+	const formatPhoneNumber = (value: string) => {
+		const numbers = value.replace(/[^0-9]/g, '');
+
+		if (numbers.startsWith('02')) {
+			// 02 (Seoul)
+			if (numbers.length <= 2) return numbers;
+			if (numbers.length <= 5) return `${numbers.slice(0, 2)}-${numbers.slice(2)}`;
+			if (numbers.length <= 9) return `${numbers.slice(0, 2)}-${numbers.slice(2, 5)}-${numbers.slice(5)}`;
+			return `${numbers.slice(0, 2)}-${numbers.slice(2, 6)}-${numbers.slice(6, 10)}`;
+		} else {
+			// Others (010, 031, etc.)
+			if (numbers.length <= 3) return numbers;
+			if (numbers.length <= 6) return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+			if (numbers.length <= 10) return `${numbers.slice(0, 3)}-${numbers.slice(3, 6)}-${numbers.slice(6)}`;
+			return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
+		}
 	};
 
 	// 전화번호 유효성 검사 (한국 전화번호 형식)
@@ -252,7 +277,7 @@ export default function ContactForm() {
 								id="phone"
 								name="phone"
 								type="tel"
-								maxLength={11}
+								maxLength={13}
 								value={formData.phone}
 								onChange={handleChange}
 								required
@@ -321,7 +346,7 @@ export default function ContactForm() {
 						/>
 					)}
 				</div>
-				<div className='space-y-4'>
+				<div className="space-y-4">
 					{/* 개인정보 처리방침 동의 */}
 					<div className="flex flex-col md:flex-row items-center gap-[8px]">
 						<div className="flex items-center gap-[4px]">
@@ -454,9 +479,7 @@ export default function ContactForm() {
 								</DialogHeader>
 								<div className="text-[16px] leading-relaxed text-[#666666] space-y-4">
 									<section>
-										<p>
-											CNX는 정보통신망 이용촉진 및 정보보호 등에 관한 법률에 따라 고객님께 다양한 혜택과 정보를 제공하기 위해 아래와 같이 마케팅 정보를 전송합니다.
-										</p>
+										<p>CNX는 정보통신망 이용촉진 및 정보보호 등에 관한 법률에 따라 고객님께 다양한 혜택과 정보를 제공하기 위해 아래와 같이 마케팅 정보를 전송합니다.</p>
 									</section>
 
 									<section>
@@ -475,9 +498,7 @@ export default function ContactForm() {
 									</section>
 
 									<section>
-										<p className="text-[#ff6200]">
-											※ 귀하는 동의를 거부할 권리가 있으나, 거부 시 이벤트 안내 등 혜택 정보를 받으실 수 없습니다.
-										</p>
+										<p className="text-[#ff6200]">※ 귀하는 동의를 거부할 권리가 있으나, 거부 시 이벤트 안내 등 혜택 정보를 받으실 수 없습니다.</p>
 									</section>
 								</div>
 							</DialogContent>
