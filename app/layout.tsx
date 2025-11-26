@@ -19,6 +19,27 @@ export default function RootLayout({
 	return (
 		<html lang="ko">
 			<head>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta name="description" content="REAL. GLOBAL. EXPERIENTIAL GROWTH. Marketing COMMERCE COMPANY - BNB CNX" />
+
+				{/* Open Graph / Facebook */}
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content="https://bnb-cnx.com" />
+				<meta property="og:title" content="BNB CNX - Marketing COMMERCE COMPANY" />
+				<meta property="og:description" content="REAL. GLOBAL. EXPERIENTIAL GROWTH. Marketing COMMERCE COMPANY" />
+				<meta property="og:image" content="/images/og-img.png" />
+				<meta property="og:image:width" content="1200" />
+				<meta property="og:image:height" content="630" />
+				<meta property="og:locale" content="ko_KR" />
+
+				{/* Twitter */}
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:url" content="https://bnb-cnx.com" />
+				<meta name="twitter:title" content="BNB CNX - Marketing COMMERCE COMPANY" />
+				<meta name="twitter:description" content="REAL. GLOBAL. EXPERIENTIAL GROWTH. Marketing COMMERCE COMPANY" />
+				<meta name="twitter:image" content="/images/og-img.png" />
+
 				<link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
 				<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
 				<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
@@ -29,7 +50,7 @@ export default function RootLayout({
 				{/* Font Awesome Kit */}
 				<Script src="https://kit.fontawesome.com/f2bc282ffa.js" crossOrigin="anonymous" strategy="beforeInteractive" />
 
-				<div className="relative flex min-h-screen flex-col">
+				<div className="flex relative flex-col min-h-screen">
 					{!isAdminRoute && <Header />}
 					<main className="flex-1">{children}</main>
 					{!isAdminRoute && <Footer />}
