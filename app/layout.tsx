@@ -41,6 +41,8 @@ export default function RootLayout({
 				<meta name="twitter:description" content="중국 SNS 마케팅 전문 | 왕홍 체험단, LIVE커머스, 계정운영, 입점대행, 브랜딩부터 매출로 이어지는 맞춤형 플랜 실행!" />
 				<meta name="twitter:image" content="/images/og-img.png" />
 
+				<meta name="naver-site-verification" content="f43635d90dbcbfe052ca5a02029ae110fd88aca2" />
+
 				<link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
 				<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
 				<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
