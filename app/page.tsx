@@ -8,31 +8,28 @@ import PPLMarketingSection from '@/components/home/PPLMarketingSection';
 import Image from 'next/image';
 import { BlurFade } from '@/components/ui/blur-fade';
 
-const imgHero = '/images/home/hero.jpg';
+const videoHero = '/images/home/hero.mp4';
 
 export default function Home() {
 	return (
-		<main className="min-h-screen home-page ">
+		<main className="min-h-screen home-page">
 			<div className="space-y-4 md:space-y-10 cnx-wrapper">
 				{/* Hero Section */}
 				<section className="relative bg-brand-purple overflow-hidden md:aspect-[16/9] hero-section md:h-auto">
-					<div className="absolute inset-0 bg-black/70 z-20" />
-					<div className="absolute inset-0 z-0" style={{ backgroundImage: `url(${imgHero})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-					<div className="relative z-30 mx-auto h-full flex flex-col justify-end">
+					<div className="absolute inset-0 z-20 bg-black/70" />
+					<video className="object-cover absolute inset-0 z-0 w-full h-full" autoPlay loop muted playsInline>
+						<source src={videoHero} type="video/mp4" />
+					</video>
+					<div className="flex relative z-30 flex-col justify-end mx-auto h-full">
 						<BlurFade className="text-white text-[60px] font-black leading-[1.2] tracking-[1.2px] uppercase mb-8" inView delay={0.15}>
 							<h1>
-								REAL.
-								<br />
-								GLOBAL.
-								<br />
-								EXPERIENTIAL GROWTH.
-								<br />
-								Marketing COMMERCE COMPANY
+								중국 소비자와 가장 가까운 <br />
+								SNS 마케팅 전문 파트너
 							</h1>
 						</BlurFade>
-						<BlurFade className="flex items-center gap-2" inView delay={0.3}>
+						<BlurFade className="flex gap-2 items-center" inView delay={0.3}>
 							<div>
-								<Image src="/images/common/logo.svg" alt="BNB CNX Logo" width={152} height={24} className="w-auto object-contain hero-logo" />
+								<Image src="/images/common/logo.svg" alt="BNB CNX Logo" width={152} height={24} className="object-contain w-auto hero-logo" />
 							</div>
 						</BlurFade>
 					</div>

@@ -211,6 +211,12 @@ export default function SNSMarketingSection() {
 											<div className="text-white">
 												<h3 className="font-black card-title">{service.title}</h3>
 												<p className="font-semibold whitespace-pre-line card-description">{service.description}</p>
+												<p className="font-bold text-brand-neon card-description">#샤오홍슈 #더우인 #따종디엔핑</p>
+												<div className="flex gap-2 mt-3">
+													<Image src="/images/home/xiaohongshu.png" alt="xiaohongshu" width={32} height={32} />
+													<Image src="/images/home/tiktok.png" alt="tiktok" width={32} height={32} />
+													<Image src="/images/home/dazhongdianping.png" alt="dazhongdianping" width={32} height={32} />
+												</div>
 											</div>
 										</div>
 
@@ -222,7 +228,7 @@ export default function SNSMarketingSection() {
 														<div className="relative w-[300px] h-[320px]">
 															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover transition-transform duration-300 md:group-hover:scale-110" />
 															{/* Overlay - Desktop: visible by default, hide on hover, Mobile: always visible */}
-															<div className="flex absolute inset-0 justify-start items-end p-4 bg-black/50 opacity-100 md:transition-opacity md:duration-300 md:group-hover:opacity-0">
+															<div className="flex absolute inset-0 justify-start items-end p-4 opacity-100 bg-black/50 md:transition-opacity md:duration-300 md:group-hover:opacity-0">
 																<div className="flex flex-wrap gap-2">
 																	{service.hashtags[imgIndex]?.map((tag, tagIndex) => (
 																		<span key={tagIndex} className="px-3 py-1 text-sm font-bold rounded-full bg-brand-neon text-brand-purple">
@@ -247,7 +253,7 @@ export default function SNSMarketingSection() {
 														<div className="relative w-[300px] h-[320px]">
 															<Image src={image} alt={`${service.title} ${imgIndex + 1}`} fill className="object-cover transition-transform duration-300 md:group-hover:scale-110" />
 															{/* Overlay - Desktop: visible by default, hide on hover, Mobile: always visible */}
-															<div className="flex absolute inset-0 justify-start items-end p-4 bg-black/50 opacity-100 md:transition-opacity md:duration-300 md:group-hover:opacity-0">
+															<div className="flex absolute inset-0 justify-start items-end p-4 opacity-100 bg-black/50 md:transition-opacity md:duration-300 md:group-hover:opacity-0">
 																<div className="flex flex-wrap gap-2">
 																	{service.hashtags[imgIndex]?.map((tag, tagIndex) => (
 																		<span key={tagIndex} className="px-3 py-1 text-sm font-bold rounded-full bg-brand-neon text-brand-purple">
@@ -268,6 +274,12 @@ export default function SNSMarketingSection() {
 											<div className="text-white">
 												<h3 className="font-black card-title">{service.title}</h3>
 												<p className="font-semibold whitespace-pre-line card-description">{service.description}</p>
+												<p className="font-bold text-brand-neon card-description">#샤오홍슈 #더우인 #따종디엔핑</p>
+												<div className="flex gap-2 mt-3">
+													<Image src="/images/home/xiaohongshu.png" alt="xiaohongshu" width={32} height={32} />
+													<Image src="/images/home/tiktok.png" alt="tiktok" width={32} height={32} />
+													<Image src="/images/home/dazhongdianping.png" alt="dazhongdianping" width={32} height={32} />
+												</div>
 											</div>
 										</div>
 									</>

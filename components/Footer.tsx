@@ -49,10 +49,10 @@ export default function Footer() {
 						{/* Company Info Section */}
 						<div className=" text-white text-base font-bold leading-[2] lg:col-span-1 col-span-1 order-3 lg:order-2 text-left space-y-8">
 							<div className="">
-								<p>© BNB CNX Inc. All Rights Reserved.</p>
+								<p>© BNB CNX Co., Ltd. All Rights Reserved.</p>
 								<p>
 									사업자등록번호 <span className="font-normal">|</span> 297-87-03451 <br className="block md:hidden lg:block" /> 주소 <span className="font-normal">|</span> 서울특별시 서초구
-									강남대로 89길 (06536)
+									강남대로89길 19, 1층
 								</p>
 								<p>
 									대표이사 <span className="font-normal">|</span> 박찬호
