@@ -38,11 +38,9 @@ export default function Home() {
                             inView delay={0.15}>
                             {partnerLogos.map((logo, index) => (
                                 <span key={index}
-                                      className="px-2.5 py-1.5 text-lg font-bold rounded-full bg-brand-purple text-brand-neon mr-2">
+                                      className="pl-3.5 pr-2.5 py-1.5 text-lg font-bold rounded-full bg-brand-purple text-brand-neon mr-2">
                                     #{logo.name}
-                                    <Image src={logo.src} alt={logo.name} width={247} height={150}
-                                           className="inline-block w-4 h-4 ml-1"/>
-
+                                    <Image src={logo.src} alt={logo.name} width={247} height={150} className="inline-block w-5 h-5 ml-1 mb-0.5 align-middle"/>
                                 </span>
                             ))}
                         </BlurFade>
