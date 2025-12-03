@@ -89,10 +89,10 @@ export default function Footer() {
 										블드인사이트
 									</SelectItem>
 									<SelectItem value="https://baewoorun.co.kr" className="hover:bg-white/10">
-										시니어아트센터
+										애비뉴센터
 									</SelectItem>
 									<SelectItem value="https://bnbindustry.com" className="hover:bg-white/10">
-										의디스트리
+										인더스트리
 									</SelectItem>
 									<SelectItem value="https://baewoo.kr" className="hover:bg-white/10">
 										입시센터
