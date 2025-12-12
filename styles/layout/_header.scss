@@ -1,18 +1,41 @@
 .header {
+	// 헤더 높이(오프셋)는 2개 값으로만 고정 제어
+	--header-offset: 93px;
+
 	@include clamp-unit(padding-inline, 40, 80);
 	&.scrolled {
+		--header-offset: 65px;
 		@include clamp-unit(padding-inline, 20, 60);
 	}
+
+	// @media (max-width: 768px) {
+	// 	padding-inline: 20px;
+	// 	&.scrolled {
+	// 		padding-inline: 16px;
+	// 	}
+	// }
+
 	.header-wrapper {
 		// @include clamp-unit(padding-inline, 20, 80);
 		&-normal {
 			@include clamp-unit(padding-top, 40, 80);
-			@include clamp-unit(padding-bottom, 30, 30);
+			@include clamp-unit(padding-bottom, 20, 30);
 		}
 		&-scrolled {
-			@include clamp-unit(padding-top, 10, 20);
-			@include clamp-unit(padding-bottom, 10, 20);
+			@include clamp-unit(padding-top, 16, 20);
+			@include clamp-unit(padding-bottom, 16, 20);
 		}
+
+		// @media (max-width: 768px) {
+		// 	&-normal {
+		// 		padding-top: 16px;
+		// 		padding-bottom: 14px;
+		// 	}
+		// 	&-scrolled {
+		// 		padding-top: 10px;
+		// 		padding-bottom: 10px;
+		// 	}
+		// }
 	}
 	.header-logo {
 		img {
@@ -29,5 +52,186 @@
 				color: $brand-neon;
 			}
 		}
+
+		// PC에서만 노출, 모바일에서는 햄버거 메뉴로 대체
+		@media (max-width: 768px) {
+			display: none;
+		}
+	}
+
+	// PC: Contact 우측 카카오 버튼 (원형 아이콘)
+	.header-kakao-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: #fee500;
+		transition: transform 0.2s ease, filter 0.2s ease;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		overflow: hidden;
+		&:hover {
+			filter: brightness(0.95);
+			transform: translateY(-1px) scale(1.05);
+		}
+
+		// img {
+		// 	width: 24px;
+		// 	height: 24px;
+		// }
+
+		@media (max-width: 768px) {
+			display: none;
+		}
+	}
+
+	// Mobile actions: 카카오 + 햄버거
+	.header-actions {
+		display: none;
+		align-items: center;
+		gap: 10px;
+
+		@media (max-width: 768px) {
+			display: flex;
+		}
+	}
+
+	.header-kakao-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		// border-radius: 50%;
+		background: #fee500;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+		transition: transform 0.2s ease, filter 0.2s ease;
+		overflow: hidden;
+
+		&:active {
+			transform: scale(0.95);
+		}
+
+		// img {
+		// 	width: 20px;
+		// 	height: 20px;
+		// }
+	}
+
+	.header-hamburger-btn {
+		width: 32px;
+		height: 32px;
+		// border-radius: 10px;
+		display: inline-flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		background: #000;
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		cursor: pointer;
+
+		span {
+			display: block;
+			width: 18px;
+			height: 2px;
+			background: #fff;
+			border-radius: 999px;
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+
+		&.is-open {
+			span:nth-child(1) {
+				transform: translateY(7px) rotate(45deg);
+			}
+			span:nth-child(2) {
+				opacity: 0;
+			}
+			span:nth-child(3) {
+				transform: translateY(-7px) rotate(-45deg);
+			}
+		}
+	}
+
+	// Mobile menu overlay
+	.header-mobile-menu {
+		position: fixed;
+		top: var(--header-offset, 0px);
+		left: 0;
+		right: 0;
+		bottom: 0;
+		// 헤더 아래에서만 시작하므로 높은 z-index여도 버튼 클릭에 영향 없음
+		z-index: 80;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.2s ease;
+
+		&.is-open {
+			opacity: 1;
+			pointer-events: auto;
+		}
+	}
+
+	.header-mobile-backdrop {
+		position: absolute;
+		inset: 0;
+		display: block;
+		background: rgba(0, 0, 0, 0.55);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		border: 0;
+	}
+
+	.header-mobile-panel {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		// max-height: 100%;
+		overflow: auto;
+		background: rgba(0, 0, 0, 0.92);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+		padding: 18px 18px 20px;
+		transform: translateY(-12px);
+		opacity: 0;
+		transition: transform 0.22s ease, opacity 0.22s ease;
+	}
+
+	.header-mobile-menu.is-open .header-mobile-panel {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	.header-mobile-nav {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding-top: 4px;
+	}
+
+	.header-mobile-link {
+		color: #fff;
+		font-weight: 900;
+		font-size: 20px;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		padding: 10px 2px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.header-mobile-kakao {
+		margin-top: 12px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 46px;
+		border-radius: 8px;
+		background: #fee500;
+		color: #111;
+		font-weight: 900;
+		font-size: 16px;
 	}
 }

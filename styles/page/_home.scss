@@ -22,24 +22,23 @@
 
 			height: calc(100dvh - var(--hero-padding-top) - var(--hero-padding-bottom));
 			@include clamp-unit(padding-top, 120, 200);
-			@include clamp-unit(padding-bottom, 40, 80);
+			@include clamp-unit(padding-bottom, 24, 80);
+			@include clamp-unit(padding-inline, 24, 80);
+			@include clamp-unit(border-radius, 24, 60);
 
 			@media (min-width: 768px) {
 				height: auto;
 			}
 
-			@include clamp-unit(padding-inline, 40, 80);
-			@include clamp-unit(border-radius, 24, 60);
 			h1 {
 				@include clamp-unit(font-size, 20, 60);
 				// @include clamp-unit(margin-bottom, 10, 20);
-				margin-bottom: 20px;
 			}
 			p {
 				@include clamp-unit(font-size, 16, 24);
 			}
 			.hero-logo {
-				@include clamp-unit(height, 32, 72);
+				@include clamp-unit(height, 40, 72);
 			}
 		}
 		.cta-button-section {
