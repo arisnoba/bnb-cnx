@@ -27,12 +27,12 @@ export default function Home() {
 		<main className="min-h-screen home-page">
 			<div className="space-y-4 md:space-y-10 cnx-wrapper">
 				{/* Hero Section */}
-				<section className="relative bg-brand-purple overflow-hidden md:aspect-[16/9] hero-section md:h-auto">
+				<section className="relative flex bg-brand-purple overflow-hidden md:aspect-[16/9] hero-section md:h-auto">
 					<div className="absolute inset-0 z-20 bg-black/70" />
 					<video className="object-cover absolute inset-0 z-0 w-full h-full" autoPlay loop muted playsInline>
 						<source src={videoHero} type="video/mp4" />
 					</video>
-					<div className="flex relative z-30 flex-col justify-end mx-auto h-full">
+					<div className="flex relative z-30 flex-col justify-end mx-auto w-full">
 						{/* title */}
 						<BlurFade className="text-white font-black leading-[1.2] tracking-[1.2px] uppercase mb-6" inView delay={0.15}>
 							<h1>
