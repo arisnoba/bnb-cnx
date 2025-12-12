@@ -31,14 +31,15 @@
 			}
 
 			h1 {
-				@include clamp-unit(font-size, 20, 60);
+				@include clamp-unit(font-size, 20, 48);
 				// @include clamp-unit(margin-bottom, 10, 20);
 			}
 			p {
 				@include clamp-unit(font-size, 16, 24);
 			}
 			.hero-logo {
-				@include clamp-unit(height, 40, 72);
+				@include clamp-unit(height, 40, 90);
+				@include clamp-unit(margin-bottom, 4, 24);
 			}
 		}
 		.cta-button-section {
