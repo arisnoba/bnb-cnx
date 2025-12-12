@@ -7,6 +7,10 @@
 		--header-offset: 65px;
 		@include clamp-unit(padding-inline, 20, 60);
 	}
+	&.is-solid {
+		--header-offset: 65px;
+		@include clamp-unit(padding-inline, 20, 60);
+	}
 
 	// @media (max-width: 768px) {
 	// 	padding-inline: 20px;

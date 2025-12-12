@@ -53,19 +53,20 @@ export default function Header() {
 	];
 
 	const kakaoTalkUrl = 'http://pf.kakao.com/_LcTYn';
+	const isHeaderCompact = isScrolled || isMobileMenuOpen;
 
 	return (
 		<header
 			className={cn(
 				'fixed top-0 z-50 w-full transition-all duration-600 header',
-				// 스크롤 상태에 따른 높이/offset은 scrolled로만 제어
+				// 헤더 높이/offset은 scrolled, is-solid로 제어
 				isScrolled ? 'backdrop-blur-md bg-black/80 scrolled' : isMobileMenuOpen ? 'backdrop-blur-md bg-black/80 is-solid' : 'bg-transparent'
 			)}>
 			<div className="max-w-[1720px] mx-auto">
 				<div
 					className={cn(
 						'flex justify-between items-center border-b transition-all duration-300 border-white/10 header-wrapper',
-						isScrolled ? 'header-wrapper-scrolled' : 'header-wrapper-normal'
+						isHeaderCompact ? 'header-wrapper-scrolled' : 'header-wrapper-normal'
 					)}>
 					{/* Logo */}
 					<Link href="/" className="flex items-center h-[32px] header-logo">
