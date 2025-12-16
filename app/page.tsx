@@ -10,7 +10,12 @@ import { BlurFade } from '@/components/ui/blur-fade';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+	title: 'BNB CNX - 홈',
+	description: '중국 소비자와 가장 가까운 SNS 마케팅 전문 파트너',
+};
 const videoHero = '/images/home/hero.mp4';
 
 const partnerLogos = [

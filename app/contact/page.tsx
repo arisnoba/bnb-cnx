@@ -1,5 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+	title: '문의하기 - BNB CNX',
+	description: '중국 마케팅 전문가에게 문의하세요.',
+};
 import ContactForm from '@/components/ContactForm';
 import Image from 'next/image';
 import { BlurFade } from '@/components/ui/blur-fade';
