@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { BarChart3, Bell, Eye, CheckCircle2, Search, Inbox, Mail, Phone, X, RefreshCw, LogOut } from 'lucide-react';
+import { BarChart3, Bell, Eye, CheckCircle2, Search, Inbox, Mail, Phone, X, RefreshCw, LogOut, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -54,6 +55,7 @@ export default function AdminContactsPage() {
 	const [statusFilter, setStatusFilter] = useState<'all' | Contact['status']>('all');
 	const [searchTerm, setSearchTerm] = useState('');
 	const [updatingId, setUpdatingId] = useState<string | null>(null);
+	const [deletingId, setDeletingId] = useState<string | null>(null);
 	const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 10;
@@ -88,6 +90,30 @@ export default function AdminContactsPage() {
 		},
 		[fetchContacts]
 	);
+
+	const deleteContact = useCallback(async (contact: Contact) => {
+		const confirmed = window.confirm(`${contact.name} 님의 문의를 삭제할까요?\n삭제한 문의는 복구할 수 없습니다.`);
+
+		if (!confirmed) {
+			return;
+		}
+
+		setDeletingId(contact.id);
+		try {
+			const { error } = await supabase.from('contacts').delete().eq('id', contact.id);
+
+			if (error) throw error;
+
+			setContacts(prevContacts => prevContacts.filter(item => item.id !== contact.id));
+			setSelectedContact(null);
+			toast.success('문의가 삭제되었습니다.');
+		} catch (error) {
+			console.error('문의 삭제에 실패했습니다:', error);
+			toast.error('문의 삭제에 실패했습니다. 다시 시도해주세요.');
+		} finally {
+			setDeletingId(null);
+		}
+	}, []);
 
 	useEffect(() => {
 		let active = true;
@@ -165,6 +191,10 @@ export default function AdminContactsPage() {
 	useEffect(() => {
 		setCurrentPage(1);
 	}, [statusFilter, searchTerm]);
+
+	useEffect(() => {
+		setCurrentPage(prevPage => Math.min(prevPage, Math.max(totalPages, 1)));
+	}, [totalPages]);
 
 	const stats = useMemo(() => {
 		return {
@@ -590,30 +620,36 @@ export default function AdminContactsPage() {
 									</div>
 								)}
 
-								<div className="pt-4 border-t flex gap-2 justify-between">
-									<Select
-										value={selectedContact.status}
-										onValueChange={value => {
-											updateStatus(selectedContact.id!, value as Contact['status']);
-											setSelectedContact(null);
-										}}
-										disabled={updatingId === selectedContact.id}>
-										<SelectTrigger className="w-auto min-w-[100px]">
-											<SelectValue placeholder="상태 변경" />
-										</SelectTrigger>
-										<SelectContent>
-											{statusOptions
-												.filter(option => option.value !== 'all')
-												.map(option => (
-													<SelectItem key={option.value} value={option.value as Contact['status']}>
-														{option.label}
-													</SelectItem>
-												))}
-										</SelectContent>
-									</Select>
-									<Button variant="outline" onClick={() => setSelectedContact(null)}>
-										닫기
+								<div className="pt-4 border-t flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+									<Button variant="destructive" onClick={() => deleteContact(selectedContact)} disabled={deletingId === selectedContact.id || updatingId === selectedContact.id}>
+										<Trash2 className="h-4 w-4" />
+										{deletingId === selectedContact.id ? '삭제 중…' : '삭제'}
 									</Button>
+									<div className="flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-end">
+										<Select
+											value={selectedContact.status}
+											onValueChange={value => {
+												updateStatus(selectedContact.id!, value as Contact['status']);
+												setSelectedContact(null);
+											}}
+											disabled={updatingId === selectedContact.id}>
+											<SelectTrigger className="w-full sm:w-auto sm:min-w-[100px]">
+												<SelectValue placeholder="상태 변경" />
+											</SelectTrigger>
+											<SelectContent>
+												{statusOptions
+													.filter(option => option.value !== 'all')
+													.map(option => (
+														<SelectItem key={option.value} value={option.value as Contact['status']}>
+															{option.label}
+														</SelectItem>
+													))}
+											</SelectContent>
+										</Select>
+										<Button variant="outline" onClick={() => setSelectedContact(null)} disabled={deletingId === selectedContact.id}>
+											닫기
+										</Button>
+									</div>
 								</div>
 							</CardContent>
 						</Card>
