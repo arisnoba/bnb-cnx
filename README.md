@@ -7,7 +7,8 @@
 - Framework: Next.js 14 (App Router)
 - Styling: Tailwind CSS + shadcn/ui + SCSS 토큰 시스템
 - Database: Supabase (PostgreSQL)
-- Deployment: Vercel(테스트) / Cafe24(프로덕션)
+- Email: Resend via Supabase Edge Functions
+- Deployment: Cafe24/정적 호스팅
 
 ## 프로젝트 구조
 
@@ -49,10 +50,10 @@ bnb-cnx/
 2. 환경변수 설정: 루트에 `.env.local` 생성 후 아래 값 입력
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your-url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-   NEXT_PUBLIC_ADMIN_PASSWORD=your-password
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+   NEXT_PUBLIC_CONTACT_FUNCTION_URL=https://your-project-ref.supabase.co/functions/v1/contact
    ```
-   자세한 정보는 `SUPABASE_SETUP.md`를 참고하세요.
+   Resend 관련 값은 정적 호스팅 환경변수가 아니라 Supabase Edge Function secret으로 설정합니다. 자세한 정보는 `SUPABASE_SETUP.md`를 참고하세요.
 3. 관리자 계정 생성: Supabase Dashboard → Authentication → Users → Add User → Auto Confirm User 체크 → 생성
 4. 개발 서버 실행
    ```bash
@@ -62,8 +63,9 @@ bnb-cnx/
 
 ## 빌드 및 배포
 
-- 테스트용 Vercel 배포: GitHub 연결 → 환경변수 입력 → push 시 자동 배포
-- Cafe24 정적 배포: `npm run build` 후 생성된 `out/` 디렉터리를 FTP로 업로드
+- 정적 배포: `npm run build` 후 생성된 `out/` 디렉터리를 Cafe24 FTP에 업로드
+- 필수 빌드 환경변수: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+- 문의 생성은 Supabase Edge Function `contact`가 처리합니다. Resend secret을 Supabase에 설정하고 함수를 배포해야 Contact 폼이 동작합니다.
 - 품질 점검: PR 전 `npm run lint` 실행과 Home/About/Contact/Admin UI 수동 점검을 권장합니다.
 
 ## 관리자 페이지
@@ -78,7 +80,7 @@ bnb-cnx/
 
 - Home(`/`): 브랜드 소개와 서비스 섹션
 - About(`/about`): 회사 및 파트너 정보
-- Contact(`/contact`): Supabase 연동 문의 폼
+- Contact(`/contact`): Supabase Edge Function을 통해 Supabase 저장과 Resend 알림 발송이 모두 성공해야 접수 완료 처리
 - Admin(`/admin`): 문의 관리 전용 화면
 
 ## 커스터마이징
@@ -145,11 +147,11 @@ npx shadcn-ui@latest add <component-name>
 ### 기본 에러 체크 항목
 
 1. 빌드/린트: `npm run lint`로 타입·스타일 오류를 우선 확인합니다.
-2. 환경변수: `.env.local`에 `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_ADMIN_PASSWORD`가 정확히 입력되어 있는지 확인합니다.
+2. 환경변수: 정적 사이트 빌드에는 Supabase URL과 publishable key가 필요하고, Resend 관련 값은 Supabase Edge Function secret에 설정되어 있어야 합니다.
 3. Supabase Auth: 관리자 대시보드 로그인 문제가 발생하면 Supabase Dashboard → Authentication → Policies에서 RLS와 Auth 설정을 점검합니다.
-4. 네트워크 호출: Contact 폼 제출 실패 시 브라우저 DevTools Network 탭에서 `POST /api/contact` 응답 코드를 확인하고, Supabase Row Insert 권한을 검토합니다.
+4. 네트워크 호출: Contact 폼 제출 실패 시 브라우저 DevTools Network 탭에서 `POST /functions/v1/contact` 응답 코드를 확인하고, Supabase Edge Function 로그와 secrets를 검토합니다.
 5. 정적 자산: 이미지가 보이지 않으면 `public/` 내 파일명과 `next/image` import 경로가 일치하는지, 그리고 `npm run dev` 재시작 후 캐시가 초기화되었는지 확인합니다.
-6. Cafe24 배포: 정적 배포 전 `npm run build`가 성공하는지 확인하고, 업로드 후 `out/` 루트에 `index.html`이 위치했는지 점검합니다.
+6. Resend 알림: 이메일 발송이 실패하면 문의 접수도 실패 처리됩니다. 서버 로그에서 `문의 알림 이메일 발송 실패`와 롤백 로그를 확인합니다.
 
 ## 문의
 

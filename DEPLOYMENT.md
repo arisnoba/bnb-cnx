@@ -1,205 +1,105 @@
 # 배포 가이드
 
-## 📋 사전 준비
+## 사전 준비
 
-### 1. Supabase 설정
+### Supabase
 
-1. [Supabase](https://supabase.com)에 가입 및 프로젝트 생성
-2. SQL Editor에서 다음 SQL 실행:
+운영 권장 방식은 기존 Supabase 프로젝트를 클라이언트 조직으로 이전하는 것입니다.
 
-```sql
--- contacts 테이블 생성
-create table contacts (
-  id uuid default gen_random_uuid() primary key,
-  name text not null,
-  email text not null,
-  message text not null,
-  status text default 'new',
-  created_at timestamp default now()
-);
+1. 클라이언트가 Supabase 조직을 생성합니다.
+2. 현재 프로젝트 소유자를 클라이언트 조직에 초대합니다.
+3. Supabase Dashboard에서 프로젝트를 클라이언트 조직으로 transfer합니다.
+4. 이전 후 Billing, Auth Users, RLS Policies, API Keys, Project URL을 확인합니다.
+5. `/contact`, `/admin/login`, `/admin/contacts`를 다시 검증합니다.
 
--- RLS 활성화
-alter table contacts enable row level security;
+### 정적 사이트 환경변수
 
--- 정책 생성 (누구나 INSERT, SELECT, UPDATE 가능)
-create policy "Anyone can insert"
-  on contacts for insert
-  with check (true);
-
-create policy "Anyone can read"
-  on contacts for select
-  using (true);
-
-create policy "Anyone can update"
-  on contacts for update
-  using (true);
-```
-
-3. Supabase 프로젝트 설정에서 다음 정보 복사:
-   - **Project URL**: `https://xxxxx.supabase.co`
-   - **Anon Public Key**: `eyJxxx...`
-
-### 2. 환경변수 설정
-
-`.env.local` 파일 수정:
+정적 사이트 빌드 시에는 공개 가능한 값만 사용합니다.
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
-NEXT_PUBLIC_ADMIN_PASSWORD=your-secure-password
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+NEXT_PUBLIC_CONTACT_FUNCTION_URL=https://your-project-ref.supabase.co/functions/v1/contact
 ```
 
----
+`NEXT_PUBLIC_CONTACT_FUNCTION_URL`은 생략할 수 있습니다. 생략하면 `NEXT_PUBLIC_SUPABASE_URL/functions/v1/contact`를 호출합니다.
 
-## 🚀 배포 방법
+### Supabase Edge Function secrets
 
-### Option 1: Vercel 배포 (추천 - 테스트용)
-
-#### 1-1. GitHub 연동
+Resend와 관리자 알림 설정은 Supabase Edge Function secret으로 설정합니다. 정적 호스팅 환경변수에 넣지 않습니다.
 
 ```bash
-# Git 초기화 (아직 안 했다면)
-git init
-git add .
-git commit -m "Initial commit"
-
-# GitHub에 푸시
-git remote add origin https://github.com/your-username/bnb-cnx.git
-git branch -M main
-git push -u origin main
+supabase secrets set \
+  RESEND_API_KEY="your-resend-api-key" \
+  CONTACT_NOTIFICATION_TO="biz@bnb-cnx.com,manager@bnb-cnx.com" \
+  CONTACT_NOTIFICATION_FROM="BNB CNX <noreply@contact.bnb-cnx.com>" \
+  --project-ref msbfcyrygirjdlliajhk
 ```
 
-#### 1-2. Vercel 배포
+`CONTACT_NOTIFICATION_TO`는 쉼표로 여러 담당자 이메일을 넣을 수 있습니다. 운영상으로는 그룹 메일 하나를 쓰는 편이 더 관리하기 쉽습니다.
 
-1. [Vercel](https://vercel.com)에 가입 및 로그인
-2. "New Project" 클릭
-3. GitHub 저장소 연결
-4. 환경변수 설정:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `NEXT_PUBLIC_ADMIN_PASSWORD`
-5. Deploy 클릭
+## Supabase Function 배포
 
-#### 1-3. 커스텀 도메인 연결 (선택)
+문의 저장과 Resend 알림 발송은 `supabase/functions/contact`가 처리합니다.
 
-1. Vercel 프로젝트 설정 → Domains
-2. 도메인 추가
-3. DNS 설정:
-   - Cafe24 도메인 관리에서 A 레코드 또는 CNAME 추가
-   - Vercel이 제공하는 값 입력
+```bash
+supabase functions deploy contact --project-ref msbfcyrygirjdlliajhk
+```
 
-**결과**: `https://your-project.vercel.app` 또는 커스텀 도메인으로 접속 가능
+이 함수는 공개 문의 폼에서 호출해야 하므로 `supabase/config.toml`에서 `verify_jwt = false`로 설정되어 있습니다.
 
----
-
-### Option 2: Cafe24 FTP 업로드
-
-#### 2-1. 정적 파일 빌드
+## Cafe24 정적 배포
 
 ```bash
 npm run build
 ```
 
-빌드 완료 후 `out/` 폴더에 정적 파일 생성됨:
-- `index.html` (Home)
-- `about.html` (About)
-- `contact.html` (Contact)
-- `admin.html` (Admin)
-- `_next/` (CSS, JS 파일들)
+빌드가 성공하면 생성된 `out/` 디렉터리의 파일을 Cafe24 웹 루트에 업로드합니다.
 
-#### 2-2. FTP 업로드
+주의:
+- `out/`만 업로드합니다.
+- `.env.local`은 업로드하지 않습니다.
+- Supabase Function 배포와 secrets 설정이 먼저 완료되어야 Contact 폼이 정상 동작합니다.
 
-1. **FileZilla** 또는 다른 FTP 클라이언트 사용
-2. Cafe24 FTP 정보 입력:
-   - 호스트: `ftp.your-domain.com`
-   - 사용자명: Cafe24 FTP 계정
-   - 비밀번호: FTP 비밀번호
-3. `out/` 폴더의 **모든 파일**을 웹 루트(`public_html` 또는 `www`)에 업로드
+## 배포 후 확인사항
 
-#### 2-3. 환경변수 처리
+- Home, About, Contact 페이지 정상 로드
+- Contact 폼 정상 제출
+- Supabase `contacts` row 생성 확인
+- 클라이언트 지정 이메일로 Resend 알림 도착 확인
+- `/admin/login` 로그인 확인
+- `/admin/contacts` 목록 조회와 상태 변경 확인
+- 모바일 반응형 확인
 
-⚠️ **중요**: `.env.local` 파일은 업로드하지 마세요!
+## 문제 해결
 
-정적 빌드에서는 환경변수가 빌드 시점에 JS 파일에 포함됩니다.
-따라서 빌드 전에 `.env.local`이 올바르게 설정되어 있어야 합니다.
+### 문의 제출 실패
 
-**결과**: `https://your-domain.com`으로 접속 가능
+1. 브라우저 Network 탭에서 `functions/v1/contact` 응답 코드를 확인합니다.
+2. Supabase Dashboard → Edge Functions → `contact` logs를 확인합니다.
+3. `RESEND_API_KEY`, `CONTACT_NOTIFICATION_TO`, `CONTACT_NOTIFICATION_FROM` secret을 확인합니다.
+4. Supabase URL과 publishable key가 빌드 시점에 올바르게 들어갔는지 확인합니다.
 
----
+### 이메일 발송 실패로 문의 접수가 실패함
 
-## 🔐 관리자 페이지 접속
+이 프로젝트는 DB 저장과 이메일 발송이 모두 성공해야 접수 완료로 처리합니다. 이메일 발송이 실패하면 저장된 row를 삭제해 접수를 되돌립니다.
 
-1. `https://your-domain.com/admin` 접속
-2. `.env.local`에 설정한 비밀번호 입력
-3. 문의 목록 확인 및 관리
+1. Resend 발신 도메인 인증 상태를 확인합니다.
+2. `CONTACT_NOTIFICATION_FROM`이 인증된 도메인 주소인지 확인합니다.
+3. `CONTACT_NOTIFICATION_TO`가 실제 수신 가능한 주소인지 확인합니다.
+4. Supabase Function 로그에서 `문의 알림 이메일 발송 실패`와 롤백 로그를 확인합니다.
 
----
-
-## 📊 배포 후 확인사항
-
-### ✅ 체크리스트
-
-- [ ] Home 페이지 정상 로드
-- [ ] About 페이지 정상 로드
-- [ ] Contact 페이지 정상 로드
-- [ ] Contact 폼 제출 테스트
-- [ ] Supabase에서 데이터 확인
-- [ ] Admin 로그인 테스트
-- [ ] Admin 대시보드에서 문의 목록 확인
-- [ ] 상태 변경 기능 테스트
-- [ ] 모바일 반응형 확인
-
----
-
-## 🛠️ 문제 해결
-
-### Supabase 연결 안 됨
-
-1. `.env.local` 환경변수 확인
-2. Supabase RLS 정책 확인
-3. 브라우저 콘솔에서 에러 메시지 확인
-
-### 빌드 실패
-
-```bash
-# 의존성 재설치
-rm -rf node_modules
-npm install
-
-# 빌드 재시도
-npm run build
-```
-
-### Admin 로그인 안 됨
-
-1. 비밀번호 확인 (`.env.local`의 `NEXT_PUBLIC_ADMIN_PASSWORD`)
-2. localStorage 초기화: 브라우저 개발자 도구 → Application → Local Storage → 삭제
-
----
-
-## 📝 유지보수
-
-### 콘텐츠 수정
+## 유지보수
 
 - Home: `app/page.tsx`
 - About: `app/about/page.tsx`
-- Contact: `app/contact/page.tsx`
+- Contact UI: `app/contact/page.tsx`, `components/ContactForm.tsx`
+- Contact 처리 함수: `supabase/functions/contact/index.ts`
+- Supabase 설정: `supabase/config.toml`, `SUPABASE_SETUP.md`
 
-수정 후 다시 빌드 & 배포:
+수정 후 최소 검증:
+
 ```bash
+npm run lint
 npm run build
-# Vercel: 자동 배포
-# Cafe24: out/ 폴더 FTP 재업로드
 ```
-
-### 디자인 수정
-
-- 전역 스타일: `app/globals.css`
-- Tailwind 설정: `tailwind.config.js`
-- 컴포넌트: `components/` 폴더
-
----
-
-## 📞 지원
-
-문제가 발생하면 README.md 파일을 참고하거나 이슈를 등록해주세요.

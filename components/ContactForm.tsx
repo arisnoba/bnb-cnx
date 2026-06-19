@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { supabase, ContactFormData } from '@/lib/supabase';
+import type { ContactFormData } from '@/lib/supabase';
 import { toast } from 'sonner';
 
 const INQUIRY_TYPES = [
@@ -21,6 +21,11 @@ const INQUIRY_TYPES = [
 ];
 
 const REFERRAL_SOURCES = ['지인 추천', '샤오홍슈', '유튜브', '인스타그램', '네이버검색', '구글 검색', '기타'];
+
+const CONTACT_FUNCTION_URL =
+	process.env.NEXT_PUBLIC_CONTACT_FUNCTION_URL ||
+	(process.env.NEXT_PUBLIC_SUPABASE_URL ? `${process.env.NEXT_PUBLIC_SUPABASE_URL.replace(/\/$/, '')}/functions/v1/contact` : '');
+const SUPABASE_PUBLIC_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 export default function ContactForm() {
 	const [formData, setFormData] = useState<ContactFormData>({
@@ -182,17 +187,30 @@ export default function ContactForm() {
 		setIsSubmitting(true);
 
 		try {
-			const { error } = await supabase.from('contacts').insert([
-				{
+			if (!CONTACT_FUNCTION_URL) {
+				throw new Error('문의 접수 URL이 설정되지 않았습니다.');
+			}
+
+			const response = await fetch(CONTACT_FUNCTION_URL, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					apikey: SUPABASE_PUBLIC_KEY,
+				},
+				body: JSON.stringify({
 					...formData,
 					marketing_agreed: marketingAgreed,
-					status: 'new',
-				},
-			]);
+				}),
+			});
 
-			if (error) throw error;
+			const result = await response.json().catch(() => null);
+
+			if (!response.ok) {
+				throw new Error(result?.message ?? '문의 제출 중 오류가 발생했습니다.');
+			}
 
 			toast.success('문의가 성공적으로 제출되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
+
 			setFormData({
 				inquiry_types: [],
 				inquiry_content: '',
@@ -207,7 +225,7 @@ export default function ContactForm() {
 			setMarketingAgreed(false);
 		} catch (error) {
 			console.error('Error submitting form:', error);
-			toast.error('문의 제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+			toast.error(error instanceof Error ? error.message : '문의 제출 중 오류가 발생했습니다. 다시 시도해주세요.');
 		} finally {
 			setIsSubmitting(false);
 		}
