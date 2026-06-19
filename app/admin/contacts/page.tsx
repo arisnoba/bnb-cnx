@@ -205,6 +205,22 @@ export default function AdminContactsPage() {
 		};
 	}, [contacts]);
 
+	const referralStats = useMemo(() => {
+		const counts = contacts.reduce<Record<string, number>>((acc, contact) => {
+			const source = contact.referral_source.trim() || '미입력';
+			acc[source] = (acc[source] ?? 0) + 1;
+			return acc;
+		}, {});
+
+		return Object.entries(counts)
+			.map(([source, count]) => ({
+				source,
+				count,
+				percentage: contacts.length > 0 ? Math.round((count / contacts.length) * 100) : 0,
+			}))
+			.sort((a, b) => b.count - a.count || a.source.localeCompare(b.source, 'ko-KR'));
+	}, [contacts]);
+
 	if (isCheckingAuth) {
 		return (
 			<div className="container flex min-h-screen items-center justify-center py-12">
@@ -291,6 +307,43 @@ export default function AdminContactsPage() {
 						</CardContent>
 					</Card>
 				</div>
+
+				{/* 유입경로 지표 */}
+				<Card className="mb-6 shadow-sm">
+					<CardHeader className="pb-3">
+						<div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+							<div>
+								<CardTitle className="text-lg text-slate-900">유입경로 지표</CardTitle>
+								<CardDescription>전체 문의 기준 경로별 접수 현황</CardDescription>
+							</div>
+							<p className="text-sm font-medium text-slate-500">총 {stats.total}건</p>
+						</div>
+					</CardHeader>
+					<CardContent className="pt-0">
+						{referralStats.length === 0 ? (
+							<p className="rounded-lg bg-slate-50 px-4 py-6 text-center text-sm text-slate-500">아직 집계할 유입경로가 없습니다.</p>
+						) : (
+							<div className="space-y-3">
+								{referralStats.map(item => (
+									<div key={item.source} className="grid gap-2 sm:grid-cols-[160px_1fr_84px] sm:items-center">
+										<div className="flex items-center justify-between gap-2 sm:block">
+											<p className="truncate text-sm font-semibold text-slate-800">{item.source}</p>
+											<p className="text-sm font-semibold text-slate-900 sm:hidden">{item.count}건</p>
+										</div>
+										<div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
+											<div className="h-full rounded-full bg-slate-700 transition-all" style={{ width: `${item.percentage}%` }} />
+										</div>
+										<div className="hidden text-right text-sm sm:block">
+											<span className="font-semibold text-slate-900">{item.count}건</span>
+											<span className="ml-2 text-slate-500">{item.percentage}%</span>
+										</div>
+										<p className="text-xs text-slate-500 sm:hidden">{item.percentage}%</p>
+									</div>
+								))}
+							</div>
+						)}
+					</CardContent>
+				</Card>
 
 				{/* 필터 및 검색 */}
 				<Card className="mb-6 shadow-sm">
